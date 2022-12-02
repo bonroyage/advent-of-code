@@ -1,0 +1,40 @@
+{
+  "name": "bonroyage/advent-of-code-2022",
+  "description": "Advent of Code years/2022",
+  "type": "project",
+  "require": {
+    "php": "^8.1",
+    "laravel-zero/framework": "^9.2",
+    "nunomaduro/termwind": "^1.14"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.2",
+    "mockery/mockery": "^1.4.4",
+    "pestphp/pest": "^1.21.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "MMXXI\\": "editions/2021/",
+      "MMXXII\\": "editions/2022/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "bin": [
+    "application"
+  ]
+}
