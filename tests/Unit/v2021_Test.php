@@ -72,3 +72,14 @@ testTask(2021, 13,
 .....
 ANSWER,
 );
+
+
+testTask(2021, 14,
+    expectPart1ToBe: 1588,
+    expectPart2ToBe: 2188189693529,
+);
+
+testTask(2021, 15,
+    expectPart1ToBe: 40,
+    expectPart2ToBe: 315,
+);
