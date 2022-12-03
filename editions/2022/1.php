@@ -15,12 +15,12 @@ return new class('Calorie Counting') extends Day {
 
     private function input(): Collection
     {
-        return $this->readFile(__DIR__ . '/1.txt', PHP_EOL . PHP_EOL)
+        return $this->readFile(PHP_EOL . PHP_EOL)
             ->map(fn($elf) => str($elf)->trim()->explode(PHP_EOL)->sum());
     }
 
 
-    private function part1(): Part
+    public function part1(): Part
     {
         $max = $this->input()
             ->max();
@@ -32,7 +32,7 @@ return new class('Calorie Counting') extends Day {
     }
 
 
-    private function part2(): Part
+    public function part2(): Part
     {
         $sum = $this->input()
             ->sortDesc()

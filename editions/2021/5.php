@@ -17,12 +17,12 @@ return new class ('Hydrothermal Venture') extends Day {
 
     private function input(): Collection
     {
-        return $this->readFile(__DIR__ . '/5.txt')
+        return $this->readFile()
             ->map(fn($line) => new Line($line));
     }
 
 
-    private function part1(): Part
+    public function part1(): Part
     {
         $input = $this->input();
 
@@ -35,7 +35,7 @@ return new class ('Hydrothermal Venture') extends Day {
     }
 
 
-    private function part2(): Part
+    public function part2(): Part
     {
         $input = $this->input();
 
