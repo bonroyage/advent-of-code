@@ -18,7 +18,8 @@ class SolverCommand extends Command
             ->mapWithKeys(function ($file) {
                 $basename = basename($file, '.php');
                 return [$basename => include $file];
-            });
+            })
+            ->sortKeys();
 
         if ($this->argument('day') !== null) {
             $index = $this->argument('day');
@@ -53,8 +54,8 @@ class SolverCommand extends Command
 
         /** @var \App\Solver\Part $part */
         foreach ($day->handle() as $part) {
-            render('<div><em class="ml-1">' . $part->question . '</em></div>');
-            render('<div><div class="px-1 text-yellow-400">' . $part->answer . '</div></div>');
+            render('<div><em>' . $part->question . '</em></div>');
+            render('<div><div class="text-yellow-400">' . nl2br($part->answer) . '</div></div>');
             $this->newLine();
         }
     }

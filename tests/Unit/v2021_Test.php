@@ -39,3 +39,36 @@ testTask(2021, 8,
     expectPart1ToBe: 26,
     expectPart2ToBe: 61229,
 );
+
+testTask(2021, 9,
+    expectPart1ToBe: 15,
+    expectPart2ToBe: 1134,
+);
+
+testTask(2021, 10,
+    expectPart1ToBe: 26397,
+    expectPart2ToBe: 288957,
+);
+
+testTask(2021, 11,
+    expectPart1ToBe: 1656,
+    expectPart2ToBe: 195,
+);
+
+testTask(2021, 12,
+    expectPart1ToBe: 226,
+    expectPart2ToBe: 3509,
+);
+
+testTask(2021, 13,
+    expectPart1ToBe: 17,
+    expectPart2ToBe: <<<ANSWER
+#####
+#...#
+#...#
+#...#
+#####
+.....
+.....
+ANSWER,
+);

@@ -16,7 +16,7 @@ return new class ('Seven Segment Search') extends Day {
 
     private function input(): Collection
     {
-        return $this->readFile(PHP_EOL)
+        return $this->readFile()
             ->map(fn($line) => explode(' | ', $line));
     }
 
