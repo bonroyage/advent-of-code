@@ -16,12 +16,12 @@ return new class ('Seven Segment Search') extends Day {
 
     private function input(): Collection
     {
-        return $this->readFile(__DIR__ . '/8.txt')
+        return $this->readFile(PHP_EOL)
             ->map(fn($line) => explode(' | ', $line));
     }
 
 
-    private function part1(): Part
+    public function part1(): Part
     {
         $digitsWithUniqueNumberOfSegments = 0;
 
@@ -42,7 +42,7 @@ return new class ('Seven Segment Search') extends Day {
     }
 
 
-    private function part2(): Part
+    public function part2(): Part
     {
         $output = 0;
 

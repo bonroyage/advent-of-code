@@ -15,11 +15,11 @@ return new class ('Lanternfish') extends Day {
 
     private function input(): Collection
     {
-        return $this->readFile(__DIR__ . '/6.txt', ',');
+        return $this->readFile(',');
     }
 
 
-    private function part1(): Part
+    public function part1(): Part
     {
         return new Part(
             question: 'Find a way to simulate lanternfish. How many lanternfish would there be after 80 days?',
@@ -28,7 +28,7 @@ return new class ('Lanternfish') extends Day {
     }
 
 
-    private function part2(): Part
+    public function part2(): Part
     {
         return new Part(
             question: 'How many lanternfish would there be after 256 days?',

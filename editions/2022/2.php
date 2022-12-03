@@ -17,12 +17,12 @@ return new class('Rock Paper Scissors') extends Day {
 
     private function input(): Collection
     {
-        return $this->readFile(__DIR__ . '/2.txt')
+        return $this->readFile(PHP_EOL)
             ->map(fn($instruction) => explode(' ', $instruction));
     }
 
 
-    private function part1(): Part
+    public function part1(): Part
     {
         $sum = $this->input()->map(function ($guide) {
             $opponentWillPlay = match ($guide[0]) {
@@ -49,7 +49,7 @@ return new class('Rock Paper Scissors') extends Day {
     }
 
 
-    private function part2(): Part
+    public function part2(): Part
     {
         $sum = $this->input()->map(function ($guide) {
             $opponentWillPlay = match ($guide[0]) {

@@ -15,11 +15,11 @@ return new class ('Binary Diagnostic') extends Day {
 
     private function input(): Collection
     {
-        return $this->readFile(__DIR__ . '/3.txt');
+        return $this->readFile();
     }
 
 
-    private function part1(): Part
+    public function part1(): Part
     {
         $input = $this->input();
 
@@ -39,7 +39,7 @@ return new class ('Binary Diagnostic') extends Day {
     }
 
 
-    private function part2(): Part
+    public function part2(): Part
     {
         $input = $this->input();
 

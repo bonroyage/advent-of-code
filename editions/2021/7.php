@@ -15,11 +15,11 @@ return new class ('The Treachery of Whales') extends Day {
 
     private function input(): Collection
     {
-        return $this->readFile(__DIR__ . '/7.txt', ',');
+        return $this->readFile(',');
     }
 
 
-    private function part1(): Part
+    public function part1(): Part
     {
         $costs = $this->calculateCosts(static fn($movement) => $movement);
 
@@ -30,7 +30,7 @@ return new class ('The Treachery of Whales') extends Day {
     }
 
 
-    private function part2(): Part
+    public function part2(): Part
     {
         $costs = $this->calculateCosts(static fn($movement) => ($movement * ($movement + 1)) / 2);
 
