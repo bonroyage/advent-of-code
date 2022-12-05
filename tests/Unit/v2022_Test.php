@@ -19,3 +19,8 @@ testTask(2022, 4,
     expectPart1ToBe: 2,
     expectPart2ToBe: 4,
 );
+
+testTask(2022, 5,
+    expectPart1ToBe: 'CMZ',
+    expectPart2ToBe: 'MCD',
+);

@@ -38,7 +38,7 @@ abstract class Day
         }
 
         return str(file_get_contents($file))
-            ->trim()
+            ->rtrim()
             ->explode($explode);
     }
 
