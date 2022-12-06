@@ -35,7 +35,7 @@ return new class('Rucksack Reorganization') extends Day {
 
         return new Part(
             question: 'Find the item type that appears in both compartments of each rucksack. What is the sum of the priorities of those item types?',
-            answer: $sum
+            answer: $sum,
         );
     }
 
@@ -54,7 +54,7 @@ return new class('Rucksack Reorganization') extends Day {
 
         return new Part(
             question: 'Find the item type that corresponds to the badges of each three-Elf group. What is the sum of the priorities of those item types?',
-            answer: $sum
+            answer: $sum,
         );
     }
 

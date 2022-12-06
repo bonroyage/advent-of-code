@@ -44,7 +44,7 @@ return new class('Rock Paper Scissors') extends Day {
 
         return new Part(
             question: 'What would your total score be if everything goes exactly according to your strategy guide?',
-            answer: $sum
+            answer: $sum,
         );
     }
 
@@ -85,7 +85,7 @@ return new class('Rock Paper Scissors') extends Day {
 
         return new Part(
             question: 'Following the Elf\'s instructions for the second column, what would your total score be if everything goes exactly according to your strategy guide?',
-            answer: $sum
+            answer: $sum,
         );
     }
 
