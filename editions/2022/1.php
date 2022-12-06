@@ -27,7 +27,7 @@ return new class('Calorie Counting') extends Day {
 
         return new Part(
             question: 'Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?',
-            answer: $max
+            answer: $max,
         );
     }
 
@@ -41,7 +41,7 @@ return new class('Calorie Counting') extends Day {
 
         return new Part(
             question: 'Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?',
-            answer: $sum
+            answer: $sum,
         );
     }
 
