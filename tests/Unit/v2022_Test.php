@@ -1,8 +1,8 @@
 <?php
 
 testTask(2022, 1,
-    expectPart1ToBe: 24000,
-    expectPart2ToBe: 45000,
+    expectPart1ToBe: 24_000,
+    expectPart2ToBe: 45_000,
 );
 
 testTask(2022, 2,
@@ -55,4 +55,9 @@ testTask(2022, 10,
 ######......######......######......####
 #######.......#######.......#######.....
 ANSWER,
+);
+
+testTask(2022, 11,
+    expectPart1ToBe: 10_605,
+    expectPart2ToBe: 2_713_310_158,
 );
