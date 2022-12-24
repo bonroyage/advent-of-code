@@ -36,7 +36,7 @@ return new class ('Cathode-Ray Tube') extends Day {
 
         return new Part(
             question: 'Find the signal strength during the 20th, 60th, 100th, 140th, 180th, and 220th cycles. What is the sum of these six signal strengths?',
-            answer: array_sum($signalStrength)
+            answer: array_sum($signalStrength),
         );
     }
 

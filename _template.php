@@ -23,7 +23,7 @@ return new class ('') extends Day {
     {
         return new Part(
             question: '',
-            answer: null
+            answer: null,
         );
     }
 
