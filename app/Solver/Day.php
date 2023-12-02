@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 abstract class Day
 {
 
-    public bool $sample = false;
+    public ?int $sample = null;
 
 
     public function __construct(public readonly string $title)
@@ -27,14 +27,20 @@ abstract class Day
 
     protected function readFile(string $explode = PHP_EOL, ?string $file = null): Collection
     {
-        if (!isset($file)) {
+        if (! isset($file)) {
             $childRef = new \ReflectionClass(get_class($this));
 
-            $file = str_replace(
-                search: '.php',
-                replace: $this->sample ? '-sample.txt' : '.txt',
-                subject: $childRef->getFileName()
-            );
+            if ($this->sample) {
+                $partSpecificSampleFile = str_replace('.php', "-sample-{$this->sample}.txt", $childRef->getFileName());
+
+                if (file_exists($partSpecificSampleFile)) {
+                    $file = $partSpecificSampleFile;
+                } else {
+                    $file = str_replace('.php', "-sample.txt", $childRef->getFileName());
+                }
+            } else {
+                $file = str_replace('.php', '.txt', $childRef->getFileName());
+            }
         }
 
         return str(file_get_contents($file))
