@@ -4,9 +4,7 @@ namespace MMXXI\Day13;
 
 class Grid
 {
-
     private array $grid;
-
 
     public function __construct(array $points)
     {
@@ -20,24 +18,20 @@ class Grid
         }
     }
 
-
-    private function makeGrid(?int $width = null, ?int $height = null): array
+    private function makeGrid(int $width = null, int $height = null): array
     {
         return array_fill(0, $height ?? $this->height(), array_fill(0, $width ?? $this->width(), false));
     }
-
 
     public function height(): int
     {
         return count($this->grid);
     }
 
-
     public function width(): int
     {
         return count($this->grid[0]);
     }
-
 
     public function prettyPrint(array $grid = null): string
     {
@@ -53,7 +47,6 @@ class Grid
         return $str;
     }
 
-
     private function fold(array $canvas, int $foldAt): array
     {
         $staticPart = array_reverse(array_slice($canvas, 0, $foldAt));
@@ -65,7 +58,6 @@ class Grid
             max(count($staticPart), count($foldedPart)),
         ];
     }
-
 
     public function foldUp(int $foldAt): void
     {
@@ -80,7 +72,6 @@ class Grid
 
         $this->grid = array_reverse($foldedGrid);
     }
-
 
     public function foldLeft(int $foldAt): void
     {
@@ -100,7 +91,6 @@ class Grid
         $this->grid = $foldedGrid;
     }
 
-
     public function visible(): int
     {
         return collect($this->grid)
@@ -108,5 +98,4 @@ class Grid
             ->filter()
             ->count();
     }
-
 }

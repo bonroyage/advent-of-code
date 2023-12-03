@@ -5,20 +5,18 @@ use App\Solver\Part;
 use Illuminate\Support\Collection;
 use MMXXI\Day10\Line;
 
-return new class ('Syntax Scoring') extends Day {
-
+return new class('Syntax Scoring') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile();
     }
-
 
     public function part1(): Part
     {
@@ -39,10 +37,9 @@ return new class ('Syntax Scoring') extends Day {
 
         return new Part(
             question: 'Find the first illegal character in each corrupted line of the navigation subsystem. What is the total syntax error score for those errors?',
-            answer: array_sum($scores)
+            answer: array_sum($scores),
         );
     }
-
 
     public function part2(): Part
     {
@@ -72,8 +69,7 @@ return new class ('Syntax Scoring') extends Day {
 
         return new Part(
             question: 'Find the completion string for each incomplete line, score the completion strings, and sort the scores. What is the middle score?',
-            answer: $scores[floor((count($scores) - 1) / 2)]
+            answer: $scores[floor((count($scores) - 1) / 2)],
         );
     }
-
 };

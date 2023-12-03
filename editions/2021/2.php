@@ -4,21 +4,19 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class ('Dive!') extends Day {
-
+return new class('Dive!') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile()
             ->map(fn($instruction) => explode(' ', $instruction));
     }
-
 
     public function part1(): Part
     {
@@ -39,10 +37,9 @@ return new class ('Dive!') extends Day {
 
         return new Part(
             question: 'Calculate the horizontal position and depth you would have after following the planned course. What do you get if you multiply your final horizontal position by your final depth?',
-            answer: $horizontal * $depth
+            answer: $horizontal * $depth,
         );
     }
-
 
     public function part2(): Part
     {
@@ -65,8 +62,7 @@ return new class ('Dive!') extends Day {
 
         return new Part(
             question: 'Using this new interpretation of the commands, calculate the horizontal position and depth you would have after following the planned course. What do you get if you multiply your final horizontal position by your final depth?',
-            answer: $horizontal * $depth
+            answer: $horizontal * $depth,
         );
     }
-
 };

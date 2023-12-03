@@ -5,21 +5,19 @@ use App\Solver\Part;
 use Illuminate\Support\Collection;
 use MMXXII\Day12\Grid;
 
-return new class ('Hill Climbing Algorithm') extends Day {
-
+return new class('Hill Climbing Algorithm') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile()
             ->map(fn($line) => str_split($line));
     }
-
 
     public function part1(): Part
     {
@@ -33,7 +31,6 @@ return new class ('Hill Climbing Algorithm') extends Day {
         );
     }
 
-
     public function part2(): Part
     {
         $grid = new Grid($this->input()->all());
@@ -45,5 +42,4 @@ return new class ('Hill Climbing Algorithm') extends Day {
             answer: $distance,
         );
     }
-
 };

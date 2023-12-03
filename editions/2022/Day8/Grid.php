@@ -4,11 +4,9 @@ namespace MMXXII\Day8;
 
 class Grid
 {
-
     public function __construct(public readonly array $grid)
     {
     }
-
 
     public function isVisible(array $node): bool
     {
@@ -17,7 +15,6 @@ class Grid
         return $this->isVisibleOnSides($this->grid[$node[1]], $node[0], $height)
             || $this->isVisibleOnSides(array_column($this->grid, $node[0]), $node[1], $height);
     }
-
 
     private function isVisibleOnSides(array $sightline, int $offset, int $height): bool
     {
@@ -37,17 +34,15 @@ class Grid
         return $before < $height || $after < $height;
     }
 
-
     public function viewingDistance(array $node): int
     {
         return array_product([
-            'left'   => $this->countTallerTrees($node, -1, 0),
-            'right'  => $this->countTallerTrees($node, 1, 0),
-            'top'    => $this->countTallerTrees($node, 0, -1),
+            'left' => $this->countTallerTrees($node, -1, 0),
+            'right' => $this->countTallerTrees($node, 1, 0),
+            'top' => $this->countTallerTrees($node, 0, -1),
             'bottom' => $this->countTallerTrees($node, 0, 1),
         ]);
     }
-
 
     private function countTallerTrees(array $node, int $horizontal, int $vertical): int
     {
@@ -79,10 +74,8 @@ class Grid
         return $distance;
     }
 
-
     public function height(array $node): int
     {
         return $this->grid[$node[1]][$node[0]];
     }
-
 }

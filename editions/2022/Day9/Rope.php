@@ -4,9 +4,7 @@ namespace MMXXII\Day9;
 
 class Rope
 {
-
     private array $knots;
-
 
     public function __construct(int $knots = 0)
     {
@@ -17,14 +15,13 @@ class Rope
         }
     }
 
-
     public function move(string $direction, int $amount): void
     {
         $movement = match ($direction) {
             'U' => [0, -1],
             'D' => [0, 1],
             'L' => [-1, 0],
-            'R' => [1, 0]
+            'R' => [1, 0],
         };
 
         for ($i = 1; $i <= $amount; $i++) {
@@ -32,10 +29,8 @@ class Rope
         }
     }
 
-
     public function tail(): Knot
     {
         return last($this->knots);
     }
-
 }

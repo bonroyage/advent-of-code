@@ -5,20 +5,18 @@ use App\Solver\Part;
 use MMXXI\Day16\Packet;
 use MMXXI\Day16\Transmission;
 
-return new class ('Packet Decoder') extends Day {
-
+return new class('Packet Decoder') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): string
     {
         return $this->readFile()[0];
     }
-
 
     public function part1(): Part
     {
@@ -30,10 +28,9 @@ return new class ('Packet Decoder') extends Day {
 
         return new Part(
             question: 'Decode the structure of your hexadecimal-encoded BITS transmission; what do you get if you add up the version numbers in all packets?',
-            answer: $this->sumVersions($packet)
+            answer: $this->sumVersions($packet),
         );
     }
-
 
     public function part2(): Part
     {
@@ -49,7 +46,6 @@ return new class ('Packet Decoder') extends Day {
         );
     }
 
-
     private function sumVersions(Packet $packet)
     {
         $version = $packet->version;
@@ -60,5 +56,4 @@ return new class ('Packet Decoder') extends Day {
 
         return $version;
     }
-
 };

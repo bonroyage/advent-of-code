@@ -4,20 +4,18 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class ('The Treachery of Whales') extends Day {
-
+return new class('The Treachery of Whales') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile(',');
     }
-
 
     public function part1(): Part
     {
@@ -25,10 +23,9 @@ return new class ('The Treachery of Whales') extends Day {
 
         return new Part(
             question: 'Determine the horizontal position that the crabs can align to using the least fuel possible. How much fuel must they spend to align to that position?',
-            answer: min($costs)
+            answer: min($costs),
         );
     }
-
 
     public function part2(): Part
     {
@@ -36,10 +33,9 @@ return new class ('The Treachery of Whales') extends Day {
 
         return new Part(
             question: 'Determine the horizontal position that the crabs can align to using the least fuel possible so they can make you an escape route! How much fuel must they spend to align to that position?',
-            answer: min($costs)
+            answer: min($costs),
         );
     }
-
 
     private function calculateCosts(Closure $calculator): array
     {
@@ -56,5 +52,4 @@ return new class ('The Treachery of Whales') extends Day {
 
         return $costs;
     }
-
 };

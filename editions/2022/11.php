@@ -4,20 +4,19 @@ use App\Solver\Day;
 use App\Solver\Part;
 use MMXXII\Day11\Monkeys;
 
-return new class ('Monkey in the Middle') extends Day {
-
+return new class('Monkey in the Middle') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Monkeys
     {
         $monkeys = new Monkeys();
 
-        $inputs = $this->readFile(PHP_EOL . PHP_EOL);
+        $inputs = $this->readFile(PHP_EOL.PHP_EOL);
 
         foreach ($inputs as $monkey) {
             preg_match('/^Monkey (\d+):\n/m', $monkey, $index);
@@ -32,10 +31,11 @@ return new class ('Monkey in the Middle') extends Day {
                 explode(', ', $startingItems[1]),
                 function (int $old) use ($operation) {
                     $value = $operation[2] === 'old' ? $old : $operation[2];
+
                     return match ($operation[1]) {
                         '+' => $old + $value,
                         '*' => $old * $value,
-                        default => throw new InvalidArgumentException('Unknown operator: ' . $operation[1])
+                        default => throw new InvalidArgumentException('Unknown operator: '.$operation[1]),
                     };
                 },
                 $test[1],
@@ -46,7 +46,6 @@ return new class ('Monkey in the Middle') extends Day {
 
         return $monkeys;
     }
-
 
     public function part1(): Part
     {
@@ -60,7 +59,6 @@ return new class ('Monkey in the Middle') extends Day {
         );
     }
 
-
     public function part2(): Part
     {
         $monkeys = $this->input();
@@ -73,5 +71,4 @@ return new class ('Monkey in the Middle') extends Day {
             answer: $monkeys->worryLevelOfTopTwoMonkeys(),
         );
     }
-
 };

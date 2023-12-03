@@ -4,11 +4,9 @@ namespace MMXXII\Day2;
 
 enum Shape: int
 {
-
     case Rock = 1;
     case Paper = 2;
     case Scissors = 3;
-
 
     public function result(Shape $otherShape): Result
     {
@@ -22,5 +20,4 @@ enum Shape: int
             Shape::Scissors => $otherShape === Shape::Paper,
         } ? Result::Win : Result::Lose;
     }
-
 }

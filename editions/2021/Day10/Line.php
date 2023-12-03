@@ -4,9 +4,7 @@ namespace MMXXI\Day10;
 
 class Line
 {
-
     public readonly array $unclosed;
-
 
     public function __construct(public readonly string $line)
     {
@@ -31,18 +29,15 @@ class Line
         $this->unclosed = $chunks;
     }
 
-
     public function characters(): array
     {
         return str_split($this->line);
     }
 
-
     public function isOpeningTag(string $char): bool
     {
         return in_array($char, ['(', '[', '{', '<'], true);
     }
-
 
     public function closingTagFor(string $char): string
     {
@@ -53,5 +48,4 @@ class Line
             '<' => '>',
         };
     }
-
 }

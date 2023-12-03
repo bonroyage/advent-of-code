@@ -5,21 +5,19 @@ use App\Solver\Part;
 use Illuminate\Support\Collection;
 use MMXXI\Day11\Grid;
 
-return new class ('Dumbo Octopus') extends Day {
-
+return new class('Dumbo Octopus') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile()
             ->map(fn(string $row) => str_split($row));
     }
-
 
     public function part1(): Part
     {
@@ -32,10 +30,9 @@ return new class ('Dumbo Octopus') extends Day {
 
         return new Part(
             question: 'Given the starting energy levels of the dumbo octopuses in your cavern, simulate 100 steps. How many total flashes are there after 100 steps?',
-            answer: $flashes
+            answer: $flashes,
         );
     }
-
 
     public function part2(): Part
     {
@@ -54,5 +51,4 @@ return new class ('Dumbo Octopus') extends Day {
             answer: $step,
         );
     }
-
 };

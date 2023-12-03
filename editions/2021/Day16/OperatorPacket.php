@@ -4,24 +4,20 @@ namespace MMXXI\Day16;
 
 abstract class OperatorPacket extends Packet
 {
-
     /**
      * @var \MMXXI\Day16\Packet[]
      */
     private array $subpackets = [];
-
 
     public function addSubpacket(Packet $packet): void
     {
         $this->subpackets[] = $packet;
     }
 
-
     public function subpackets(): array
     {
         return $this->subpackets;
     }
-
 
     /**
      * @return int[]
@@ -30,7 +26,6 @@ abstract class OperatorPacket extends Packet
     {
         return array_map(fn(Packet $packet) => $packet->value(), $this->subpackets);
     }
-
 
     public static function read(Transmission $transmission): static
     {
@@ -58,5 +53,4 @@ abstract class OperatorPacket extends Packet
 
         return $packet;
     }
-
 }

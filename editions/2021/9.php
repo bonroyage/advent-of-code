@@ -5,21 +5,19 @@ use App\Solver\Part;
 use Illuminate\Support\Collection;
 use MMXXI\Day9\Grid;
 
-return new class ('Smoke Basin') extends Day {
-
+return new class('Smoke Basin') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile()
             ->map(fn(string $row) => str_split($row));
     }
-
 
     public function part1(): Part
     {
@@ -37,10 +35,9 @@ return new class ('Smoke Basin') extends Day {
 
         return new Part(
             question: 'Find all of the low points on your heightmap. What is the sum of the risk levels of all low points on your heightmap?',
-            answer: array_sum($lowest) + count($lowest)
+            answer: array_sum($lowest) + count($lowest),
         );
     }
-
 
     public function part2(): Part
     {
@@ -68,8 +65,7 @@ return new class ('Smoke Basin') extends Day {
 
         return new Part(
             question: 'What do you get if you multiply together the sizes of the three largest basins?',
-            answer: array_product($top3)
+            answer: array_product($top3),
         );
     }
-
 };

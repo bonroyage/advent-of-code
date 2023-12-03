@@ -8,11 +8,9 @@ use RuntimeException;
 
 class SignalPatterns
 {
-
     private array $numbers = [];
 
     private Collection $patterns;
-
 
     public function __construct(string $pattern)
     {
@@ -70,7 +68,6 @@ class SignalPatterns
         $this->numbers[5] = $this->find();
     }
 
-
     private function find(Closure $rule = null): string
     {
         $filter = $this->patterns->filter(function ($wire) use ($rule) {
@@ -88,7 +85,6 @@ class SignalPatterns
         throw new RuntimeException('More than 1 option available');
     }
 
-
     private function subtract(string $source, string $exclude): string
     {
         $source = str_split($source);
@@ -101,7 +97,6 @@ class SignalPatterns
         return implode($data);
     }
 
-
     private function contains(string $source, string $needle): bool
     {
         $source = str_split($source);
@@ -110,20 +105,18 @@ class SignalPatterns
         return empty(array_diff($needle, $source));
     }
 
-
     private function sort(string $in): string
     {
         $chars = str_split($in);
         sort($chars);
+
         return implode($chars);
     }
-
 
     public function getNumbers(): array
     {
         return $this->numbers;
     }
-
 
     public function getNumber(string $signal): int
     {
@@ -137,5 +130,4 @@ class SignalPatterns
 
         throw new RuntimeException('Unknown signal');
     }
-
 }

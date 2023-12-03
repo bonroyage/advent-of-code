@@ -6,20 +6,18 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use MMXXII\Day7\Directory;
 
-return new class ('No Space Left On Device') extends Day {
-
+return new class('No Space Left On Device') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile();
     }
-
 
     public function part1(): Part
     {
@@ -34,7 +32,6 @@ return new class ('No Space Left On Device') extends Day {
             answer: $smallDirectories->sum(),
         );
     }
-
 
     public function part2(): Part
     {
@@ -60,7 +57,6 @@ return new class ('No Space Left On Device') extends Day {
         );
     }
 
-
     private function getTree(): Directory
     {
         $iterator = new ArrayIterator($this->input()->all());
@@ -82,6 +78,7 @@ return new class ('No Space Left On Device') extends Day {
                 }
 
                 $iterator->next();
+
                 continue;
             }
 
@@ -106,20 +103,17 @@ return new class ('No Space Left On Device') extends Day {
         return $root;
     }
 
-
     private function isCommand(ArrayIterator $iterator): bool
     {
         return str_starts_with($iterator->current(), '$ ');
     }
 
-
     private function command(ArrayIterator $iterator): ?array
     {
         if (!$this->isCommand($iterator)) {
-            throw new RuntimeException('Line is not a command: ' . $iterator->current());
+            throw new RuntimeException('Line is not a command: '.$iterator->current());
         }
 
         return explode(' ', Str::after($iterator->current(), '$ '));
     }
-
 };

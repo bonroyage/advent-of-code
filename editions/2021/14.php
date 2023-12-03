@@ -5,26 +5,23 @@ use App\Solver\Part;
 use Illuminate\Support\Collection;
 use MMXXI\Day14\Polymer;
 
-return new class ('Extended Polymerization') extends Day {
-
+return new class('Extended Polymerization') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
-        return $this->readFile(PHP_EOL . PHP_EOL);
+        return $this->readFile(PHP_EOL.PHP_EOL);
     }
-
 
     private function template(): string
     {
         return $this->input()[0];
     }
-
 
     private function insertionRules(): Collection
     {
@@ -32,23 +29,22 @@ return new class ('Extended Polymerization') extends Day {
             ->explode(PHP_EOL)
             ->map(function ($rule) {
                 $segments = explode(' -> ', $rule);
-                return [...$segments, $segments[0][0] . $segments[1]];
+
+                return [...$segments, $segments[0][0].$segments[1]];
             });
     }
-
 
     public function part1(): Part
     {
         $polymer = new Polymer($this->template(), $this->insertionRules()->pluck(1, 0)->all());
-        
+
         $occurrences = $polymer->run(10);
 
         return new Part(
             question: 'Apply 10 steps of pair insertion to the polymer template and find the most and least common elements in the result. What do you get if you take the quantity of the most common element and subtract the quantity of the least common element?',
-            answer: last($occurrences) - head($occurrences)
+            answer: last($occurrences) - head($occurrences),
         );
     }
-
 
     public function part2(): Part
     {
@@ -61,5 +57,4 @@ return new class ('Extended Polymerization') extends Day {
             answer: last($occurrences) - head($occurrences),
         );
     }
-
 };

@@ -4,11 +4,9 @@ namespace MMXXI\Day16;
 
 abstract class Packet implements \JsonSerializable
 {
-
     public int $version;
 
     public int $size;
-
 
     public static function read(Transmission $transmission): static
     {
@@ -33,23 +31,19 @@ abstract class Packet implements \JsonSerializable
         return $result;
     }
 
-
     public function subpackets(): array
     {
         return [];
     }
 
-
     public function jsonSerialize(): array
     {
         return [
-            'type'    => get_class($this),
+            'type' => get_class($this),
             'version' => $this->version,
-            'value'   => $this->value(),
+            'value' => $this->value(),
         ];
     }
 
-
     abstract public function value(): int;
-
 }

@@ -4,15 +4,13 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class ('Cube Conundrum') extends Day
+return new class('Cube Conundrum') extends Day
 {
-
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
-
 
     private function input(): Collection
     {
@@ -27,6 +25,7 @@ return new class ('Cube Conundrum') extends Day
                             ->explode(', ')
                             ->mapWithKeys(function (string $cubes) {
                                 preg_match('/^(\d+) (.*)$/', $cubes, $matches);
+
                                 return [$matches[2] => (int) $matches[1]];
                             });
                     });
@@ -37,7 +36,6 @@ return new class ('Cube Conundrum') extends Day
                 ];
             });
     }
-
 
     public function part1(): Part
     {
@@ -67,7 +65,6 @@ return new class ('Cube Conundrum') extends Day
         );
     }
 
-
     public function part2(): Part
     {
         $bag = ['red', 'green', 'blue'];
@@ -89,5 +86,4 @@ return new class ('Cube Conundrum') extends Day
             answer: $power,
         );
     }
-
 };

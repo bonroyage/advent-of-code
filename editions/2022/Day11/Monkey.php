@@ -6,25 +6,20 @@ use Closure;
 
 class Monkey
 {
-
     public int $inspectCounter = 0;
 
-
     public function __construct(
-        public array            $items,
+        public array $items,
         public readonly Closure $operation,
-        public readonly int     $divisible_by,
+        public readonly int $divisible_by,
         public readonly Closure $throw_to,
-    )
-    {
+    ) {
     }
-
 
     private function receive(int $item): void
     {
         $this->items[] = $item;
     }
-
 
     public function inspect(Closure $keepManageable): void
     {
@@ -45,5 +40,4 @@ class Monkey
             unset($this->items[$i]);
         }
     }
-
 }

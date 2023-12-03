@@ -4,38 +4,34 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class ('Lanternfish') extends Day {
-
+return new class('Lanternfish') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile(',');
     }
 
-
     public function part1(): Part
     {
         return new Part(
             question: 'Find a way to simulate lanternfish. How many lanternfish would there be after 80 days?',
-            answer: $this->simulate(80)
+            answer: $this->simulate(80),
         );
     }
-
 
     public function part2(): Part
     {
         return new Part(
             question: 'How many lanternfish would there be after 256 days?',
-            answer: $this->simulate(256)
+            answer: $this->simulate(256),
         );
     }
-
 
     private function simulate(int $afterDays): int
     {
@@ -62,5 +58,4 @@ return new class ('Lanternfish') extends Day {
 
         return array_sum($inState);
     }
-
 };

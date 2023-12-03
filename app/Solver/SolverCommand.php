@@ -4,19 +4,19 @@ namespace App\Solver;
 
 use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
+
 use function Termwind\render;
 
 class SolverCommand extends Command
 {
-
     protected $signature = 'solve {year} {day?}';
-
 
     public function handle()
     {
-        $days = collect(File::glob($this->path() . '/*.php'))
+        $days = collect(File::glob($this->path().'/*.php'))
             ->mapWithKeys(function ($file) {
                 $basename = basename($file, '.php');
+
                 return [$basename => include $file];
             })
             ->sortKeys();
@@ -25,7 +25,7 @@ class SolverCommand extends Command
             $index = $this->argument('day');
         } else {
             foreach ($days as $day => $dayObject) {
-                $this->line(sprintf("  Day <comment>%s</comment>: %s", $day, $dayObject->title));
+                $this->line(sprintf('  Day <comment>%s</comment>: %s', $day, $dayObject->title));
             }
 
             $index = $this->ask('What day do you want to calculate?', 'all');
@@ -41,12 +41,12 @@ class SolverCommand extends Command
 
         if (!$days->has($index)) {
             $this->error('Day not found!');
+
             return Command::FAILURE;
         }
 
         $this->solveDay($index, $days->get($index));
     }
-
 
     private function solveDay(int $index, Day $day)
     {
@@ -54,17 +54,16 @@ class SolverCommand extends Command
 
         /** @var \App\Solver\Part $part */
         foreach ($day->handle() as $part) {
-            render('<div><em>' . $part->question . '</em></div>');
-            render('<div><div class="text-yellow-400">' . nl2br($part->answer) . '</div></div>');
+            render('<div><em>'.$part->question.'</em></div>');
+            render('<div><div class="text-yellow-400">'.nl2br($part->answer).'</div></div>');
             $this->newLine();
         }
     }
 
-
     private function path(): string
     {
-        $realBase = rtrim($this->absolute(base_path('editions')), '/') . '/';
-        $realUserPath = $this->absolute($realBase . '/' . $this->argument('year'));
+        $realBase = rtrim($this->absolute(base_path('editions')), '/').'/';
+        $realUserPath = $this->absolute($realBase.'/'.$this->argument('year'));
 
         if (!str_starts_with($realUserPath, $realBase)) {
             $this->error('No hacking allowed here');
@@ -73,7 +72,6 @@ class SolverCommand extends Command
 
         return $realUserPath;
     }
-
 
     private function absolute(string $path): string
     {
@@ -86,5 +84,4 @@ class SolverCommand extends Command
         $this->error('Oops! Can\'t find this edition');
         exit;
     }
-
 }

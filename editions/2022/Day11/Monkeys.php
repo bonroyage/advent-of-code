@@ -7,18 +7,15 @@ use Illuminate\Support\Collection;
 
 class Monkeys
 {
-
     /**
      * @var Collection<\MMXXII\Day11\Monkey>
      */
     private Collection $monkeys;
 
-
     public function __construct()
     {
         $this->monkeys = collect([]);
     }
-
 
     public function addMonkey(int $id, array $startingItems, Closure $operation, int $divisible_by, int $trueId, int $falseId): void
     {
@@ -30,7 +27,6 @@ class Monkeys
         );
     }
 
-
     public function run(int $rounds, Closure $keepManageable): void
     {
         for ($round = 1; $round <= $rounds; $round++) {
@@ -38,7 +34,6 @@ class Monkeys
                 ->each(fn(Monkey $monkey) => $monkey->inspect($keepManageable));
         }
     }
-
 
     public function divisor(): int
     {
@@ -48,7 +43,6 @@ class Monkeys
 
         return array_product($divisors);
     }
-
 
     public function worryLevelOfTopTwoMonkeys(): int
     {
@@ -60,5 +54,4 @@ class Monkeys
 
         return array_product($levels);
     }
-
 }

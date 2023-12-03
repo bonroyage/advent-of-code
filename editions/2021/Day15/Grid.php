@@ -4,15 +4,12 @@ namespace MMXXI\Day15;
 
 class Grid
 {
-
     private array $destination;
-
 
     public function __construct(public readonly array $grid)
     {
         $this->destination = [array_key_last(last($this->grid)), array_key_last($this->grid)];
     }
-
 
     public function nextNodes(array $node): array
     {
@@ -21,7 +18,6 @@ class Grid
             ->filter(fn($neighbour) => isset($this->grid[$neighbour[1]][$neighbour[0]]))
             ->all();
     }
-
 
     public function run()
     {
@@ -49,10 +45,8 @@ class Grid
         return $risk[$this->destination[1]][$this->destination[0]];
     }
 
-
     public function value(array $node): int
     {
         return $this->grid[$node[1]][$node[0]];
     }
-
 }

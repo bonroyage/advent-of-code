@@ -4,19 +4,15 @@ namespace MMXXI\Day16;
 
 class LiteralPacket extends Packet
 {
-
     public function __construct(
-        public readonly int $value
-    )
-    {
+        public readonly int $value,
+    ) {
     }
 
-    
     public function value(): int
     {
         return $this->value;
     }
-
 
     public static function read(Transmission $transmission): static
     {
@@ -29,5 +25,4 @@ class LiteralPacket extends Packet
 
         return new self(bindec($literalValue));
     }
-
 }

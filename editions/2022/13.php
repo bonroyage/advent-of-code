@@ -5,14 +5,13 @@ use App\Solver\Part;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
-return new class ('') extends Day {
-
+return new class('Distress Signal') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
-
 
     private function input(): Collection
     {
@@ -20,7 +19,6 @@ return new class ('') extends Day {
             ->filter()
             ->map(fn($packet) => json_decode($packet, true));
     }
-
 
     public function part1(): Part
     {
@@ -39,7 +37,6 @@ return new class ('') extends Day {
             answer: array_sum($correctPackets),
         );
     }
-
 
     public function part2(): Part
     {
@@ -67,7 +64,6 @@ return new class ('') extends Day {
             answer: $firstDivider * $secondDivider,
         );
     }
-
 
     private function compare(array|int|null $left, array|int|null $right): ?bool
     {
@@ -112,5 +108,4 @@ return new class ('') extends Day {
             }
         }
     }
-
 };

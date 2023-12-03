@@ -6,44 +6,38 @@ use Illuminate\Support\Collection;
 
 class Directory implements Node
 {
-
     private array $children = [];
 
-
     public function __construct(
-        public readonly string     $name,
+        public readonly string $name,
         public readonly ?Directory $parent = null,
-    )
-    {
+    ) {
     }
-
 
     public function addDirectory(string $name): Directory
     {
         $node = new Directory(
             name: $name,
-            parent: $this
+            parent: $this,
         );
 
         $this->children[$name] = $node;
 
         return $node;
     }
-
 
     public function addFile(string $name, int $size): File
     {
         $node = new File(
             name: $name,
             size: $size,
-            parent: $this
+            parent: $this,
         );
 
         $this->children[$name] = $node;
 
         return $node;
     }
-
 
     public function size(): int
     {
@@ -51,7 +45,6 @@ class Directory implements Node
 
         return array_sum($sizes);
     }
-
 
     public function pwd(): string
     {
@@ -67,7 +60,6 @@ class Directory implements Node
         return preg_replace('/(\/+)/', '/', implode('/', array_reverse($pwd)));
     }
 
-
     public function directories(): Collection
     {
         return collect($this->children)
@@ -78,5 +70,4 @@ class Directory implements Node
             ->filter()
             ->keyBy(fn(Directory $directory) => $directory->pwd());
     }
-
 }

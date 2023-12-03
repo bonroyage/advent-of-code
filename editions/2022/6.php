@@ -3,20 +3,18 @@
 use App\Solver\Day;
 use App\Solver\Part;
 
-return new class ('Tuning Trouble') extends Day {
-
+return new class('Tuning Trouble') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): array
     {
         return str_split($this->readFile()[0]);
     }
-
 
     public function part1(): Part
     {
@@ -26,7 +24,6 @@ return new class ('Tuning Trouble') extends Day {
         );
     }
 
-
     public function part2(): Part
     {
         return new Part(
@@ -34,7 +31,6 @@ return new class ('Tuning Trouble') extends Day {
             answer: $this->findMarker(14),
         );
     }
-
 
     private function findMarker(int $uniqueLength): ?int
     {
@@ -50,5 +46,4 @@ return new class ('Tuning Trouble') extends Day {
 
         return null;
     }
-
 };

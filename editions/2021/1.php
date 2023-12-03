@@ -4,20 +4,18 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class ('Sonar Sweep') extends Day {
-
+return new class('Sonar Sweep') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile();
     }
-
 
     public function part1(): Part
     {
@@ -33,10 +31,9 @@ return new class ('Sonar Sweep') extends Day {
 
         return new Part(
             question: 'How many measurements are larger than the previous measurement?',
-            answer: $increasing
+            answer: $increasing,
         );
     }
-
 
     public function part2(): Part
     {
@@ -55,8 +52,7 @@ return new class ('Sonar Sweep') extends Day {
 
         return new Part(
             question: 'Consider sums of a three-measurement sliding window. How many sums are larger than the previous sum?',
-            answer: $increasing
+            answer: $increasing,
         );
     }
-
 };

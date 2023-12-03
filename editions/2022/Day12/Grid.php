@@ -4,11 +4,9 @@ namespace MMXXII\Day12;
 
 class Grid
 {
-
     public readonly array $a;
     public readonly array $S;
     public readonly array $E;
-
 
     public function __construct(public readonly array $grid)
     {
@@ -30,7 +28,6 @@ class Grid
         $this->a = $a;
     }
 
-
     public function nextNodes(array $node): array
     {
         return collect([[0, 1], [0, -1], [1, 0], [-1, 0]])
@@ -38,7 +35,6 @@ class Grid
             ->filter(fn($neighbour) => isset($this->grid[$neighbour[1]][$neighbour[0]]))
             ->all();
     }
-
 
     public function run(array ...$startingPoints)
     {
@@ -81,7 +77,6 @@ class Grid
         return $shortestPath;
     }
 
-
     public function elevation(array $node): int
     {
         $letter = $this->grid[$node[1]][$node[0]];
@@ -94,5 +89,4 @@ class Grid
 
         return ord($letter) - 96;
     }
-
 }

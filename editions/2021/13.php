@@ -5,20 +5,18 @@ use App\Solver\Part;
 use Illuminate\Support\Collection;
 use MMXXI\Day13\Grid;
 
-return new class ('Transparent Origami') extends Day {
-
+return new class('Transparent Origami') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
-        return $this->readFile(PHP_EOL . PHP_EOL);
+        return $this->readFile(PHP_EOL.PHP_EOL);
     }
-
 
     private function dots(): Collection
     {
@@ -27,14 +25,12 @@ return new class ('Transparent Origami') extends Day {
             ->map(fn($point) => explode(',', $point));
     }
 
-
     private function instructions(): Collection
     {
         return str($this->input()[1])
             ->explode(PHP_EOL)
             ->map(fn($instruction) => sscanf($instruction, 'fold along %1s=%d'));
     }
-
 
     public function part1(): Part
     {
@@ -56,7 +52,6 @@ return new class ('Transparent Origami') extends Day {
         );
     }
 
-
     public function part2(): Part
     {
         $grid = new Grid($this->dots()->all());
@@ -74,5 +69,4 @@ return new class ('Transparent Origami') extends Day {
             answer: trim($grid->prettyPrint()),
         );
     }
-
 };

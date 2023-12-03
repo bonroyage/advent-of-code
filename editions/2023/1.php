@@ -3,17 +3,14 @@
 use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
-return new class ('Trebuchet?!') extends Day
+return new class('Trebuchet?!') extends Day
 {
-
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
-
     private const WORDS_TO_NUMBERS = [
         'one' => 1,
         'two' => 2,
@@ -31,27 +28,19 @@ return new class ('Trebuchet?!') extends Day
         return $this->readFile()
             ->map(function (string $line) use ($wordsToNumbers) {
                 if ($wordsToNumbers) {
-                    $keys = '/(\d|'.implode('|', array_keys(self::WORDS_TO_NUMBERS)).')/';
-                    preg_match($keys, $line, $matches);
-                    $firstNumber = self::WORDS_TO_NUMBERS[$matches[0]] ?? $matches[0];
-
-                    $reverseKeys = '/(\d|'.Str::reverse(implode('|', array_keys(self::WORDS_TO_NUMBERS))).')/';
-                    preg_match($reverseKeys, Str::reverse($line), $matches);
-                    $lastNumber = self::WORDS_TO_NUMBERS[Str::reverse($matches[0])] ?? $matches[0];
-
-                    return (int) $firstNumber.$lastNumber;
+                    $line = preg_replace_callback(
+                        '/(?=('.implode('|', array_keys(self::WORDS_TO_NUMBERS)).'))/',
+                        fn($matches) => self::WORDS_TO_NUMBERS[$matches[1]],
+                        $line,
+                    );
                 }
 
-                $numbers = preg_replace(
-                    '/\D/',
-                    '',
-                    $line
-                );
+                // Remove any non-numbers
+                $line = preg_replace('/\D/', '', $line);
 
-                return (int) (substr($numbers, 0, 1).substr($numbers, -1));
+                return (int) $line[0].$line[-1];
             });
     }
-
 
     public function part1(): Part
     {
@@ -61,7 +50,6 @@ return new class ('Trebuchet?!') extends Day
         );
     }
 
-
     public function part2(): Part
     {
         return new Part(
@@ -69,5 +57,4 @@ return new class ('Trebuchet?!') extends Day
             answer: $this->input(wordsToNumbers: true)->sum(),
         );
     }
-
 };

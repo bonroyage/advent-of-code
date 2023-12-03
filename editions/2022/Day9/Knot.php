@@ -6,16 +6,13 @@ use RuntimeException;
 
 class Knot
 {
-
     private array $visited = [];
-    private ?self $chaser  = null;
-
+    private ?self $chaser = null;
 
     public function __construct(private array $current)
     {
         $this->visited[] = $current;
     }
-
 
     public function makeChaser(): self
     {
@@ -25,7 +22,6 @@ class Knot
 
         return $this->chaser = new self($this->current);
     }
-
 
     public function move(array $movement): void
     {
@@ -64,16 +60,13 @@ class Knot
         }
     }
 
-
     public function uniquePositions(): int
     {
         return count(array_unique($this->visited, SORT_REGULAR));
     }
 
-
     public function position(): array
     {
         return last($this->visited);
     }
-
 }

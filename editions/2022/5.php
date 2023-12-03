@@ -4,20 +4,18 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class ('Supply Stacks') extends Day {
-
+return new class('Supply Stacks') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
-        return $this->readFile(PHP_EOL . PHP_EOL);
+        return $this->readFile(PHP_EOL.PHP_EOL);
     }
-
 
     private function buckets(): array
     {
@@ -41,14 +39,12 @@ return new class ('Supply Stacks') extends Day {
             ->toArray();
     }
 
-
     private function movements(): Collection
     {
         return str($this->input()[1])
             ->explode(PHP_EOL)
             ->map(fn($movement) => sscanf($movement, 'move %d from %d to %d'));
     }
-
 
     public function part1(): Part
     {
@@ -68,7 +64,6 @@ return new class ('Supply Stacks') extends Day {
         );
     }
 
-
     public function part2(): Part
     {
         $buckets = $this->buckets();
@@ -85,5 +80,4 @@ return new class ('Supply Stacks') extends Day {
             answer: $top,
         );
     }
-
 };

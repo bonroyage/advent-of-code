@@ -4,15 +4,12 @@ namespace MMXXI\Day4;
 
 class Board
 {
-
     private array $board;
-
 
     public function __construct(private readonly array $initialBoard)
     {
         $this->board = $this->initialBoard;
     }
-
 
     public function draw(string $value)
     {
@@ -25,12 +22,10 @@ class Board
         }
     }
 
-
     public function value(): int
     {
         return collect($this->board)->flatten()->sum();
     }
-
 
     public function hasBingo(): bool
     {
@@ -46,5 +41,4 @@ class Board
 
         return false;
     }
-
 }

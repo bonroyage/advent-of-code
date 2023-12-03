@@ -4,53 +4,44 @@ namespace MMXXI\Day9;
 
 class Grid
 {
-
     public function __construct(public readonly array $grid)
     {
     }
-
 
     public function numberOfRows(): int
     {
         return count($this->grid);
     }
 
-
     public function numberOfColumns(): int
     {
         return count($this->grid[0]);
     }
-
 
     public function isTopRow(int $y): bool
     {
         return $y === 0;
     }
 
-
     public function isBottomRow(int $y): bool
     {
         return $y === count($this->grid) - 1;
     }
-
 
     public function isLeftColumn(int $x): bool
     {
         return $x === 0;
     }
 
-
     public function isRightColumn(int $x): bool
     {
         return $x === count($this->grid[0]) - 1;
     }
 
-
     public function value(int $x, int $y): int
     {
         return $this->grid[$y][$x];
     }
-
 
     public function isLowerThanAdjacent(int $x, int $y): bool
     {
@@ -83,7 +74,6 @@ class Grid
         return true;
     }
 
-
     public function belongsToBasin(array $basin, int $x, int $y): array
     {
         $basin[] = [$x, $y];
@@ -114,5 +104,4 @@ class Grid
 
         return $basin;
     }
-
 }

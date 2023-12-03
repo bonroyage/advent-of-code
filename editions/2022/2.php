@@ -6,21 +6,19 @@ use Illuminate\Support\Collection;
 use MMXXII\Day2\Result;
 use MMXXII\Day2\Shape;
 
-return new class('Rock Paper Scissors') extends Day {
-
+return new class('Rock Paper Scissors') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile(PHP_EOL)
             ->map(fn($instruction) => explode(' ', $instruction));
     }
-
 
     public function part1(): Part
     {
@@ -29,14 +27,14 @@ return new class('Rock Paper Scissors') extends Day {
                 'A' => Shape::Rock,
                 'B' => Shape::Paper,
                 'C' => Shape::Scissors,
-                default => throw new InvalidArgumentException('Invalid instruction: ' . $guide[0])
+                default => throw new InvalidArgumentException('Invalid instruction: '.$guide[0]),
             };
 
             $iShouldPlay = match ($guide[1]) {
                 'X' => Shape::Rock,
                 'Y' => Shape::Paper,
                 'Z' => Shape::Scissors,
-                default => throw new InvalidArgumentException('Invalid instruction: ' . $guide[1])
+                default => throw new InvalidArgumentException('Invalid instruction: '.$guide[1]),
             };
 
             return $iShouldPlay->value + $iShouldPlay->result($opponentWillPlay)->value;
@@ -48,7 +46,6 @@ return new class('Rock Paper Scissors') extends Day {
         );
     }
 
-
     public function part2(): Part
     {
         $sum = $this->input()->map(function ($guide) {
@@ -56,14 +53,14 @@ return new class('Rock Paper Scissors') extends Day {
                 'A' => Shape::Rock,
                 'B' => Shape::Paper,
                 'C' => Shape::Scissors,
-                default => throw new InvalidArgumentException('Invalid instruction:' . $guide[0])
+                default => throw new InvalidArgumentException('Invalid instruction:'.$guide[0]),
             };
 
             $result = match ($guide[1]) {
                 'X' => Result::Lose,
                 'Y' => Result::Draw,
                 'Z' => Result::Win,
-                default => throw new InvalidArgumentException('Invalid instruction: ' . $guide[1])
+                default => throw new InvalidArgumentException('Invalid instruction: '.$guide[1]),
             };
 
             $iShouldPlay = match ($result) {
@@ -88,5 +85,4 @@ return new class('Rock Paper Scissors') extends Day {
             answer: $sum,
         );
     }
-
 };

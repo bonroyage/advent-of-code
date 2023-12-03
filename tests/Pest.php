@@ -49,12 +49,12 @@ function testTask(int $year, int $day, $expectPart1ToBe = null, $expectPart2ToBe
 
         if (isset($expectPart1ToBe)) {
             $task->sample = 1;
-            Assert::assertSame($expectPart1ToBe, $task->part1()->answer, "Answer for part 1 is incorrect");
+            Assert::assertSame($expectPart1ToBe, $task->part1()->answer, 'Answer for part 1 is incorrect');
         }
 
         if (isset($expectPart2ToBe)) {
             $task->sample = 2;
-            Assert::assertSame($expectPart2ToBe, $task->part2()->answer, "Answer for part 2 is incorrect");
+            Assert::assertSame($expectPart2ToBe, $task->part2()->answer, 'Answer for part 2 is incorrect');
         }
 
         if (!isset($expectPart1ToBe, $expectPart2ToBe)) {
@@ -65,6 +65,7 @@ function testTask(int $year, int $day, $expectPart1ToBe = null, $expectPart2ToBe
 
 function getDay(int $year, int $day): Day
 {
-    $class = require __DIR__ . '/../editions/' . $year . '/' . $day . '.php';
+    $class = require __DIR__.'/../editions/'.$year.'/'.$day.'.php';
+
     return $class;
 }

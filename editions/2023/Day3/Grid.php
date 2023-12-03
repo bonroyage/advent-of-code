@@ -19,6 +19,7 @@ class Grid
                     $startIndex ??= $x;
                     $endIndex = $x;
                     $number .= $char;
+
                     continue;
                 }
 
@@ -74,6 +75,7 @@ class Grid
                 foreach ($part['nodes'] as $node) {
                     if (in_array($node, $neighbours, true)) {
                         $symbolParts[] = $part['number'];
+
                         continue 2;
                     }
                 }

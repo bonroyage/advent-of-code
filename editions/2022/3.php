@@ -4,20 +4,18 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class('Rucksack Reorganization') extends Day {
-
+return new class('Rucksack Reorganization') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile(PHP_EOL);
     }
-
 
     public function part1(): Part
     {
@@ -28,8 +26,8 @@ return new class('Rucksack Reorganization') extends Day {
                 return $this->priority(
                     $this->findOverlaps(
                         substr($backpack, 0, $middle),
-                        substr($backpack, $middle)
-                    )
+                        substr($backpack, $middle),
+                    ),
                 );
             });
 
@@ -39,7 +37,6 @@ return new class('Rucksack Reorganization') extends Day {
         );
     }
 
-
     public function part2(): Part
     {
         $sum = $this->input()
@@ -47,8 +44,8 @@ return new class('Rucksack Reorganization') extends Day {
             ->sum(function (Collection $group) {
                 return $this->priority(
                     $this->findOverlaps(
-                        ...$group
-                    )
+                        ...$group,
+                    ),
                 );
             });
 
@@ -57,7 +54,6 @@ return new class('Rucksack Reorganization') extends Day {
             answer: $sum,
         );
     }
-
 
     private function priority(string $letter): int
     {
@@ -70,10 +66,8 @@ return new class('Rucksack Reorganization') extends Day {
         return $priority;
     }
 
-
     private function findOverlaps(string ...$strings): string
     {
         return head(array_intersect(...array_map(str_split(...), $strings)));
     }
-
 };

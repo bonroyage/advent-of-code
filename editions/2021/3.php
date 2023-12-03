@@ -4,20 +4,18 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class ('Binary Diagnostic') extends Day {
-
+return new class('Binary Diagnostic') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile();
     }
-
 
     public function part1(): Part
     {
@@ -34,10 +32,9 @@ return new class ('Binary Diagnostic') extends Day {
 
         return new Part(
             question: 'Use the binary numbers in your diagnostic report to calculate the gamma rate and epsilon rate, then multiply them together. What is the power consumption of the submarine? (Be sure to represent your answer in decimal, not binary.)',
-            answer: $gamma * $epsilon
+            answer: $gamma * $epsilon,
         );
     }
-
 
     public function part2(): Part
     {
@@ -65,10 +62,9 @@ return new class ('Binary Diagnostic') extends Day {
 
         return new Part(
             question: 'Use the binary numbers in your diagnostic report to calculate the oxygen generator rating and CO2 scrubber rating, then multiply them together. What is the life support rating of the submarine? (Be sure to represent your answer in decimal, not binary.)',
-            answer: bindec($oxygen) * bindec($co2)
+            answer: bindec($oxygen) * bindec($co2),
         );
     }
-
 
     private function checkBits(Collection $input, int $index): array
     {
@@ -85,5 +81,4 @@ return new class ('Binary Diagnostic') extends Day {
             return [0, 1];
         }
     }
-
 };

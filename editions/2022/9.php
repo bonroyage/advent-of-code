@@ -5,21 +5,19 @@ use App\Solver\Part;
 use Illuminate\Support\Collection;
 use MMXXII\Day9\Rope;
 
-return new class ('Rope Bridge') extends Day {
-
+return new class('Rope Bridge') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile()
             ->map(fn($line) => explode(' ', $line));
     }
-
 
     public function part1(): Part
     {
@@ -35,7 +33,6 @@ return new class ('Rope Bridge') extends Day {
         );
     }
 
-
     public function part2(): Part
     {
         $rope = new Rope(9);
@@ -49,5 +46,4 @@ return new class ('Rope Bridge') extends Day {
             answer: $rope->tail()->uniquePositions(),
         );
     }
-
 };

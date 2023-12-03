@@ -4,21 +4,19 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class ('Passage Pathing') extends Day {
-
+return new class('Passage Pathing') extends Day
+{
     public function handle(): Generator
     {
         yield $this->part1();
         yield $this->part2();
     }
 
-
     private function input(): Collection
     {
         return $this->readFile()
             ->map(fn(string $row) => explode('-', $row));
     }
-
 
     public function part1(): Part
     {
@@ -33,10 +31,9 @@ return new class ('Passage Pathing') extends Day {
 
         return new Part(
             question: 'How many paths through this cave system are there that visit small caves at most once?',
-            answer: count($paths)
+            answer: count($paths),
         );
     }
-
 
     public function part2(): Part
     {
@@ -54,7 +51,6 @@ return new class ('Passage Pathing') extends Day {
             answer: count($paths),
         );
     }
-
 
     private function followPath(Collection $destinations, array $path, string $key, bool $canVisitSmallCaveTwice = true): array
     {
@@ -80,6 +76,7 @@ return new class ('Passage Pathing') extends Day {
                 continue;
             } else if ($next === 'end') {
                 $paths[] = [...$path, $next];
+
                 continue;
             }
 
@@ -90,5 +87,4 @@ return new class ('Passage Pathing') extends Day {
 
         return $paths;
     }
-
 };

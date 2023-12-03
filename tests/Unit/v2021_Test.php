@@ -62,7 +62,7 @@ testTask(2021, 12,
 
 testTask(2021, 13,
     expectPart1ToBe: 17,
-    expectPart2ToBe: <<<ANSWER
+    expectPart2ToBe: <<<'ANSWER'
 #####
 #...#
 #...#
@@ -84,7 +84,7 @@ testTask(2021, 15,
 );
 
 testTask(2021, 16,
-    expectPart1ToBe: 31
+    expectPart1ToBe: 31,
 );
 
 test('2021, day 16, part 2', function ($input, $output) {

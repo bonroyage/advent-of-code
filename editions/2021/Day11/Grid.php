@@ -4,40 +4,33 @@ namespace MMXXI\Day11;
 
 class Grid
 {
-
     private array $grid;
     private int   $flashesInStep = 0;
-
 
     public function __construct(public readonly array $original)
     {
         $this->grid = $this->original;
     }
 
-
     public function count(): int
     {
         return $this->numberOfColumns() * $this->numberOfRows();
     }
-
 
     public function numberOfRows(): int
     {
         return count($this->grid);
     }
 
-
     public function numberOfColumns(): int
     {
         return count($this->grid[0]);
     }
 
-
     public function value(int $x, int $y): int
     {
         return $this->grid[$y][$x];
     }
-
 
     public function step(): int
     {
@@ -74,7 +67,6 @@ class Grid
         return $this->flashesInStep;
     }
 
-
     private function flash(int $x, int $y): void
     {
         $this->flashesInStep++;
@@ -98,5 +90,4 @@ class Grid
             }
         }
     }
-
 }

@@ -4,11 +4,8 @@ namespace MMXXII\Day10;
 
 class CRT
 {
-
     public const SPRITE_SIZE = 3;
-
     public const NUMBER_OF_ROWS = 6;
-
     public const PIXELS_PER_ROW = 40;
 
     private array $registerX = [
@@ -17,12 +14,10 @@ class CRT
 
     private array $screen;
 
-
     public function __construct()
     {
         $this->screen = array_fill(0, self::NUMBER_OF_ROWS, 0);
     }
-
 
     public function addx(int $value): void
     {
@@ -30,12 +25,10 @@ class CRT
         $this->registerOp($value);
     }
 
-
     public function noop(): void
     {
         $this->registerOp();
     }
-
 
     /**
      * Return the signal strength from the register
@@ -45,7 +38,6 @@ class CRT
         return $this->registerX[$operation - 1] * $operation;
     }
 
-
     /**
      * Render the pixels of the CRT screen
      */
@@ -53,7 +45,6 @@ class CRT
     {
         return implode(PHP_EOL, array_map(fn($row) => $this->format($row, $on, $off), $this->screen));
     }
-
 
     private function registerOp(int $change = 0): void
     {
@@ -73,14 +64,12 @@ class CRT
         $this->registerX[] = $x + $change;
     }
 
-
     private function pixels(int $bits, int $shift = 0): int
     {
         $pixels = (2 ** $bits) - 1;
 
         return $pixels << self::PIXELS_PER_ROW - $bits - $shift;
     }
-
 
     private function sprite(int $shift): int
     {
@@ -94,25 +83,22 @@ class CRT
             : $sprite << abs($shift);
     }
 
-
     private function column(int $cycle): int
     {
         return ($cycle - 1) % self::PIXELS_PER_ROW;
     }
-
 
     private function row(int $cycle): int
     {
         return floor(($cycle - 1) / self::PIXELS_PER_ROW);
     }
 
-
     private function format(int $sprite, string $on = null, string $off = null): string
     {
         $sprite &= (2 ** self::PIXELS_PER_ROW) - 1;
 
-        $binary = sprintf('%0' . self::PIXELS_PER_ROW . 'b', $sprite);
+        $binary = sprintf('%0'.self::PIXELS_PER_ROW.'b', $sprite);
+
         return str_replace([1, 0], [$on ?? '#', $off ?? '.'], $binary);
     }
-
 }
