@@ -1,6 +1,6 @@
 <?php
 
-namespace MMXXII\Day2;
+namespace MMXXII\Day4;
 
 enum Shape: int
 {
