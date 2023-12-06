@@ -15,7 +15,7 @@ return new class('Distress Signal') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->filter()
             ->map(fn($packet) => json_decode($packet, true));
     }
@@ -33,7 +33,6 @@ return new class('Distress Signal') extends Day
         }
 
         return new Part(
-            question: 'Determine which pairs of packets are already in the right order. What is the sum of the indices of those pairs?',
             answer: array_sum($correctPackets),
         );
     }
@@ -60,7 +59,6 @@ return new class('Distress Signal') extends Day
         $secondDivider = $packets->search([[6]]) + 1;
 
         return new Part(
-            question: 'Organize all of the packets into the correct order. What is the decoder key for the distress signal?',
             answer: $firstDivider * $secondDivider,
         );
     }

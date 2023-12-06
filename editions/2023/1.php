@@ -25,7 +25,7 @@ return new class('Trebuchet?!') extends Day
 
     private function input(bool $wordsToNumbers): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(function (string $line) use ($wordsToNumbers) {
                 if ($wordsToNumbers) {
                     $line = preg_replace_callback(
@@ -45,7 +45,6 @@ return new class('Trebuchet?!') extends Day
     public function part1(): Part
     {
         return new Part(
-            question: 'What is the sum of all of the calibration values?',
             answer: $this->input(wordsToNumbers: false)->sum(),
         );
     }
@@ -53,7 +52,6 @@ return new class('Trebuchet?!') extends Day
     public function part2(): Part
     {
         return new Part(
-            question: 'What is the sum of all of the calibration values?',
             answer: $this->input(wordsToNumbers: true)->sum(),
         );
     }

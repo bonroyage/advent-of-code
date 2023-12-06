@@ -15,7 +15,7 @@ return new class('Chiton') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(fn($line) => str_split($line));
     }
 
@@ -26,7 +26,6 @@ return new class('Chiton') extends Day
         $risk = $grid->run();
 
         return new Part(
-            question: 'What is the lowest total risk of any path from the top left to the bottom right?',
             answer: $risk,
         );
     }
@@ -53,7 +52,6 @@ return new class('Chiton') extends Day
         $risk = $grid->run();
 
         return new Part(
-            question: 'Using the full map, what is the lowest total risk of any path from the top left to the bottom right?',
             answer: $risk,
         );
     }

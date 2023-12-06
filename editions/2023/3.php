@@ -15,7 +15,7 @@ return new class('Gear Ratios') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(fn($line) => str_split($line));
     }
 
@@ -28,7 +28,6 @@ return new class('Gear Ratios') extends Day
             ->sum();
 
         return new Part(
-            question: 'What is the sum of all of the part numbers in the engine schematic?',
             answer: $gearRatio,
         );
     }
@@ -43,7 +42,6 @@ return new class('Gear Ratios') extends Day
             ->sum();
 
         return new Part(
-            question: 'What is the sum of all of the gear ratios in your engine schematic?',
             answer: $gearRatio,
         );
     }

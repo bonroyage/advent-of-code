@@ -4,7 +4,7 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class('') extends Day
+return new class('Scratchcards') extends Day
 {
     public function handle(): Generator
     {
@@ -14,7 +14,7 @@ return new class('') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()->map(function (string $line) {
+        return $this->getFileLines()->map(function (string $line) {
             preg_match('/Card\s+(\d+):((\s+(\d+))+)\s\|((\s+(\d+))+)/', $line, $matches);
 
             $winning = str($matches[2])->squish()->explode(' ');
@@ -41,7 +41,6 @@ return new class('') extends Day
         })->sum();
 
         return new Part(
-            question: 'Take a seat in the large pile of colorful cards. How many points are they worth in total?',
             answer: $value,
         );
     }
@@ -59,7 +58,6 @@ return new class('') extends Day
         }
 
         return new Part(
-            question: 'Process all of the original and copied scratchcards until no more scratchcards are won. Including the original set of scratchcards, how many total scratchcards do you end up with?',
             answer: $cards->sum(),
         );
     }

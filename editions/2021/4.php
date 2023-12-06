@@ -15,7 +15,7 @@ return new class('Giant Squid') extends Day
 
     private function drawn(): Collection
     {
-        $drawn = $this->readFile()->first();
+        $drawn = $this->getFileLines()->first();
 
         return str($drawn)
             ->explode(',');
@@ -23,7 +23,7 @@ return new class('Giant Squid') extends Day
 
     private function boards(): Collection
     {
-        return $this->readFile(PHP_EOL.PHP_EOL)
+        return $this->getFileLines(PHP_EOL.PHP_EOL)
             ->skip(1)
             ->values()
             ->map(fn(string $board) => new Board(
@@ -40,7 +40,6 @@ return new class('Giant Squid') extends Day
     public function part1(): Part
     {
         return new Part(
-            question: 'To guarantee victory against the giant squid, figure out which board will win first. What will your final score be if you choose that board?',
             answer: $this->findWinningBoard(),
         );
     }
@@ -48,7 +47,6 @@ return new class('Giant Squid') extends Day
     public function part2(): Part
     {
         return new Part(
-            question: 'Figure out which board will win last. Once it wins, what would its final score be?',
             answer: $this->findLastWinningBoard(),
         );
     }

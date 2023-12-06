@@ -14,7 +14,7 @@ return new class('Sonar Sweep') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile();
+        return $this->getFileLines();
     }
 
     public function part1(): Part
@@ -30,7 +30,6 @@ return new class('Sonar Sweep') extends Day
         }
 
         return new Part(
-            question: 'How many measurements are larger than the previous measurement?',
             answer: $increasing,
         );
     }
@@ -51,7 +50,6 @@ return new class('Sonar Sweep') extends Day
         }
 
         return new Part(
-            question: 'Consider sums of a three-measurement sliding window. How many sums are larger than the previous sum?',
             answer: $increasing,
         );
     }

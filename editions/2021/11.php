@@ -15,7 +15,7 @@ return new class('Dumbo Octopus') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(fn(string $row) => str_split($row));
     }
 
@@ -29,7 +29,6 @@ return new class('Dumbo Octopus') extends Day
         }
 
         return new Part(
-            question: 'Given the starting energy levels of the dumbo octopuses in your cavern, simulate 100 steps. How many total flashes are there after 100 steps?',
             answer: $flashes,
         );
     }
@@ -47,7 +46,6 @@ return new class('Dumbo Octopus') extends Day
         }
 
         return new Part(
-            question: 'If you can calculate the exact moments when the octopuses will all flash simultaneously, you should be able to navigate through the cavern. What is the first step during which all octopuses flash?',
             answer: $step,
         );
     }

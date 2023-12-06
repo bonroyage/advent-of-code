@@ -3,7 +3,7 @@
   "description": "Advent of Code years/2022",
   "type": "project",
   "require": {
-    "php": "^8.1",
+    "php": "^8.2",
     "laravel-zero/framework": "^v10.3",
     "nunomaduro/termwind": "^1.14"
   },

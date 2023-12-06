@@ -14,13 +14,12 @@ return new class('') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile();
+        return $this->getFileLines();
     }
 
     public function part1(): Part
     {
         return new Part(
-            question: '',
             answer: null,
         );
     }
@@ -28,7 +27,6 @@ return new class('') extends Day
     public function part2(): Part
     {
         return new Part(
-            question: '',
             answer: null,
         );
     }

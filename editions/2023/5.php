@@ -15,7 +15,7 @@ return new class('If You Give A Seed A Fertilizer') extends Day
 
     private function input(): array
     {
-        $input = $this->readFile();
+        $input = $this->getFileLines();
 
         /*
          * Get all the seeds from the first line
@@ -73,7 +73,6 @@ return new class('If You Give A Seed A Fertilizer') extends Day
         );
 
         return new Part(
-            question: 'What is the lowest location number that corresponds to any of the initial seed numbers?',
             answer: min(Arr::flatten($seeds)),
         );
     }
@@ -93,7 +92,6 @@ return new class('If You Give A Seed A Fertilizer') extends Day
         );
 
         return new Part(
-            question: 'Consider all of the initial seed numbers listed in the ranges on the first line of the almanac. What is the lowest location number that corresponds to any of the initial seed numbers?',
             answer: min(Arr::flatten($seeds)),
         );
     }

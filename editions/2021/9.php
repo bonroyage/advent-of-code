@@ -15,7 +15,7 @@ return new class('Smoke Basin') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(fn(string $row) => str_split($row));
     }
 
@@ -34,7 +34,6 @@ return new class('Smoke Basin') extends Day
         }
 
         return new Part(
-            question: 'Find all of the low points on your heightmap. What is the sum of the risk levels of all low points on your heightmap?',
             answer: array_sum($lowest) + count($lowest),
         );
     }
@@ -64,7 +63,6 @@ return new class('Smoke Basin') extends Day
         $top3 = array_slice($basins, 0, 3);
 
         return new Part(
-            question: 'What do you get if you multiply together the sizes of the three largest basins?',
             answer: array_product($top3),
         );
     }

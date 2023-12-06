@@ -16,7 +16,7 @@ return new class('Hydrothermal Venture') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(fn($line) => new Line($line));
     }
 
@@ -27,7 +27,6 @@ return new class('Hydrothermal Venture') extends Day
         $grid = $this->processGrid($input->filter(fn(Line $line) => $line->direction() !== LineDirection::Diagonal));
 
         return new Part(
-            question: 'Consider only horizontal and vertical lines. At how many points do at least two lines overlap?',
             answer: collect($grid)->flatten()->filter(fn($value) => $value >= 2)->count(),
         );
     }
@@ -39,7 +38,6 @@ return new class('Hydrothermal Venture') extends Day
         $grid = $this->processGrid($input);
 
         return new Part(
-            question: 'Figure out which board will win last. Once it wins, what would its final score be?',
             answer: collect($grid)->flatten()->filter(fn($value) => $value >= 2)->count(),
         );
     }

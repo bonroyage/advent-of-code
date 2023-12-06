@@ -13,13 +13,12 @@ return new class('Tuning Trouble') extends Day
 
     private function input(): array
     {
-        return str_split($this->readFile()[0]);
+        return str_split($this->getFile());
     }
 
     public function part1(): Part
     {
         return new Part(
-            question: 'How many characters need to be processed before the first start-of-packet marker is detected?',
             answer: $this->findMarker(4),
         );
     }
@@ -27,7 +26,6 @@ return new class('Tuning Trouble') extends Day
     public function part2(): Part
     {
         return new Part(
-            question: 'How many characters need to be processed before the first start-of-message marker is detected?',
             answer: $this->findMarker(14),
         );
     }

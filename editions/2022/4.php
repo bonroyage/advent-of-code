@@ -15,7 +15,7 @@ return new class('Camp Cleanup') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(fn($pair) => new Pair($pair));
     }
 
@@ -27,7 +27,6 @@ return new class('Camp Cleanup') extends Day
             ->count();
 
         return new Part(
-            question: 'In how many assignment pairs does one range fully contain the other?',
             answer: $overlaps,
         );
     }
@@ -40,7 +39,6 @@ return new class('Camp Cleanup') extends Day
             ->count();
 
         return new Part(
-            question: 'In how many assignment pairs do the ranges overlap?',
             answer: $overlaps,
         );
     }

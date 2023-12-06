@@ -16,7 +16,7 @@ return new class('Cathode-Ray Tube') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile();
+        return $this->getFileLines();
     }
 
     public function part1(): Part
@@ -33,7 +33,6 @@ return new class('Cathode-Ray Tube') extends Day
         ];
 
         return new Part(
-            question: 'Find the signal strength during the 20th, 60th, 100th, 140th, 180th, and 220th cycles. What is the sum of these six signal strengths?',
             answer: array_sum($signalStrength),
         );
     }
@@ -43,7 +42,6 @@ return new class('Cathode-Ray Tube') extends Day
         $crt = $this->crt();
 
         return new Part(
-            question: 'Render the image given by your program. What eight capital letters appear on your CRT?',
             answer: $crt->render(),
         );
     }

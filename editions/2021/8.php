@@ -15,7 +15,7 @@ return new class('Seven Segment Search') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(fn($line) => explode(' | ', $line));
     }
 
@@ -34,7 +34,6 @@ return new class('Seven Segment Search') extends Day
         }
 
         return new Part(
-            question: 'In the output values, how many times do digits 1, 4, 7, or 8 appear?',
             answer: $digitsWithUniqueNumberOfSegments,
         );
     }
@@ -50,7 +49,6 @@ return new class('Seven Segment Search') extends Day
         }
 
         return new Part(
-            question: 'For each entry, determine all of the wire/segment connections and decode the four-digit output values. What do you get if you add up all of the output values?',
             answer: $output,
         );
     }

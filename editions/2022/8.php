@@ -15,7 +15,7 @@ return new class('Treetop Tree House') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(fn($line) => str_split($line));
     }
 
@@ -34,7 +34,6 @@ return new class('Treetop Tree House') extends Day
         }
 
         return new Part(
-            question: 'Consider your map; how many trees are visible from outside the grid?',
             answer: $visible,
         );
     }
@@ -55,7 +54,6 @@ return new class('Treetop Tree House') extends Day
         }
 
         return new Part(
-            question: 'Consider each tree on your map. What is the highest scenic score possible for any tree?',
             answer: $maxViewingDistance,
         );
     }

@@ -15,7 +15,7 @@ return new class('Transparent Origami') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile(PHP_EOL.PHP_EOL);
+        return $this->getFileLines(PHP_EOL.PHP_EOL);
     }
 
     private function dots(): Collection
@@ -47,7 +47,6 @@ return new class('Transparent Origami') extends Day
         }
 
         return new Part(
-            question: 'How many dots are visible after completing just the first fold instruction on your transparent paper?',
             answer: $grid->visible(),
         );
     }
@@ -65,7 +64,6 @@ return new class('Transparent Origami') extends Day
         }
 
         return new Part(
-            question: '',
             answer: trim($grid->prettyPrint()),
         );
     }

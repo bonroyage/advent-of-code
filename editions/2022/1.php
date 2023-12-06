@@ -14,7 +14,7 @@ return new class('Calorie Counting') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile(PHP_EOL.PHP_EOL)
+        return $this->getFileLines(PHP_EOL.PHP_EOL)
             ->map(fn($elf) => str($elf)->trim()->explode(PHP_EOL)->sum());
     }
 
@@ -24,7 +24,6 @@ return new class('Calorie Counting') extends Day
             ->max();
 
         return new Part(
-            question: 'Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?',
             answer: $max,
         );
     }
@@ -37,7 +36,6 @@ return new class('Calorie Counting') extends Day
             ->sum();
 
         return new Part(
-            question: 'Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?',
             answer: $sum,
         );
     }

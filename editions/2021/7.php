@@ -14,7 +14,8 @@ return new class('The Treachery of Whales') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile(',');
+        return $this->getFile()
+            ->explode(',');
     }
 
     public function part1(): Part
@@ -22,7 +23,6 @@ return new class('The Treachery of Whales') extends Day
         $costs = $this->calculateCosts(static fn($movement) => $movement);
 
         return new Part(
-            question: 'Determine the horizontal position that the crabs can align to using the least fuel possible. How much fuel must they spend to align to that position?',
             answer: min($costs),
         );
     }
@@ -32,7 +32,6 @@ return new class('The Treachery of Whales') extends Day
         $costs = $this->calculateCosts(static fn($movement) => ($movement * ($movement + 1)) / 2);
 
         return new Part(
-            question: 'Determine the horizontal position that the crabs can align to using the least fuel possible so they can make you an escape route! How much fuel must they spend to align to that position?',
             answer: min($costs),
         );
     }

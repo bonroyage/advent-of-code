@@ -16,7 +16,7 @@ return new class('No Space Left On Device') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile();
+        return $this->getFileLines();
     }
 
     public function part1(): Part
@@ -28,7 +28,6 @@ return new class('No Space Left On Device') extends Day
             ->filter(fn($size) => $size < 100_000);
 
         return new Part(
-            question: 'Find all of the directories with a total size of at most 100000. What is the sum of the total sizes of those directories?',
             answer: $smallDirectories->sum(),
         );
     }
@@ -52,7 +51,6 @@ return new class('No Space Left On Device') extends Day
         $smallestDirectorySize = $directories->first(fn(int $directorySize) => $directorySize >= $needToFree);
 
         return new Part(
-            question: 'Find the smallest directory that, if deleted, would free up enough space on the filesystem to run the update. What is the total size of that directory?',
             answer: $smallestDirectorySize,
         );
     }

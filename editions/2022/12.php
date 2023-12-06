@@ -15,7 +15,7 @@ return new class('Hill Climbing Algorithm') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(fn($line) => str_split($line));
     }
 
@@ -26,7 +26,6 @@ return new class('Hill Climbing Algorithm') extends Day
         $distance = $grid->run($grid->S);
 
         return new Part(
-            question: 'What is the fewest steps required to move from your current position to the location that should get the best signal?',
             answer: $distance,
         );
     }
@@ -38,7 +37,6 @@ return new class('Hill Climbing Algorithm') extends Day
         $distance = $grid->run(...$grid->a);
 
         return new Part(
-            question: 'What is the fewest steps required to move starting from any square with elevation a to the location that should get the best signal?',
             answer: $distance,
         );
     }

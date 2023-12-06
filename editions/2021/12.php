@@ -14,7 +14,7 @@ return new class('Passage Pathing') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(fn(string $row) => explode('-', $row));
     }
 
@@ -30,7 +30,6 @@ return new class('Passage Pathing') extends Day
         $paths = $this->followPath($destinations, [], 'start', false);
 
         return new Part(
-            question: 'How many paths through this cave system are there that visit small caves at most once?',
             answer: count($paths),
         );
     }
@@ -47,7 +46,6 @@ return new class('Passage Pathing') extends Day
         $paths = $this->followPath($destinations, [], 'start');
 
         return new Part(
-            question: 'Given these new rules, how many paths through this cave system are there?',
             answer: count($paths),
         );
     }

@@ -14,7 +14,7 @@ return new class('Cube Conundrum') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile()
+        return $this->getFileLines()
             ->map(function (string $line) {
                 preg_match('/^Game (\d+): (.*)$/', $line, $matches);
 
@@ -60,7 +60,6 @@ return new class('Cube Conundrum') extends Day
         }
 
         return new Part(
-            question: 'Determine which games would have been possible if the bag had been loaded with only 12 red cubes, 13 green cubes, and 14 blue cubes. What is the sum of the IDs of those games?',
             answer: array_sum($possibleGames),
         );
     }
@@ -82,7 +81,6 @@ return new class('Cube Conundrum') extends Day
         }
 
         return new Part(
-            question: 'For each game, find the minimum set of cubes that must have been present. What is the sum of the power of these sets?',
             answer: $power,
         );
     }

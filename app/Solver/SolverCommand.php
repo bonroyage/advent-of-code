@@ -21,20 +21,14 @@ class SolverCommand extends Command
             })
             ->sortKeys();
 
-        if ($this->argument('day') !== null) {
-            $index = $this->argument('day');
-        } else {
-            foreach ($days as $day => $dayObject) {
-                $this->line(sprintf('  Day <comment>%s</comment>: %s', $day, $dayObject->title));
-            }
+        $index = $this->argument('day');
 
-            $index = $this->ask('What day do you want to calculate?', 'all');
-        }
-
-        if ($index === 'all') {
+        if ($index === null) {
             foreach ($days as $index => $day) {
                 $this->solveDay($index, $day);
             }
+
+            $this->newLine();
 
             return Command::SUCCESS;
         }
@@ -48,15 +42,15 @@ class SolverCommand extends Command
         $this->solveDay($index, $days->get($index));
     }
 
-    private function solveDay(int $index, Day $day)
+    private function solveDay(int $index, Day $day): void
     {
-        $this->title("Day {$index}: {$day->title}");
+        $this->newLine();
+        render('<div class="text-blue font-bold">'."Day {$index}: {$day->title}".'</div>');
 
-        /** @var \App\Solver\Part $part */
-        foreach ($day->handle() as $part) {
-            render('<div><em>'.$part->question.'</em></div>');
-            render('<div><div class="text-yellow-400">'.nl2br($part->answer).'</div></div>');
+        /** @var Part $part */
+        foreach ($day->handle() as $i => $part) {
             $this->newLine();
+            render('<div class="ml-2"><em>Part '.($i + 1).':</em> <span class="text-yellow-400">'.nl2br($part->answer).'</span></div>');
         }
     }
 

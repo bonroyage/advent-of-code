@@ -15,7 +15,7 @@ return new class('Syntax Scoring') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile();
+        return $this->getFileLines();
     }
 
     public function part1(): Part
@@ -36,7 +36,6 @@ return new class('Syntax Scoring') extends Day
         }
 
         return new Part(
-            question: 'Find the first illegal character in each corrupted line of the navigation subsystem. What is the total syntax error score for those errors?',
             answer: array_sum($scores),
         );
     }
@@ -68,7 +67,6 @@ return new class('Syntax Scoring') extends Day
         sort($scores);
 
         return new Part(
-            question: 'Find the completion string for each incomplete line, score the completion strings, and sort the scores. What is the middle score?',
             answer: $scores[floor((count($scores) - 1) / 2)],
         );
     }

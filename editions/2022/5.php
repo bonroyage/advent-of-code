@@ -14,7 +14,7 @@ return new class('Supply Stacks') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile(PHP_EOL.PHP_EOL);
+        return $this->getFileLines(PHP_EOL.PHP_EOL);
     }
 
     private function buckets(): array
@@ -59,7 +59,6 @@ return new class('Supply Stacks') extends Day
         $top = implode(array_map(fn($bucket) => $bucket[0], $buckets));
 
         return new Part(
-            question: 'After the rearrangement procedure completes, what crate ends up on top of each stack?',
             answer: $top,
         );
     }
@@ -76,7 +75,6 @@ return new class('Supply Stacks') extends Day
         $top = implode(array_map(fn($bucket) => $bucket[0], $buckets));
 
         return new Part(
-            question: 'Before the rearrangement process finishes, update your simulation so that the Elves know where they should stand to be ready to unload the final supplies. After the rearrangement procedure completes, what crate ends up on top of each stack?',
             answer: $top,
         );
     }

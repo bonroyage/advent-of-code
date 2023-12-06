@@ -16,7 +16,7 @@ return new class('Monkey in the Middle') extends Day
     {
         $monkeys = new Monkeys();
 
-        $inputs = $this->readFile(PHP_EOL.PHP_EOL);
+        $inputs = $this->getFileLines(PHP_EOL.PHP_EOL);
 
         foreach ($inputs as $monkey) {
             preg_match('/^Monkey (\d+):\n/m', $monkey, $index);
@@ -54,7 +54,6 @@ return new class('Monkey in the Middle') extends Day
         $monkeys->run(20, fn($item) => floor($item / 3));
 
         return new Part(
-            question: 'Figure out which monkeys to chase by counting how many items they inspect over 20 rounds. What is the level of monkey business after 20 rounds of stuff-slinging simian shenanigans?',
             answer: $monkeys->worryLevelOfTopTwoMonkeys(),
         );
     }
@@ -67,7 +66,6 @@ return new class('Monkey in the Middle') extends Day
         $monkeys->run(10_000, fn($item) => $item % $commonMod);
 
         return new Part(
-            question: 'Worry levels are no longer divided by three after each item is inspected; you\'ll need to find another way to keep your worry levels manageable. Starting again from the initial state in your puzzle input, what is the level of monkey business after 10000 rounds?',
             answer: $monkeys->worryLevelOfTopTwoMonkeys(),
         );
     }

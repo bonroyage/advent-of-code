@@ -15,7 +15,7 @@ return new class('Extended Polymerization') extends Day
 
     private function input(): Collection
     {
-        return $this->readFile(PHP_EOL.PHP_EOL);
+        return $this->getFileLines(PHP_EOL.PHP_EOL);
     }
 
     private function template(): string
@@ -41,7 +41,6 @@ return new class('Extended Polymerization') extends Day
         $occurrences = $polymer->run(10);
 
         return new Part(
-            question: 'Apply 10 steps of pair insertion to the polymer template and find the most and least common elements in the result. What do you get if you take the quantity of the most common element and subtract the quantity of the least common element?',
             answer: last($occurrences) - head($occurrences),
         );
     }
@@ -53,7 +52,6 @@ return new class('Extended Polymerization') extends Day
         $occurrences = $polymer->run(40);
 
         return new Part(
-            question: 'Apply 40 steps of pair insertion to the polymer template and find the most and least common elements in the result. What do you get if you take the quantity of the most common element and subtract the quantity of the least common element?',
             answer: last($occurrences) - head($occurrences),
         );
     }

@@ -15,7 +15,7 @@ return new class('Packet Decoder') extends Day
 
     private function input(): string
     {
-        return $this->readFile()[0];
+        return $this->getFile();
     }
 
     public function part1(): Part
@@ -27,7 +27,6 @@ return new class('Packet Decoder') extends Day
         $packet = Packet::read($transmission);
 
         return new Part(
-            question: 'Decode the structure of your hexadecimal-encoded BITS transmission; what do you get if you add up the version numbers in all packets?',
             answer: $this->sumVersions($packet),
         );
     }
@@ -41,7 +40,6 @@ return new class('Packet Decoder') extends Day
         $packet = Packet::read($transmission);
 
         return new Part(
-            question: 'What do you get if you evaluate the expression represented by your hexadecimal-encoded BITS transmission?',
             answer: $packet->value(),
         );
     }

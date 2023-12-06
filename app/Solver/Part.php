@@ -2,9 +2,10 @@
 
 namespace App\Solver;
 
-class Part
+readonly class Part
 {
-    public function __construct(public readonly string $question, public readonly mixed $answer)
-    {
+    public function __construct(
+        public mixed $answer,
+    ) {
     }
 }

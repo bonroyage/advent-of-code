@@ -2,8 +2,9 @@
 
 use App\Solver\Day;
 use App\Solver\Part;
+use Illuminate\Support\Collection;
 
-return new class('') extends Day
+return new class('Wait For It') extends Day
 {
     public function handle(): Generator
     {
@@ -11,9 +12,9 @@ return new class('') extends Day
         yield $this->part2();
     }
 
-    private function input(): Illuminate\Support\Collection
+    private function input(): Collection
     {
-        return $this->readFile();
+        return $this->getFileLines();
     }
 
     public function part1(): Part
@@ -30,7 +31,6 @@ return new class('') extends Day
         );
 
         return new Part(
-            question: 'Determine the number of ways you could beat the record in each race. What do you get if you multiply these numbers together?',
             answer: array_product($races),
         );
     }
@@ -45,7 +45,6 @@ return new class('') extends Day
         $options = $this->options($time, $distance);
 
         return new Part(
-            question: 'How many ways can you beat the record in this one much longer race?',
             answer: $options['count'],
         );
     }
