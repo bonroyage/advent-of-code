@@ -34,3 +34,8 @@ testTask(2023, 7,
     expectPart1ToBe: 6_440,
     expectPart2ToBe: 5_905,
 );
+
+testTask(2023, 8,
+    expectPart1ToBe: 2,
+    expectPart2ToBe: '6',
+);
