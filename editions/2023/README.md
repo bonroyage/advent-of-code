@@ -15,7 +15,7 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Thu 7 Dec](7.md)
 - [Fri 8 Dec](8.md)
 - [Sat 9 Dec](9.md)
-- Sun 10 Dec
+- [Sun 10 Dec](10.md)
 - Mon 11 Dec
 - Tue 12 Dec
 - Wed 13 Dec
