@@ -16,7 +16,7 @@ return new class('') extends Day
     {
         return new Grid(
             $this->getFileLines()
-                ->map(fn (string $line) => str_split($line))->toArray()
+                ->map(fn(string $line) => str_split($line))->toArray(),
         );
     }
 
@@ -33,7 +33,7 @@ return new class('') extends Day
             foreach ($nodes as $node) {
                 $neighbours = $grid->neighbouringNodes($node);
                 foreach ($neighbours as $neighbour) {
-                    if (! in_array($neighbour, $previousNodes, true)) {
+                    if (!in_array($neighbour, $previousNodes, true)) {
                         $nextNodes[] = $neighbour;
                     }
                 }
@@ -69,7 +69,7 @@ return new class('') extends Day
             foreach ($nodes as $node) {
                 $neighbours = $grid->neighbouringNodes($node);
                 foreach ($neighbours as $neighbour) {
-                    if (! in_array($neighbour, $previousNodes, true)) {
+                    if (!in_array($neighbour, $previousNodes, true)) {
                         $loop[$neighbour[1]][] = $neighbour[0];
                         $nextNodes[] = $neighbour;
                     }

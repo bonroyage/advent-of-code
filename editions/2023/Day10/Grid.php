@@ -73,7 +73,7 @@ class Grid
         [$x, $y] = $this->start;
 
         foreach (['E' => [1, 0], 'N' => [0, -1], 'W' => [-1, 0], 'S' => [0, 1]] as $direction => [$dx, $dy]) {
-            if (! isset($this->grid[$y + $dy][$x + $dx])) {
+            if (!isset($this->grid[$y + $dy][$x + $dx])) {
                 continue;
             }
 
@@ -100,7 +100,7 @@ class Grid
     {
         foreach ($this->grid as $y => $row) {
             foreach ($row as $x => $pipe) {
-                if (! in_array($x, $loop[$y] ?? [], true)) {
+                if (!in_array($x, $loop[$y] ?? [], true)) {
                     $this->grid[$y][$x] = '.';
                 }
             }
