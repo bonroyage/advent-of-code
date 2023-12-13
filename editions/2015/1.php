@@ -33,7 +33,7 @@ return new class('Not Quite Lisp') extends Day
 
         $floor = 0;
 
-        foreach(str_split($input) as $position => $char) {
+        foreach (str_split($input) as $position => $char) {
             if ($char === '(') {
                 $floor++;
             } else {

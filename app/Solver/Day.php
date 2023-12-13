@@ -42,15 +42,15 @@ abstract class Day
     private function getFilePath(string $pathToClass): string
     {
         if ($this->sample) {
-            $partSpecificSampleFile = str_replace('.php', "-sample-{$this->sample}.txt", $pathToClass);
+            $partSpecificSampleFile = str_replace('.php', ".{$this->sample}.txt", $pathToClass);
 
             if (file_exists($partSpecificSampleFile)) {
                 return $partSpecificSampleFile;
             }
 
-            return str_replace('.php', '-sample.txt', $pathToClass);
+            return str_replace('.php', '.txt', $pathToClass);
         }
 
-        return str_replace('.php', '.txt', $pathToClass);
+        return str_replace('.php', '.real.txt', $pathToClass);
     }
 }

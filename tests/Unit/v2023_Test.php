@@ -53,3 +53,13 @@ testTask(2023, 10,
 testTask(2023, 11,
     expectPart1ToBe: 374,
 );
+
+testTask(2023, 12,
+    expectPart1ToBe: 21,
+    expectPart2ToBe: 525_152,
+);
+
+testTask(2023, 13,
+    expectPart1ToBe: 709,
+    expectPart2ToBe: 1_400,
+);
