@@ -7,12 +7,6 @@ use MMXXIII\Day3\Grid;
 
 return new class('Gear Ratios') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): Collection
     {
         return $this->getFileLines()

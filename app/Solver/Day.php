@@ -2,7 +2,6 @@
 
 namespace App\Solver;
 
-use Generator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Stringable;
 use ReflectionClass;
@@ -15,8 +14,6 @@ abstract class Day
         public readonly string $title,
     ) {
     }
-
-    abstract public function handle(): Generator;
 
     abstract public function part1(): Part;
 

@@ -9,7 +9,7 @@ use function Termwind\render;
 
 class SolverCommand extends Command
 {
-    protected $signature = 'solve {year} {day?}';
+    protected $signature = 'solve {year} {day?} {--sample}';
 
     public function handle()
     {
@@ -47,11 +47,23 @@ class SolverCommand extends Command
         $this->newLine();
         render('<div class="text-blue font-bold">'."Day {$index}: {$day->title}".'</div>');
 
-        /** @var Part $part */
-        foreach ($day->handle() as $i => $part) {
-            $this->newLine();
-            render('<div class="ml-2"><em>Part '.($i + 1).':</em> <span class="text-yellow-400">'.nl2br($part->answer).'</span></div>');
+        if ($this->option('sample')) {
+            $day->sample = 1;
         }
+
+        $part1 = $day->part1();
+
+        $this->newLine();
+        render('<div class="ml-2"><em>Part 1:</em> <span class="text-yellow-400">'.nl2br($part1->answer).'</span></div>');
+
+        if ($this->option('sample')) {
+            $day->sample = 2;
+        }
+
+        $part2 = $day->part2();
+
+        $this->newLine();
+        render('<div class="ml-2"><em>Part 2:</em> <span class="text-yellow-400">'.nl2br($part2->answer).'</span></div>');
     }
 
     private function path(): string

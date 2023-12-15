@@ -6,12 +6,6 @@ use MMXXII\Day11\Monkeys;
 
 return new class('Monkey in the Middle') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): Monkeys
     {
         $monkeys = new Monkeys();

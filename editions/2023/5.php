@@ -7,12 +7,6 @@ use Illuminate\Support\Collection;
 
 return new class('If You Give A Seed A Fertilizer') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): array
     {
         $input = $this->getFileLines();

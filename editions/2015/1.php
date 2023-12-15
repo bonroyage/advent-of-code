@@ -5,12 +5,6 @@ use App\Solver\Part;
 
 return new class('Not Quite Lisp') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): string
     {
         return $this->getFile();

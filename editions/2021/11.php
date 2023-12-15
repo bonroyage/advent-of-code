@@ -7,12 +7,6 @@ use MMXXI\Day11\Grid;
 
 return new class('Dumbo Octopus') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): Collection
     {
         return $this->getFileLines()

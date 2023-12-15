@@ -7,12 +7,6 @@ use MMXXI\Day10\Line;
 
 return new class('Syntax Scoring') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): Collection
     {
         return $this->getFileLines();

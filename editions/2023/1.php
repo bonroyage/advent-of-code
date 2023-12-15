@@ -6,11 +6,6 @@ use Illuminate\Support\Collection;
 
 return new class('Trebuchet?!') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
     private const WORDS_TO_NUMBERS = [
         'one' => 1,
         'two' => 2,

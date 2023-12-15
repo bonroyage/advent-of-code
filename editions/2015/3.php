@@ -5,12 +5,6 @@ use App\Solver\Part;
 
 return new class('Perfectly Spherical Houses in a Vacuum') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): array
     {
         return str_split($this->getFile());

@@ -7,12 +7,6 @@ use MMXXI\Day4\Board;
 
 return new class('Giant Squid') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function drawn(): Collection
     {
         $drawn = $this->getFileLines()->first();

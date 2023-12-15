@@ -63,3 +63,13 @@ testTask(2023, 13,
     expectPart1ToBe: 709,
     expectPart2ToBe: 1_400,
 );
+
+testTask(2023, 14,
+    expectPart1ToBe: 136,
+    expectPart2ToBe: 64,
+);
+
+testTask(2023, 15,
+    expectPart1ToBe: 1_320,
+    expectPart2ToBe: 145,
+);

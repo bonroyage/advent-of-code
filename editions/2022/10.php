@@ -8,12 +8,6 @@ use MMXXII\Day10\CRT;
 
 return new class('Cathode-Ray Tube') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): Collection
     {
         return $this->getFileLines();

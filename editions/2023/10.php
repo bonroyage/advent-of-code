@@ -6,12 +6,6 @@ use MMXXIII\Day10\Grid;
 
 return new class('') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): Grid
     {
         return new Grid(

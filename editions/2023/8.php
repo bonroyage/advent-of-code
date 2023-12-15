@@ -6,12 +6,6 @@ use Illuminate\Support\Collection;
 
 return new class('Haunted Wasteland') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function instructions(): array
     {
         return str_split($this->getFileLines()->first());

@@ -7,12 +7,6 @@ use MMXXII\Day9\Rope;
 
 return new class('Rope Bridge') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): Collection
     {
         return $this->getFileLines()

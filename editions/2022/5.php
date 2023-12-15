@@ -6,12 +6,6 @@ use Illuminate\Support\Collection;
 
 return new class('Supply Stacks') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): Collection
     {
         return $this->getFileLines(PHP_EOL.PHP_EOL);

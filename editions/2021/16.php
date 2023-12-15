@@ -7,12 +7,6 @@ use MMXXI\Day16\Transmission;
 
 return new class('Packet Decoder') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): string
     {
         return $this->getFile();

@@ -5,12 +5,6 @@ use App\Solver\Part;
 
 return new class('Elves Look, Elves Say') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): string
     {
         return $this->getFile();

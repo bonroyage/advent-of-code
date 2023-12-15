@@ -6,12 +6,6 @@ use Illuminate\Support\Collection;
 
 return new class('I Was Told There Would Be No Math') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): Collection
     {
         return $this->getFileLines()->map(function (string $line) {

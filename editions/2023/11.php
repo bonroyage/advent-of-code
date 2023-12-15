@@ -6,12 +6,6 @@ use MMXXIII\Day11\Grid;
 
 return new class('Cosmic Expansion') extends Day
 {
-    public function handle(): Generator
-    {
-        yield $this->part1();
-        yield $this->part2();
-    }
-
     private function input(): Grid
     {
         return new Grid(
