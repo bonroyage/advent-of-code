@@ -40,7 +40,7 @@ return [
     */
 
     'add' => [
-        \App\Solver\SolverCommand::class,
+        \App\Commands\SolverCommand::class,
         // ..
     ],
 

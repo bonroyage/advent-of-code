@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Solver;
+namespace App\Commands;
 
+use App\Solver\Day;
 use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
 
