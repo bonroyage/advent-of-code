@@ -19,7 +19,8 @@
       "MMXV\\": "editions/2015/",
       "MMXXI\\": "editions/2021/",
       "MMXXII\\": "editions/2022/",
-      "MMXXIII\\": "editions/2023/"
+      "MMXXIII\\": "editions/2023/",
+      "MMXXIV\\": "editions/2024/"
     }
   },
   "autoload-dev": {
