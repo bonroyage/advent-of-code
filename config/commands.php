@@ -41,7 +41,7 @@ return [
 
     'add' => [
         \App\Commands\SolverCommand::class,
-        // ..
+        \App\Commands\MakeCommand::class,
     ],
 
     /*

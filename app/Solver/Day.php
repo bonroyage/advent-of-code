@@ -15,11 +15,11 @@ abstract class Day
     ) {
     }
 
-    abstract public function part1(): Part;
+    abstract public function part1();
 
-    abstract public function part2(): Part;
+    abstract public function part2();
 
-    protected function getFile(string $file = null): Stringable
+    protected function getFile(?string $file = null): Stringable
     {
         if (!isset($file)) {
             $childRef = new ReflectionClass(get_class($this));
@@ -30,7 +30,7 @@ abstract class Day
             ->rtrim();
     }
 
-    protected function getFileLines(string $explode = PHP_EOL, string $file = null): Collection
+    protected function getFileLines(string $explode = PHP_EOL, ?string $file = null): Collection
     {
         return $this->getFile($file)
             ->explode($explode);
@@ -39,15 +39,15 @@ abstract class Day
     private function getFilePath(string $pathToClass): string
     {
         if ($this->sample) {
-            $partSpecificSampleFile = str_replace('.php', ".{$this->sample}.txt", $pathToClass);
+            $partSpecificSampleFile = dirname($pathToClass)."/sample.{$this->sample}.txt";
 
             if (file_exists($partSpecificSampleFile)) {
                 return $partSpecificSampleFile;
             }
 
-            return str_replace('.php', '.txt', $pathToClass);
+            return dirname($pathToClass).'/sample.txt';
         }
 
-        return str_replace('.php', '.real.txt', $pathToClass);
+        return dirname($pathToClass).'/real.txt';
     }
 }

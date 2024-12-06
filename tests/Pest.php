@@ -11,9 +11,6 @@
 |
 */
 
-use App\Solver\Day;
-use PHPUnit\Framework\Assert;
-
 uses(Tests\TestCase::class)->in('Feature');
 
 /*
@@ -41,31 +38,3 @@ expect()->extend('toBeOne', function () {
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
-
-function testTask(int $year, int $day, $expectPart1ToBe = null, $expectPart2ToBe = null)
-{
-    test("{$year}, day {$day}", function () use ($year, $day, $expectPart1ToBe, $expectPart2ToBe) {
-        $task = getDay($year, $day);
-
-        if (isset($expectPart1ToBe)) {
-            $task->sample = 1;
-            Assert::assertSame($expectPart1ToBe, $task->part1()->answer, 'Answer for part 1 is incorrect');
-        }
-
-        if (isset($expectPart2ToBe)) {
-            $task->sample = 2;
-            Assert::assertSame($expectPart2ToBe, $task->part2()->answer, 'Answer for part 2 is incorrect');
-        }
-
-        if (!isset($expectPart1ToBe, $expectPart2ToBe)) {
-            Assert::markTestIncomplete('Incomplete');
-        }
-    });
-}
-
-function getDay(int $year, int $day): Day
-{
-    $class = require __DIR__.'/../editions/'.$year.'/'.$day.'.php';
-
-    return $class;
-}

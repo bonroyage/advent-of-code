@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Historian Hysteria') extends Day
@@ -19,7 +19,8 @@ return new class('Historian Hysteria') extends Day
             });
     }
 
-    public function part1(): Part
+    #[SampleAnswer(11)]
+    public function part1(): int
     {
         $input = $this->input();
 
@@ -32,22 +33,17 @@ return new class('Historian Hysteria') extends Day
             $rightList->toArray(),
         );
 
-        return new Part(
-            answer: array_sum($diffs),
-        );
+        return array_sum($diffs);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(31)]
+    public function part2(): int
     {
         $input = $this->input();
 
         $rightList = $input->pluck('right')->countBy();
 
-        $value = $input->pluck('left')
+        return $input->pluck('left')
             ->sum(fn(int $left) => $left * ($rightList[$left] ?? 0));
-
-        return new Part(
-            answer: $value,
-        );
     }
 };

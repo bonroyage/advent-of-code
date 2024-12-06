@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
@@ -13,19 +13,19 @@ return new class('Red-Nosed Reports') extends Day
             ->map(fn(string $line) => explode(' ', $line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(2)]
+    public function part1(): int
     {
         $input = $this->input()
             ->filter(function (array $line) {
                 return $this->isSafe($line);
             });
 
-        return new Part(
-            answer: $input->count(),
-        );
+        return $input->count();
     }
 
-    public function part2(): Part
+    #[SampleAnswer(4)]
+    public function part2(): int
     {
         $input = $this->input()
             ->filter(function (array $line) {
@@ -42,9 +42,7 @@ return new class('Red-Nosed Reports') extends Day
                 return false;
             });
 
-        return new Part(
-            answer: $input->count(),
-        );
+        return $input->count();
     }
 
     private function isSafe(array $line): bool

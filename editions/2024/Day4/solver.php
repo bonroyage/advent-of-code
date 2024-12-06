@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXIV\Day4\Grid;
 
@@ -13,7 +13,8 @@ return new class('Ceres Search') extends Day
             ->map(fn($line) => str_split($line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(18)]
+    public function part1(): int
     {
         $input = new Grid($this->input()->all());
 
@@ -25,12 +26,11 @@ return new class('Ceres Search') extends Day
             }
         }
 
-        return new Part(
-            answer: $count,
-        );
+        return $count;
     }
 
-    public function part2(): Part
+    #[SampleAnswer(9)]
+    public function part2(): int
     {
         $input = new Grid($this->input()->all());
 
@@ -42,8 +42,6 @@ return new class('Ceres Search') extends Day
             }
         }
 
-        return new Part(
-            answer: $count,
-        );
+        return $count;
     }
 };

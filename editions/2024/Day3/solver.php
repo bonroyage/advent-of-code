@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 
 return new class('Mull It Over') extends Day
 {
@@ -14,19 +14,17 @@ return new class('Mull It Over') extends Day
         return collect($matches);
     }
 
-    public function part1(): Part
+    #[SampleAnswer(161)]
+    public function part1(): int
     {
-        $value = $this->input('/mul\((\d+),(\d+)\)/')
+        return $this->input('/mul\((\d+),(\d+)\)/')
             ->sum(function ($match) {
                 return $match[1] * $match[2];
             });
-
-        return new Part(
-            answer: $value,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(48)]
+    public function part2(): int
     {
         $input = $this->input('/do\(\)|don\'t\(\)|mul\((\d+),(\d+)\)/');
 
@@ -53,8 +51,6 @@ return new class('Mull It Over') extends Day
             $sum += $match[1] * $match[2];
         }
 
-        return new Part(
-            answer: $sum,
-        );
+        return $sum;
     }
 };

@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXIV\Day6\Grid;
 use MMXXIV\Day6\LoopDetectedException;
@@ -15,22 +15,22 @@ return new class('Guard Gallivant') extends Day
             ->map(fn($line) => str_split($line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(41)]
+    public function part1(): int
     {
         $grid = new Grid($this->input()->all());
 
         $movements = $grid->whileValid();
 
-        return new Part(
-            answer: collect($movements)
-                ->map(fn(Movement $move) => $move->node)
-                ->unique()
-                ->filter()
-                ->count(),
-        );
+        return collect($movements)
+            ->map(fn(Movement $move) => $move->node)
+            ->unique()
+            ->filter()
+            ->count();
     }
 
-    public function part2(): Part
+    #[SampleAnswer(6)]
+    public function part2(): int
     {
         $grid = new Grid($this->input()->all());
 
@@ -57,8 +57,6 @@ return new class('Guard Gallivant') extends Day
             $grid->resetObstacle($moving->node);
         });
 
-        return new Part(
-            answer: array_count_values($obstacles)[1],
-        );
+        return array_count_values($obstacles)[1];
     }
 };

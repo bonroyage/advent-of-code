@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Print Queue') extends Day
@@ -20,11 +20,12 @@ return new class('Print Queue') extends Day
             ->map(fn(string $line) => explode(',', $line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(143)]
+    public function part1(): int
     {
         $rules = $this->pageOrderingRules();
 
-        $value = $this->updates()
+        return $this->updates()
             ->sum(function ($update) use ($rules) {
                 $matchingRules = $rules->filter(fn($rule) => count(array_intersect($update, $rule)) === 2);
 
@@ -39,17 +40,14 @@ return new class('Print Queue') extends Day
 
                 return $update[$middle];
             });
-
-        return new Part(
-            answer: $value,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(123)]
+    public function part2(): int
     {
         $rules = $this->pageOrderingRules();
 
-        $value = $this->updates()
+        return $this->updates()
             ->filter(function ($update) use ($rules) {
                 $matchingRules = $rules->filter(fn($rule) => count(array_intersect($update, $rule)) === 2);
 
@@ -83,9 +81,5 @@ return new class('Print Queue') extends Day
 
                 return $update[$middle];
             });
-
-        return new Part(
-            answer: $value,
-        );
     }
 };

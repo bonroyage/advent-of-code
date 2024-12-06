@@ -4,22 +4,27 @@ namespace App\Commands;
 
 use App\Solver\Day;
 use App\Solver\Measure;
+use App\Solver\SampleAnswer;
+use Closure;
 use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
+use ReflectionFunction;
 
 use function Termwind\render;
 
 class SolverCommand extends Command
 {
+    const DAY_PATTERN = '/\/Day(\d+)\/solver\.php$/';
+
     protected $signature = 'solve {year} {day?} {--sample}';
 
     public function handle()
     {
-        $days = collect(File::glob($this->path().'/*.php'))
-            ->mapWithKeys(function ($file) {
-                $basename = basename($file, '.php');
+        $days = collect(File::glob($this->path().'/Day*/solver.php'))
+            ->mapWithKeys(static function ($file) {
+                $day = preg_match(self::DAY_PATTERN, $file, $matches);
 
-                return [$basename => include $file];
+                return [$matches[1] => require $file];
             })
             ->sortKeys();
 
@@ -49,23 +54,57 @@ class SolverCommand extends Command
         $this->newLine();
         render('<div class="text-blue font-bold">'."Day {$index}: {$day->title}".'</div>');
 
+        $this->solveAnswer($day, 1, $day->part1(...));
+        $this->solveAnswer($day, 2, $day->part2(...));
+    }
+
+    private function solveAnswer(Day $day, int $part, Closure $callback): void
+    {
         if ($this->option('sample')) {
-            $day->sample = 1;
+            $day->sample = $part;
+
+            $reflection = new ReflectionFunction($callback);
+            $attributes = $reflection->getAttributes(SampleAnswer::class);
+
+            $expectedAnswer = $attributes === [] ? null : $attributes[0]->newInstance()->answer;
         }
 
-        [$part1, $elapsed] = Measure::block(fn() => $day->part1());
+        [$answer, $elapsed] = Measure::block($callback);
+
+        $elapsed = Measure::format($elapsed);
+        $formattedAnswer = nl2br($answer);
 
         $this->newLine();
-        render('<div class="ml-2"><em>Part 1 in <span class="text-cyan-400">'.Measure::format($elapsed).'</span>:</em> <span class="text-yellow-400">'.nl2br($part1->answer).'</span></div>');
 
-        if ($this->option('sample')) {
-            $day->sample = 2;
+        if (isset($expectedAnswer)) {
+            $isCorrect = $expectedAnswer === $answer;
+            $icon = $isCorrect ? '✅' : '❌';
+
+            $answers = $isCorrect
+                ? "<span class=\"text-yellow-400\">{$formattedAnswer}</span>"
+                : <<<HTML
+                <span class="text-red-400">{$formattedAnswer}</span> <span class="text-green-400">({$expectedAnswer})</span>
+                HTML;
+
+            render(
+                <<<HTML
+                <div class="ml-2">
+                    <span class="mr-2">{$icon}</span>
+                    <em>Part {$part} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
+                    {$answers}
+                </div>
+HTML,
+            );
+        } else {
+            render(
+                <<<HTML
+                <div class="ml-2">
+                    <em>Part {$part} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
+                    <span class="text-yellow-400">{$formattedAnswer}</span>
+                </div>
+HTML,
+            );
         }
-
-        [$part2, $elapsed] = Measure::block(fn() => $day->part2());
-
-        $this->newLine();
-        render('<div class="ml-2"><em>Part 2 in <span class="text-cyan-400">'.Measure::format($elapsed).'</span>:</em> <span class="text-yellow-400">'.nl2br($part2->answer).'</span></div>');
     }
 
     private function path(): string
