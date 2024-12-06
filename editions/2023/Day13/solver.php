@@ -2,6 +2,7 @@
 
 use App\Solver\Day;
 use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Point of Incidence') extends Day
@@ -11,24 +12,18 @@ return new class('Point of Incidence') extends Day
         return $this->getFileLines(PHP_EOL.PHP_EOL);
     }
 
-    public function part1(): Part
+    #[SampleAnswer(709)]
+    public function part1(): int
     {
-        $answer = $this->input()
+        return $this->input()
             ->sum(fn(string $grid): int => $this->checkGrid($grid, false));
-
-        return new Part(
-            answer: $answer,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(1_400)]
+    public function part2(): int
     {
-        $answer = $this->input()
+        return $this->input()
             ->sum(fn(string $grid): int => $this->checkGrid($grid, true));
-
-        return new Part(
-            answer: $answer,
-        );
     }
 
     private function checkGrid(string $grid, bool $fixSmudge): int

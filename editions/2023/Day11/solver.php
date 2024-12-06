@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use MMXXIII\Day11\Grid;
 
 return new class('Cosmic Expansion') extends Day
@@ -14,21 +14,18 @@ return new class('Cosmic Expansion') extends Day
         );
     }
 
-    public function part1(): Part
+    #[SampleAnswer(374)]
+    public function part1(): int
     {
         $grid = $this->input();
 
-        return new Part(
-            answer: $grid->shortestDistanceWithExpansion(2),
-        );
+        return $grid->shortestDistanceWithExpansion(2);
     }
 
-    public function part2(): Part
+    public function part2(): int
     {
         $grid = $this->input();
 
-        return new Part(
-            answer: $grid->shortestDistanceWithExpansion(1_000_000),
-        );
+        return $grid->shortestDistanceWithExpansion(1_000_000);
     }
 };

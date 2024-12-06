@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Cube Conundrum') extends Day
@@ -31,7 +31,8 @@ return new class('Cube Conundrum') extends Day
             });
     }
 
-    public function part1(): Part
+    #[SampleAnswer(8)]
+    public function part1(): int
     {
         $bag = [
             'red' => 12,
@@ -53,12 +54,11 @@ return new class('Cube Conundrum') extends Day
             $possibleGames[] = $game;
         }
 
-        return new Part(
-            answer: array_sum($possibleGames),
-        );
+        return array_sum($possibleGames);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(2_286)]
+    public function part2(): int
     {
         $bag = ['red', 'green', 'blue'];
 
@@ -74,8 +74,6 @@ return new class('Cube Conundrum') extends Day
             $power += array_product($leastAmount);
         }
 
-        return new Part(
-            answer: $power,
-        );
+        return $power;
     }
 };

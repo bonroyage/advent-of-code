@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use MMXXIII\Day12\LRUCache;
@@ -21,23 +21,21 @@ return new class('Hot Springs') extends Day
             });
     }
 
-    public function part1(): Part
+    #[SampleAnswer(21)]
+    public function part1(): int
     {
-        $answer = $this->input()->sum(function (array $line) {
+        return $this->input()->sum(function (array $line) {
             return $this->solve2(
                 $line[0],
                 $line[1],
             );
         });
-
-        return new Part(
-            answer: $answer,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(525_152)]
+    public function part2(): int
     {
-        $answer = $this->input()->sum(function (array $line) {
+        return $this->input()->sum(function (array $line) {
             $line[0] = implode('?', array_fill(0, 5, $line[0]));
             $line[1] = Arr::flatten(array_fill(0, 5, $line[1]));
 
@@ -46,10 +44,6 @@ return new class('Hot Springs') extends Day
                 groups: $line[1],
             );
         });
-
-        return new Part(
-            answer: $answer,
-        );
     }
 
     private function solve2(string $conditions, array $groups): int

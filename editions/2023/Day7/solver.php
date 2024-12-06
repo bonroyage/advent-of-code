@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Camel Cards') extends Day
@@ -19,33 +19,27 @@ return new class('Camel Cards') extends Day
             });
     }
 
-    public function part1(): Part
+    #[SampleAnswer(6_440)]
+    public function part1(): int
     {
-        $winnings = $this->winnings(
+        return $this->winnings(
             $this->input()
                 ->map(fn(array $hand) => [
                     ...$hand,
                     'sort' => $this->sortValuesPart1($hand['cards']),
                 ]),
         );
-
-        return new Part(
-            answer: $winnings,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(5_905)]
+    public function part2(): int
     {
-        $winnings = $this->winnings(
+        return $this->winnings(
             $this->input()
                 ->map(fn(array $hand) => [
                     ...$hand,
                     'sort' => $this->sortValuesPart2($hand['cards']),
                 ]),
-        );
-
-        return new Part(
-            answer: $winnings,
         );
     }
 

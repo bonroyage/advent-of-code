@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
@@ -52,7 +52,8 @@ return new class('If You Give A Seed A Fertilizer') extends Day
         ];
     }
 
-    public function part1(): Part
+    #[SampleAnswer(35)]
+    public function part1(): int
     {
         $input = $this->input();
 
@@ -66,12 +67,11 @@ return new class('If You Give A Seed A Fertilizer') extends Day
             ...$input['maps'],
         );
 
-        return new Part(
-            answer: min(Arr::flatten($seeds)),
-        );
+        return min(Arr::flatten($seeds));
     }
 
-    public function part2(): Part
+    #[SampleAnswer(46)]
+    public function part2(): int
     {
         $input = $this->input();
 
@@ -85,9 +85,7 @@ return new class('If You Give A Seed A Fertilizer') extends Day
             ...$input['maps'],
         );
 
-        return new Part(
-            answer: min(Arr::flatten($seeds)),
-        );
+        return min(Arr::flatten($seeds));
     }
 
     private function map(array $seeds, array ...$maps): array

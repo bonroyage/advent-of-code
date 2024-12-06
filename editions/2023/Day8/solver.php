@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Haunted Wasteland') extends Day
@@ -25,7 +25,8 @@ return new class('Haunted Wasteland') extends Day
         });
     }
 
-    public function part1(): Part
+    #[SampleAnswer(2)]
+    public function part1(): int
     {
         $node = 'AAA';
         $instructions = $this->instructions();
@@ -37,12 +38,11 @@ return new class('Haunted Wasteland') extends Day
             $node = $network[$node][$instruction];
         }
 
-        return new Part(
-            answer: $step,
-        );
+        return $step;
     }
 
-    public function part2(): Part
+    #[SampleAnswer('6')]
+    public function part2(): string
     {
         $instructions = $this->instructions();
         $network = $this->network();
@@ -59,8 +59,6 @@ return new class('Haunted Wasteland') extends Day
                 return gmp_lcm($carry, $step);
             }, new GMP(1));
 
-        return new Part(
-            answer: (string) $lcm,
-        );
+        return (string) $lcm;
     }
 };

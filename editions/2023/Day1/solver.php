@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Trebuchet?!') extends Day
@@ -37,17 +37,15 @@ return new class('Trebuchet?!') extends Day
             });
     }
 
-    public function part1(): Part
+    #[SampleAnswer(142)]
+    public function part1(): int
     {
-        return new Part(
-            answer: $this->input(wordsToNumbers: false)->sum(),
-        );
+        return $this->input(wordsToNumbers: false)->sum();
     }
 
-    public function part2(): Part
+    #[SampleAnswer(281)]
+    public function part2(): int
     {
-        return new Part(
-            answer: $this->input(wordsToNumbers: true)->sum(),
-        );
+        return $this->input(wordsToNumbers: true)->sum();
     }
 };

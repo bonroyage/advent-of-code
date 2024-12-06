@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Parabolic Reflector Dish') extends Day
@@ -12,18 +12,18 @@ return new class('Parabolic Reflector Dish') extends Day
             ->map(fn(string $line) => str_split($line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(136)]
+    public function part1(): int
     {
         $input = $this->input();
 
         $tilted = $this->tiltNorth($input);
 
-        return new Part(
-            answer: $this->sum($tilted),
-        );
+        return $this->sum($tilted);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(64)]
+    public function part2(): int
     {
         $tilted = $this->input()->toArray();
 
@@ -48,9 +48,7 @@ return new class('Parabolic Reflector Dish') extends Day
 
         $remainder = (1_000_000_000 - $offset) % $cycleLength;
 
-        return new Part(
-            answer: $this->sum(collect($seenBefore[$offset + $remainder])),
-        );
+        return $this->sum(collect($seenBefore[$offset + $remainder]));
     }
 
     private function shiftLine(Collection|array $input, bool $reverse = false)

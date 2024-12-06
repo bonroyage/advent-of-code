@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use MMXXIII\Day10\Grid;
 
 return new class('') extends Day
@@ -14,7 +14,8 @@ return new class('') extends Day
         );
     }
 
-    public function part1(): Part
+    #[SampleAnswer(8)]
+    public function part1(): int
     {
         $grid = $this->input();
         $grid->determineStartPipe();
@@ -44,12 +45,11 @@ return new class('') extends Day
             }
         }
 
-        return new Part(
-            answer: $distance,
-        );
+        return $distance;
     }
 
-    public function part2(): Part
+    #[SampleAnswer(10)]
+    public function part2(): int
     {
         $grid = $this->input();
         $grid->determineStartPipe();
@@ -83,10 +83,6 @@ return new class('') extends Day
 
         $grid->removeNonLoopNodes($loop);
 
-        $inside = $grid->determineInOutsideLoop();
-
-        return new Part(
-            answer: $inside,
-        );
+        return $grid->determineInOutsideLoop();
     }
 };

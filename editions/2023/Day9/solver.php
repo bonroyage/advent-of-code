@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Mirage Maintenance') extends Day
@@ -12,28 +12,23 @@ return new class('Mirage Maintenance') extends Day
             ->map(fn(string $line) => explode(' ', $line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(114)]
+    public function part1(): int
     {
-        $sum = $this->input()
+        return $this->input()
             ->sum(fn(array $sequence) => $this->nextValue(
                 $sequence,
             ));
-
-        return new Part(
-            answer: $sum,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(2)]
+    public function part2(): int
     {
-        $sum = $this->input()
+        return $this->input()
             ->sum(fn(array $sequence) => $this->nextValue(
                 array_reverse($sequence),
             ));
 
-        return new Part(
-            answer: $sum,
-        );
     }
 
     private function nextValue(array $sequence): int

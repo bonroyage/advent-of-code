@@ -16,24 +16,28 @@ foreach (glob(__DIR__.'/../../editions/*/Day*/solver.php') as $file) {
     $reflection = new ReflectionFunction($class->part1(...));
     $attributes = $reflection->getAttributes(SampleAnswer::class);
 
-    if ($attributes !== []) {
-        $expectedAnswer = $attributes[0]->newInstance()->answer;
+    test("{$year}, day {$day}, part 1", function () use ($class, $attributes) {
+        if ($attributes !== []) {
+            $expectedAnswer = $attributes[0]->newInstance()->answer;
 
-        test("{$year}, day {$day}, part 1", function () use ($class, $expectedAnswer) {
             $class->sample = 1;
             Assert::assertSame($expectedAnswer, $class->part1());
-        });
-    }
+        } else {
+            Assert::markTestIncomplete('#[SampleAnswer] missing');
+        }
+    });
 
     $reflection = new ReflectionFunction($class->part2(...));
     $attributes = $reflection->getAttributes(SampleAnswer::class);
 
-    if ($attributes !== []) {
-        $expectedAnswer = $attributes[0]->newInstance()->answer;
+    test("{$year}, day {$day}, part 2", function () use ($class, $attributes) {
+        if ($attributes !== []) {
+            $expectedAnswer = $attributes[0]->newInstance()->answer;
 
-        test("{$year}, day {$day}, part 2", function () use ($class, $expectedAnswer) {
             $class->sample = 2;
             Assert::assertSame($expectedAnswer, $class->part2());
-        });
-    }
+        } else {
+            Assert::markTestIncomplete('#[SampleAnswer] missing');
+        }
+    });
 }

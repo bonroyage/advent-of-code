@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Wait For It') extends Day
@@ -11,7 +11,8 @@ return new class('Wait For It') extends Day
         return $this->getFileLines();
     }
 
-    public function part1(): Part
+    #[SampleAnswer(288)]
+    public function part1(): int
     {
         $file = $this->input();
 
@@ -24,12 +25,11 @@ return new class('Wait For It') extends Day
             $distances[0],
         );
 
-        return new Part(
-            answer: array_product($races),
-        );
+        return array_product($races);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(71_503)]
+    public function part2(): int
     {
         $file = $this->input();
 
@@ -38,9 +38,7 @@ return new class('Wait For It') extends Day
 
         $options = $this->options($time, $distance);
 
-        return new Part(
-            answer: $options['count'],
-        );
+        return $options['count'];
     }
 
     public function options(int $time, int $distance): array

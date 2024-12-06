@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Scratchcards') extends Day
@@ -22,9 +22,10 @@ return new class('Scratchcards') extends Day
         });
     }
 
-    public function part1(): Part
+    #[SampleAnswer(13)]
+    public function part1(): int
     {
-        $value = $this->input()->map(function ($card) {
+        return $this->input()->map(function ($card) {
             $count = $card['winning']->intersect($card['got'])->count();
 
             if ($count > 1) {
@@ -33,13 +34,10 @@ return new class('Scratchcards') extends Day
 
             return $count;
         })->sum();
-
-        return new Part(
-            answer: $value,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(30)]
+    public function part2(): int
     {
         $cards = $this->input()->mapWithKeys(fn($card) => [$card['card'] => 1]);
 
@@ -51,8 +49,6 @@ return new class('Scratchcards') extends Day
             }
         }
 
-        return new Part(
-            answer: $cards->sum(),
-        );
+        return $cards->sum();
     }
 };

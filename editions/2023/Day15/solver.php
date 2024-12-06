@@ -1,27 +1,25 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('') extends Day
+return new class('Lens Library') extends Day
 {
     private function input(): Collection
     {
         return $this->getFile()->explode(',');
     }
 
-    public function part1(): Part
+    #[SampleAnswer(1_320)]
+    public function part1(): int
     {
-        $answer = $this->input()
+        return $this->input()
             ->sum(fn(string $hash) => $this->hash($hash));
-
-        return new Part(
-            answer: $answer,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(145)]
+    public function part2(): int
     {
         $boxes = $this->input()
             ->reduce(function (array $carry, string $hash) {
@@ -50,9 +48,7 @@ return new class('') extends Day
             }
         }
 
-        return new Part(
-            answer: $answer,
-        );
+        return $answer;
     }
 
     private function hash(string $input): int

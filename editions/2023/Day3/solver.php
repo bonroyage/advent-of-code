@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXIII\Day3\Grid;
 
@@ -13,30 +13,24 @@ return new class('Gear Ratios') extends Day
             ->map(fn($line) => str_split($line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(4_361)]
+    public function part1(): int
     {
         $grid = new Grid($this->input()->all());
 
-        $gearRatio = collect($grid->run())
+        return collect($grid->run())
             ->flatMap(fn(array $symbol) => $symbol['numbers'])
             ->sum();
-
-        return new Part(
-            answer: $gearRatio,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(467_835)]
+    public function part2(): int
     {
         $grid = new Grid($this->input()->all());
 
-        $gearRatio = collect($grid->run())
+        return collect($grid->run())
             ->filter(fn(array $symbol) => $symbol['char'] === '*' && count($symbol['numbers']) === 2)
             ->map(fn(array $symbol) => array_product($symbol['numbers']))
             ->sum();
-
-        return new Part(
-            answer: $gearRatio,
-        );
     }
 };
