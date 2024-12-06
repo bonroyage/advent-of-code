@@ -23,7 +23,7 @@ return new class('Guard Gallivant') extends Day
 
         return new Part(
             answer: collect($movements)
-                ->map(fn(Movement $move) => $move->to)
+                ->map(fn(Movement $move) => $move->node)
                 ->unique()
                 ->filter()
                 ->count(),
@@ -34,28 +34,27 @@ return new class('Guard Gallivant') extends Day
     {
         $grid = new Grid($this->input()->all());
 
-        // Ensure that we cannot place an obstacle on that starting position
-        $obstacles = [(string) $grid->start => 0];
+        $obstacles = [];
 
         // We're sure that the original grid will not cause a loop, so we don't
         // need to track the visited nodes to prevent a loop here.
-        $grid->whileValid(function (Movement $moving) use (&$obstacles, $grid) {
+        $grid->whileValid(static function (Movement $moving) use (&$obstacles, $grid) {
             // If we have already visited the node that we are leaving then we
             // have already determined if placing an obstacle will cause a loop.
-            if (isset($obstacles[(string) $moving->from])) {
+            if (isset($obstacles[(string) $moving->node])) {
                 return;
             }
 
-            // Create an altered grid with an obstacle placed on the node that
-            // we are leaving.
-            $alteredGrid = $grid->placeObstacle($moving->from);
+            $grid->placeObstacle($moving->node);
 
             try {
-                $alteredGrid->whileValid();
-                $obstacles[(string) $moving->from] = 0;
+                $grid->whileValid(startAt: $moving);
+                $obstacles[(string) $moving->node] = 0;
             } catch (LoopDetectedException) {
-                $obstacles[(string) $moving->from] = 1;
+                $obstacles[(string) $moving->node] = 1;
             }
+
+            $grid->resetObstacle($moving->node);
         });
 
         return new Part(

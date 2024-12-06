@@ -29,7 +29,7 @@ class Measure
         }
 
         if ($interval->minutes < 1) {
-            return $interval->seconds.' s';
+            return $interval->seconds.' s '.$interval->milliseconds.' ms';
         }
 
         return $interval->minutes.' m '.$interval->seconds.' s';

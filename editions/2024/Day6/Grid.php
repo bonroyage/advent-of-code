@@ -3,50 +3,49 @@
 namespace MMXXIV\Day6;
 
 use App\Utilities\Coordinate;
+use App\Utilities\Direction;
 use Closure;
 use RuntimeException;
 
 class Grid
 {
-    public readonly Coordinate $start;
-
     public function __construct(
-        public readonly array $grid,
+        private array $grid,
     ) {
-        $this->start = $this->startingPosition();
     }
 
-    public function placeObstacle(Coordinate $atPosition): self
+    public function placeObstacle(Coordinate $node): void
     {
-        $grid = $this->grid;
-        $grid[$atPosition->y][$atPosition->x] = '#';
-
-        return new self($grid);
+        $this->grid[$node->y][$node->x] = '#';
     }
 
-    public function whileValid(?Closure $callback = null): array
+    public function resetObstacle(Coordinate $node): void
     {
-        $lastMove = new Movement(
-            from: null,
-            to: $this->start,
-            inDirectionOf: 'n',
+        $this->grid[$node->y][$node->x] = '.';
+    }
+
+    public function whileValid(?Closure $callback = null, ?Movement $startAt = null): array
+    {
+        $lastMove = $startAt?->backtrack() ?? new Movement(
+            node: $this->startingPosition(),
+            inDirectionOf: Direction::North,
         );
 
-        $movements = [$lastMove];
+        $movements = [(string) $lastMove => $lastMove];
 
         while ($move = $this->step($lastMove)) {
-            if (in_array($move, $movements)) {
-                throw new LoopDetectedException($movements, $move);
+            if (isset($movements[(string) $move])) {
+                throw new LoopDetectedException();
             }
 
-            $movements[] = $move;
+            $movements[(string) $move] = $move;
+
+            if ($move->node === null) {
+                break;
+            }
 
             if ($callback) {
                 $callback($move);
-            }
-
-            if ($move->to === null) {
-                break;
             }
 
             $lastMove = $move;
@@ -70,19 +69,19 @@ class Grid
         $straightOn = $lastMove->continueStraight();
 
         // If we are out of bounds, we're done
-        if (!$this->isOnGrid($straightOn->to)) {
+        if (!$this->isOnGrid($straightOn->node)) {
             return $lastMove->offGrid();
         }
 
         // If we hit an obstacle, we must turn right
-        if ($this->isObstacle($straightOn->to)) {
-            $nextMove = $lastMove->turnRight();
+        if ($this->isObstacle($straightOn->node)) {
+            $turnRight = $lastMove->turnRight();
 
-            if ($this->isObstacle($nextMove->to)) {
+            if ($this->isObstacle($turnRight->node)) {
                 return $lastMove->uTurn();
             }
 
-            return $nextMove;
+            return $turnRight;
         }
 
         return $straightOn;

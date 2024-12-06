@@ -18,6 +18,14 @@ class Coordinate
         );
     }
 
+    public function moveInDirection(Direction $direction): Coordinate
+    {
+        return $this->move(
+            x: $direction->offset()[0],
+            y: $direction->offset()[1],
+        );
+    }
+
     public function __toString(): string
     {
         return "{$this->y},{$this->x}";

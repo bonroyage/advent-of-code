@@ -3,50 +3,35 @@
 namespace MMXXIV\Day6;
 
 use App\Utilities\Coordinate;
+use App\Utilities\Direction;
 
-class Movement
+readonly class Movement
 {
-    private const MOVES = [
-        'n' => [-1, 0, 'e', 's'],
-        'e' => [0, 1, 's', 'w'],
-        's' => [1, 0, 'w', 'n'],
-        'w' => [0, -1, 'n', 'e'],
-    ];
-
     public function __construct(
-        public readonly ?Coordinate $from,
-        public readonly ?Coordinate $to,
-        public readonly string $inDirectionOf,
+        public ?Coordinate $node,
+        public Direction $inDirectionOf,
     ) {
     }
 
     public function __toString(): string
     {
-        return "{$this->to}->{$this->inDirectionOf}";
+        return "{$this->node}->{$this->inDirectionOf->name}";
     }
 
     public function continueStraight(): Movement
     {
         return new Movement(
-            from: $this->to,
-            to: $this->to->move(
-                x: self::MOVES[$this->inDirectionOf][1],
-                y: self::MOVES[$this->inDirectionOf][0],
-            ),
+            node: $this->node->moveInDirection($this->inDirectionOf),
             inDirectionOf: $this->inDirectionOf,
         );
     }
 
     public function turnRight(): Movement
     {
-        $newDirection = self::MOVES[$this->inDirectionOf][2];
+        $newDirection = $this->inDirectionOf->right90();
 
         return new self(
-            from: $this->to,
-            to: $this->to->move(
-                x: self::MOVES[$newDirection][1],
-                y: self::MOVES[$newDirection][0],
-            ),
+            node: $this->node->moveInDirection($newDirection),
             inDirectionOf: $newDirection,
         );
     }
@@ -54,17 +39,23 @@ class Movement
     public function uTurn(): Movement
     {
         return new self(
-            from: $this->from,
-            to: $this->from,
-            inDirectionOf: self::MOVES[$this->inDirectionOf][3],
+            node: $this->node,
+            inDirectionOf: $this->inDirectionOf->opposite(),
+        );
+    }
+
+    public function backtrack(): Movement
+    {
+        return new self(
+            node: $this->node->moveInDirection($this->inDirectionOf->opposite()),
+            inDirectionOf: $this->inDirectionOf,
         );
     }
 
     public function offGrid(): Movement
     {
         return new Movement(
-            from: $this->to,
-            to: null,
+            node: null,
             inDirectionOf: $this->inDirectionOf,
         );
     }
