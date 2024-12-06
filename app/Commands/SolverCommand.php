@@ -3,6 +3,7 @@
 namespace App\Commands;
 
 use App\Solver\Day;
+use App\Solver\Measure;
 use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
 
@@ -52,19 +53,19 @@ class SolverCommand extends Command
             $day->sample = 1;
         }
 
-        $part1 = $day->part1();
+        [$part1, $elapsed] = Measure::block(fn() => $day->part1());
 
         $this->newLine();
-        render('<div class="ml-2"><em>Part 1:</em> <span class="text-yellow-400">'.nl2br($part1->answer).'</span></div>');
+        render('<div class="ml-2"><em>Part 1 in <span class="text-cyan-400">'.Measure::format($elapsed).'</span>:</em> <span class="text-yellow-400">'.nl2br($part1->answer).'</span></div>');
 
         if ($this->option('sample')) {
             $day->sample = 2;
         }
 
-        $part2 = $day->part2();
+        [$part2, $elapsed] = Measure::block(fn() => $day->part2());
 
         $this->newLine();
-        render('<div class="ml-2"><em>Part 2:</em> <span class="text-yellow-400">'.nl2br($part2->answer).'</span></div>');
+        render('<div class="ml-2"><em>Part 2 in <span class="text-cyan-400">'.Measure::format($elapsed).'</span>:</em> <span class="text-yellow-400">'.nl2br($part2->answer).'</span></div>');
     }
 
     private function path(): string
