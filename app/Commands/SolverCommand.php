@@ -2,6 +2,7 @@
 
 namespace App\Commands;
 
+use App\Exceptions\IncompleteException;
 use App\Solver\Day;
 use App\Solver\Measure;
 use App\Solver\SampleAnswer;
@@ -60,39 +61,49 @@ class SolverCommand extends Command
 
     private function solveAnswer(Day $day, int $part, Closure $callback): void
     {
-        if (!$this->option('sample')) {
-            $this->renderReal($part, $callback);
+        try {
+            if (!$this->option('sample')) {
+                $this->renderReal($part, $callback);
 
-            return;
-        }
+                return;
+            }
 
-        $reflection = new ReflectionFunction($callback);
-        $attributes = $reflection->getAttributes(SampleAnswer::class);
+            $reflection = new ReflectionFunction($callback);
+            $attributes = $reflection->getAttributes(SampleAnswer::class);
 
-        if ($attributes === []) {
-            render(
-                <<<HTML
+            if ($attributes === []) {
+                render(
+                    <<<HTML
                     <div class="ml-2">
                         <span class="mr-2">🟡</span><em>Part {$part}</em> missing
                     </div>
 HTML,
-            );
+                );
 
-            return;
-        }
+                return;
+            }
 
-        if (count($attributes) === 1) {
-            $sample = $attributes[0]->newInstance();
-            $sample->part = $part;
-
-            $this->renderSample($day, $part, $callback, $sample);
-        } else {
-            foreach ($attributes as $i => $attribute) {
-                $sample = $attribute->newInstance();
+            if (count($attributes) === 1) {
+                $sample = $attributes[0]->newInstance();
                 $sample->part = $part;
 
-                $this->renderSample($day, $part, $callback, $sample, $i);
+                $this->renderSample($day, $part, $callback, $sample);
+            } else {
+                foreach ($attributes as $i => $attribute) {
+                    $sample = $attribute->newInstance();
+                    $sample->part = $part;
+
+                    $this->renderSample($day, $part, $callback, $sample, $i);
+                }
             }
+        } catch (IncompleteException) {
+            render(
+                <<<HTML
+                    <div class="ml-2">
+                        <span class="mr-2">🟡</span><em>Part {$part}</em> incomplete
+                    </div>
+HTML,
+            );
         }
     }
 
@@ -125,7 +136,7 @@ HTML,
         $answers = $isCorrect
             ? "<span class=\"text-green-400\">{$formattedAnswer}</span>"
             : <<<HTML
-                <span class="text-red-400">{$formattedAnswer}</span> <span class="text-warning-400">{$formattedExpectedAnswer}</span>
+                <span class="text-red-400">{$formattedAnswer}</span> <span class="text-yellow-400">{$formattedExpectedAnswer}</span>
                 HTML;
 
         $sample = $index === null ? '' : ", sample {$index}";
