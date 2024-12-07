@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day9\Grid;
 
@@ -13,7 +13,8 @@ return new class('Smoke Basin') extends Day
             ->map(fn(string $row) => str_split($row));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(15)]
+    public function part1(): int
     {
         $grid = new Grid($this->input()->toArray());
 
@@ -27,12 +28,11 @@ return new class('Smoke Basin') extends Day
             }
         }
 
-        return new Part(
-            answer: array_sum($lowest) + count($lowest),
-        );
+        return array_sum($lowest) + count($lowest);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(1_134)]
+    public function part2(): int
     {
         $grid = new Grid($this->input()->toArray());
 
@@ -56,8 +56,6 @@ return new class('Smoke Basin') extends Day
 
         $top3 = array_slice($basins, 0, 3);
 
-        return new Part(
-            answer: array_product($top3),
-        );
+        return array_product($top3);
     }
 };

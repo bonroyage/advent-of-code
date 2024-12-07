@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Passage Pathing') extends Day
@@ -12,7 +12,8 @@ return new class('Passage Pathing') extends Day
             ->map(fn(string $row) => explode('-', $row));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(226)]
+    public function part1(): int
     {
         $input = $this->input();
 
@@ -23,12 +24,11 @@ return new class('Passage Pathing') extends Day
 
         $paths = $this->followPath($destinations, [], 'start', false);
 
-        return new Part(
-            answer: count($paths),
-        );
+        return count($paths);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(3_509)]
+    public function part2(): int
     {
         $input = $this->input();
 
@@ -39,9 +39,7 @@ return new class('Passage Pathing') extends Day
 
         $paths = $this->followPath($destinations, [], 'start');
 
-        return new Part(
-            answer: count($paths),
-        );
+        return count($paths);
     }
 
     private function followPath(Collection $destinations, array $path, string $key, bool $canVisitSmallCaveTwice = true): array

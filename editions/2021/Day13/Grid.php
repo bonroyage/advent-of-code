@@ -18,7 +18,7 @@ class Grid
         }
     }
 
-    private function makeGrid(int $width = null, int $height = null): array
+    private function makeGrid(?int $width = null, ?int $height = null): array
     {
         return array_fill(0, $height ?? $this->height(), array_fill(0, $width ?? $this->width(), false));
     }
@@ -33,7 +33,7 @@ class Grid
         return count($this->grid[0]);
     }
 
-    public function prettyPrint(array $grid = null): string
+    public function prettyPrint(?array $grid = null): string
     {
         $str = '';
 

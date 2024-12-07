@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Sonar Sweep') extends Day
@@ -11,7 +11,8 @@ return new class('Sonar Sweep') extends Day
         return $this->getFileLines();
     }
 
-    public function part1(): Part
+    #[SampleAnswer(7)]
+    public function part1(): int
     {
         $input = $this->input();
 
@@ -23,12 +24,11 @@ return new class('Sonar Sweep') extends Day
             }
         }
 
-        return new Part(
-            answer: $increasing,
-        );
+        return $increasing;
     }
 
-    public function part2(): Part
+    #[SampleAnswer(5)]
+    public function part2(): int
     {
         $input = $this->input();
 
@@ -43,8 +43,6 @@ return new class('Sonar Sweep') extends Day
             }
         }
 
-        return new Part(
-            answer: $increasing,
-        );
+        return $increasing;
     }
 };

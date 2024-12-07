@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day5\Line;
 use MMXXI\Day5\LineDirection;
@@ -14,26 +14,24 @@ return new class('Hydrothermal Venture') extends Day
             ->map(fn($line) => new Line($line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(5)]
+    public function part1(): int
     {
         $input = $this->input();
 
         $grid = $this->processGrid($input->filter(fn(Line $line) => $line->direction() !== LineDirection::Diagonal));
 
-        return new Part(
-            answer: collect($grid)->flatten()->filter(fn($value) => $value >= 2)->count(),
-        );
+        return collect($grid)->flatten()->filter(fn($value) => $value >= 2)->count();
     }
 
-    public function part2(): Part
+    #[SampleAnswer(12)]
+    public function part2(): int
     {
         $input = $this->input();
 
         $grid = $this->processGrid($input);
 
-        return new Part(
-            answer: collect($grid)->flatten()->filter(fn($value) => $value >= 2)->count(),
-        );
+        return collect($grid)->flatten()->filter(fn($value) => $value >= 2)->count();
     }
 
     private function processGrid(Collection $input): array

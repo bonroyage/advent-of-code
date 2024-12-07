@@ -68,7 +68,7 @@ class SignalPatterns
         $this->numbers[5] = $this->find();
     }
 
-    private function find(Closure $rule = null): string
+    private function find(?Closure $rule = null): string
     {
         $filter = $this->patterns->filter(function ($wire) use ($rule) {
             if (in_array($wire, $this->numbers, true)) {

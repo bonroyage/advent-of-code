@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Lanternfish') extends Day
@@ -12,18 +12,16 @@ return new class('Lanternfish') extends Day
             ->explode(',');
     }
 
-    public function part1(): Part
+    #[SampleAnswer(5934)]
+    public function part1(): int
     {
-        return new Part(
-            answer: $this->simulate(80),
-        );
+        return $this->simulate(80);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(26_984_457_539)]
+    public function part2(): int
     {
-        return new Part(
-            answer: $this->simulate(256),
-        );
+        return $this->simulate(256);
     }
 
     private function simulate(int $afterDays): int

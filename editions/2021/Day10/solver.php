@@ -1,9 +1,10 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day10\Line;
+use MMXXI\Day10\UnexpectedCharacterException;
 
 return new class('Syntax Scoring') extends Day
 {
@@ -12,14 +13,15 @@ return new class('Syntax Scoring') extends Day
         return $this->getFileLines();
     }
 
-    public function part1(): Part
+    #[SampleAnswer(26_397)]
+    public function part1(): int
     {
         $scores = [];
 
         foreach ($this->input() as $line) {
             try {
                 new Line($line);
-            } catch (\MMXXI\Day10\UnexpectedCharacterException $e) {
+            } catch (UnexpectedCharacterException $e) {
                 $scores[] = match ($e->got) {
                     ')' => 3,
                     ']' => 57,
@@ -29,12 +31,11 @@ return new class('Syntax Scoring') extends Day
             }
         }
 
-        return new Part(
-            answer: array_sum($scores),
-        );
+        return array_sum($scores);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(288_957)]
+    public function part2(): int
     {
         $scores = [];
 
@@ -54,14 +55,12 @@ return new class('Syntax Scoring') extends Day
                 }
 
                 $scores[] = $score;
-            } catch (\MMXXI\Day10\UnexpectedCharacterException) {
+            } catch (UnexpectedCharacterException) {
             }
         }
 
         sort($scores);
 
-        return new Part(
-            answer: $scores[floor((count($scores) - 1) / 2)],
-        );
+        return $scores[floor((count($scores) - 1) / 2)];
     }
 };

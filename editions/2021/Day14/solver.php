@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day14\Polymer;
 
@@ -28,25 +28,23 @@ return new class('Extended Polymerization') extends Day
             });
     }
 
-    public function part1(): Part
+    #[SampleAnswer(1588)]
+    public function part1(): int
     {
         $polymer = new Polymer($this->template(), $this->insertionRules()->pluck(1, 0)->all());
 
         $occurrences = $polymer->run(10);
 
-        return new Part(
-            answer: last($occurrences) - head($occurrences),
-        );
+        return last($occurrences) - head($occurrences);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(2_188_189_693_529)]
+    public function part2(): int
     {
         $polymer = new Polymer($this->template(), $this->insertionRules()->pluck(1, 0)->all());
 
         $occurrences = $polymer->run(40);
 
-        return new Part(
-            answer: last($occurrences) - head($occurrences),
-        );
+        return last($occurrences) - head($occurrences);
     }
 };

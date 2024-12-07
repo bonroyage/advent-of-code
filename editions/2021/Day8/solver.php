@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day8\SignalPatterns;
 
@@ -13,7 +13,8 @@ return new class('Seven Segment Search') extends Day
             ->map(fn($line) => explode(' | ', $line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(26)]
+    public function part1(): int
     {
         $digitsWithUniqueNumberOfSegments = 0;
 
@@ -27,12 +28,11 @@ return new class('Seven Segment Search') extends Day
             }
         }
 
-        return new Part(
-            answer: $digitsWithUniqueNumberOfSegments,
-        );
+        return $digitsWithUniqueNumberOfSegments;
     }
 
-    public function part2(): Part
+    #[SampleAnswer(61_229)]
+    public function part2(): int
     {
         $output = 0;
 
@@ -42,9 +42,7 @@ return new class('Seven Segment Search') extends Day
             $output += (int) implode(array_map($pattern->getNumber(...), explode(' ', $line[1])));
         }
 
-        return new Part(
-            answer: $output,
-        );
+        return $output;
     }
 
     public function sort(string $in): string

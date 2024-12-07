@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day13\Grid;
 
@@ -26,7 +26,8 @@ return new class('Transparent Origami') extends Day
             ->map(fn($instruction) => sscanf($instruction, 'fold along %1s=%d'));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(17)]
+    public function part1(): int
     {
         $grid = new Grid($this->dots()->all());
 
@@ -34,31 +35,37 @@ return new class('Transparent Origami') extends Day
             if ($axis === 'y') {
                 $grid->foldUp($position);
                 break;
-            } else if ($axis === 'x') {
+            } elseif ($axis === 'x') {
                 $grid->foldLeft($position);
                 break;
             }
         }
 
-        return new Part(
-            answer: $grid->visible(),
-        );
+        return $grid->visible();
     }
 
-    public function part2(): Part
+    #[SampleAnswer(<<<'ANSWER'
+#####
+#...#
+#...#
+#...#
+#####
+.....
+.....
+ANSWER
+    )]
+    public function part2(): string
     {
         $grid = new Grid($this->dots()->all());
 
         foreach ($this->instructions() as [$axis, $position]) {
             if ($axis === 'y') {
                 $grid->foldUp($position);
-            } else if ($axis === 'x') {
+            } elseif ($axis === 'x') {
                 $grid->foldLeft($position);
             }
         }
 
-        return new Part(
-            answer: trim($grid->prettyPrint()),
-        );
+        return trim($grid->prettyPrint());
     }
 };

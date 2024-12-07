@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use MMXXI\Day16\Packet;
 use MMXXI\Day16\Transmission;
 
@@ -12,7 +12,8 @@ return new class('Packet Decoder') extends Day
         return $this->getFile();
     }
 
-    public function part1(): Part
+    #[SampleAnswer(31)]
+    public function part1(): int
     {
         $input = $this->input();
 
@@ -20,12 +21,10 @@ return new class('Packet Decoder') extends Day
 
         $packet = Packet::read($transmission);
 
-        return new Part(
-            answer: $this->sumVersions($packet),
-        );
+        return $this->sumVersions($packet);
     }
 
-    public function part2(): Part
+    public function part2(): int
     {
         $input = $this->input();
 
@@ -33,9 +32,7 @@ return new class('Packet Decoder') extends Day
 
         $packet = Packet::read($transmission);
 
-        return new Part(
-            answer: $packet->value(),
-        );
+        return $packet->value();
     }
 
     private function sumVersions(Packet $packet)

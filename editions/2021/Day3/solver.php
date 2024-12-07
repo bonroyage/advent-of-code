@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Binary Diagnostic') extends Day
@@ -11,7 +11,8 @@ return new class('Binary Diagnostic') extends Day
         return $this->getFileLines();
     }
 
-    public function part1(): Part
+    #[SampleAnswer(198)]
+    public function part1(): int
     {
         $input = $this->input();
 
@@ -24,12 +25,11 @@ return new class('Binary Diagnostic') extends Day
             $epsilon = ($epsilon << 1) + $epsilonBit;
         }
 
-        return new Part(
-            answer: $gamma * $epsilon,
-        );
+        return $gamma * $epsilon;
     }
 
-    public function part2(): Part
+    #[SampleAnswer(230)]
+    public function part2(): int
     {
         $input = $this->input();
 
@@ -53,9 +53,7 @@ return new class('Binary Diagnostic') extends Day
             }
         }
 
-        return new Part(
-            answer: bindec($oxygen) * bindec($co2),
-        );
+        return bindec($oxygen) * bindec($co2);
     }
 
     private function checkBits(Collection $input, int $index): array

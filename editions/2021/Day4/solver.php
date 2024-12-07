@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day4\Board;
 
@@ -31,21 +31,8 @@ return new class('Giant Squid') extends Day
             ));
     }
 
-    public function part1(): Part
-    {
-        return new Part(
-            answer: $this->findWinningBoard(),
-        );
-    }
-
-    public function part2(): Part
-    {
-        return new Part(
-            answer: $this->findLastWinningBoard(),
-        );
-    }
-
-    private function findWinningBoard(): ?int
+    #[SampleAnswer(4_512)]
+    public function part1(): int
     {
         $boards = $this->boards();
 
@@ -60,10 +47,11 @@ return new class('Giant Squid') extends Day
             }
         }
 
-        return null;
+        throw new Exception('Expected an answer');
     }
 
-    private function findLastWinningBoard(): ?int
+    #[SampleAnswer(1_924)]
+    public function part2(): int
     {
         $boards = $this->boards();
 
@@ -80,6 +68,6 @@ return new class('Giant Squid') extends Day
             }
         }
 
-        return null;
+        throw new Exception('Expected an answer');
     }
 };

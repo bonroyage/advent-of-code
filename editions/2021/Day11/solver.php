@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day11\Grid;
 
@@ -13,7 +13,8 @@ return new class('Dumbo Octopus') extends Day
             ->map(fn(string $row) => str_split($row));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(1_656)]
+    public function part1(): int
     {
         $grid = new Grid($this->input()->all());
         $flashes = 0;
@@ -22,12 +23,11 @@ return new class('Dumbo Octopus') extends Day
             $flashes += $grid->step();
         }
 
-        return new Part(
-            answer: $flashes,
-        );
+        return $flashes;
     }
 
-    public function part2(): Part
+    #[SampleAnswer(195)]
+    public function part2(): int
     {
         $grid = new Grid($this->input()->all());
         $total = $grid->count();
@@ -39,8 +39,6 @@ return new class('Dumbo Octopus') extends Day
             $flashed = $grid->step();
         }
 
-        return new Part(
-            answer: $step,
-        );
+        return $step;
     }
 };

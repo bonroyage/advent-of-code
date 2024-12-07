@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Dive!') extends Day
@@ -12,7 +12,8 @@ return new class('Dive!') extends Day
             ->map(fn($instruction) => explode(' ', $instruction));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(150)]
+    public function part1(): int
     {
         $input = $this->input();
 
@@ -29,12 +30,11 @@ return new class('Dive!') extends Day
             }
         }
 
-        return new Part(
-            answer: $horizontal * $depth,
-        );
+        return $horizontal * $depth;
     }
 
-    public function part2(): Part
+    #[SampleAnswer(900)]
+    public function part2(): int
     {
         $input = $this->input();
 
@@ -53,8 +53,6 @@ return new class('Dive!') extends Day
             }
         }
 
-        return new Part(
-            answer: $horizontal * $depth,
-        );
+        return $horizontal * $depth;
     }
 };

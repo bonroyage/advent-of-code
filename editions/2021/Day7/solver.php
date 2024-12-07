@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('The Treachery of Whales') extends Day
@@ -12,22 +12,20 @@ return new class('The Treachery of Whales') extends Day
             ->explode(',');
     }
 
-    public function part1(): Part
+    #[SampleAnswer(37)]
+    public function part1(): int
     {
         $costs = $this->calculateCosts(static fn($movement) => $movement);
 
-        return new Part(
-            answer: min($costs),
-        );
+        return min($costs);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(168)]
+    public function part2(): int
     {
         $costs = $this->calculateCosts(static fn($movement) => ($movement * ($movement + 1)) / 2);
 
-        return new Part(
-            answer: min($costs),
-        );
+        return min($costs);
     }
 
     private function calculateCosts(Closure $calculator): array

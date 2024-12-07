@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day15\Grid;
 
@@ -13,18 +13,16 @@ return new class('Chiton') extends Day
             ->map(fn($line) => str_split($line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(40)]
+    public function part1(): int
     {
         $grid = new Grid($this->input()->all());
 
-        $risk = $grid->run();
-
-        return new Part(
-            answer: $risk,
-        );
+        return $grid->run();
     }
 
-    public function part2(): Part
+    #[SampleAnswer(315)]
+    public function part2(): int
     {
         $inputs = $this->input()->all();
 
@@ -43,10 +41,6 @@ return new class('Chiton') extends Day
 
         $grid = new Grid($grid);
 
-        $risk = $grid->run();
-
-        return new Part(
-            answer: $risk,
-        );
+        return $grid->run();
     }
 };
