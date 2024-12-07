@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use MMXXII\Day11\Monkeys;
 
 return new class('Monkey in the Middle') extends Day
@@ -41,26 +41,24 @@ return new class('Monkey in the Middle') extends Day
         return $monkeys;
     }
 
-    public function part1(): Part
+    #[SampleAnswer(10_605)]
+    public function part1(): int
     {
         $monkeys = $this->input();
 
         $monkeys->run(20, fn($item) => floor($item / 3));
 
-        return new Part(
-            answer: $monkeys->worryLevelOfTopTwoMonkeys(),
-        );
+        return $monkeys->worryLevelOfTopTwoMonkeys();
     }
 
-    public function part2(): Part
+    #[SampleAnswer(2_713_310_158)]
+    public function part2(): int
     {
         $monkeys = $this->input();
 
         $commonMod = $monkeys->divisor();
         $monkeys->run(10_000, fn($item) => $item % $commonMod);
 
-        return new Part(
-            answer: $monkeys->worryLevelOfTopTwoMonkeys(),
-        );
+        return $monkeys->worryLevelOfTopTwoMonkeys();
     }
 };

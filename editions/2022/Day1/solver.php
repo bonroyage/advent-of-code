@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Calorie Counting') extends Day
@@ -12,25 +12,19 @@ return new class('Calorie Counting') extends Day
             ->map(fn($elf) => str($elf)->trim()->explode(PHP_EOL)->sum());
     }
 
-    public function part1(): Part
+    #[SampleAnswer(24_000)]
+    public function part1(): int
     {
-        $max = $this->input()
+        return $this->input()
             ->max();
-
-        return new Part(
-            answer: $max,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(45_000)]
+    public function part2(): int
     {
-        $sum = $this->input()
+        return $this->input()
             ->sortDesc()
             ->take(3)
             ->sum();
-
-        return new Part(
-            answer: $sum,
-        );
     }
 };

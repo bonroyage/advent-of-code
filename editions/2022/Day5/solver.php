@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Supply Stacks') extends Day
@@ -40,7 +40,8 @@ return new class('Supply Stacks') extends Day
             ->map(fn($movement) => sscanf($movement, 'move %d from %d to %d'));
     }
 
-    public function part1(): Part
+    #[SampleAnswer('CMZ')]
+    public function part1(): string
     {
         $buckets = $this->buckets();
 
@@ -50,14 +51,11 @@ return new class('Supply Stacks') extends Day
             $buckets[$to] = [...$move, ...$buckets[$to]];
         }
 
-        $top = implode(array_map(fn($bucket) => $bucket[0], $buckets));
-
-        return new Part(
-            answer: $top,
-        );
+        return implode(array_map(fn($bucket) => $bucket[0], $buckets));
     }
 
-    public function part2(): Part
+    #[SampleAnswer('MCD')]
+    public function part2(): string
     {
         $buckets = $this->buckets();
 
@@ -66,10 +64,6 @@ return new class('Supply Stacks') extends Day
             $buckets[$to] = [...$move, ...$buckets[$to]];
         }
 
-        $top = implode(array_map(fn($bucket) => $bucket[0], $buckets));
-
-        return new Part(
-            answer: $top,
-        );
+        return implode(array_map(fn($bucket) => $bucket[0], $buckets));
     }
 };

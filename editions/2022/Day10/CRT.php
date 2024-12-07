@@ -41,7 +41,7 @@ class CRT
     /**
      * Render the pixels of the CRT screen
      */
-    public function render(string $on = null, string $off = null): string
+    public function render(?string $on = null, ?string $off = null): string
     {
         return implode(PHP_EOL, array_map(fn($row) => $this->format($row, $on, $off), $this->screen));
     }
@@ -93,7 +93,7 @@ class CRT
         return floor(($cycle - 1) / self::PIXELS_PER_ROW);
     }
 
-    private function format(int $sprite, string $on = null, string $off = null): string
+    private function format(int $sprite, ?string $on = null, ?string $off = null): string
     {
         $sprite &= (2 ** self::PIXELS_PER_ROW) - 1;
 

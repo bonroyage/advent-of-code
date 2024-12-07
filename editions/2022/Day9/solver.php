@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXII\Day9\Rope;
 
@@ -13,7 +13,8 @@ return new class('Rope Bridge') extends Day
             ->map(fn($line) => explode(' ', $line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(13)]
+    public function part1(): int
     {
         $rope = new Rope(1);
 
@@ -21,12 +22,11 @@ return new class('Rope Bridge') extends Day
             $rope->move($direction, $amount);
         }
 
-        return new Part(
-            answer: $rope->tail()->uniquePositions(),
-        );
+        return $rope->tail()->uniquePositions();
     }
 
-    public function part2(): Part
+    #[SampleAnswer(1)]
+    public function part2(): int
     {
         $rope = new Rope(9);
 
@@ -34,8 +34,6 @@ return new class('Rope Bridge') extends Day
             $rope->move($direction, $amount);
         }
 
-        return new Part(
-            answer: $rope->tail()->uniquePositions(),
-        );
+        return $rope->tail()->uniquePositions();
     }
 };

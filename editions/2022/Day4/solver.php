@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXII\Day4\Pair;
 
@@ -13,27 +13,21 @@ return new class('Camp Cleanup') extends Day
             ->map(fn($pair) => new Pair($pair));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(2)]
+    public function part1(): int
     {
-        $overlaps = $this->input()
+        return $this->input()
             ->map(fn(Pair $pair) => $pair->fullyOverlaps())
             ->filter()
             ->count();
-
-        return new Part(
-            answer: $overlaps,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(4)]
+    public function part2(): int
     {
-        $overlaps = $this->input()
+        return $this->input()
             ->map(fn(Pair $pair) => $pair->overlaps())
             ->filter()
             ->count();
-
-        return new Part(
-            answer: $overlaps,
-        );
     }
 };

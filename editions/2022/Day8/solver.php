@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXII\Day8\Grid;
 
@@ -13,7 +13,8 @@ return new class('Treetop Tree House') extends Day
             ->map(fn($line) => str_split($line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(21)]
+    public function part1(): int
     {
         $grid = new Grid($this->input()->all());
 
@@ -27,12 +28,11 @@ return new class('Treetop Tree House') extends Day
             }
         }
 
-        return new Part(
-            answer: $visible,
-        );
+        return $visible;
     }
 
-    public function part2(): Part
+    #[SampleAnswer(8)]
+    public function part2(): int
     {
         $grid = new Grid($this->input()->all());
         $maxViewingDistance = 0;
@@ -47,8 +47,6 @@ return new class('Treetop Tree House') extends Day
             }
         }
 
-        return new Part(
-            answer: $maxViewingDistance,
-        );
+        return $maxViewingDistance;
     }
 };

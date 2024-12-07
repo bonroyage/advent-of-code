@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
 return new class('Rucksack Reorganization') extends Day
@@ -11,9 +11,10 @@ return new class('Rucksack Reorganization') extends Day
         return $this->getFileLines();
     }
 
-    public function part1(): Part
+    #[SampleAnswer(157)]
+    public function part1(): int
     {
-        $sum = $this->input()
+        return $this->input()
             ->sum(function (string $backpack) {
                 $middle = strlen($backpack) / 2;
 
@@ -24,15 +25,12 @@ return new class('Rucksack Reorganization') extends Day
                     ),
                 );
             });
-
-        return new Part(
-            answer: $sum,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(70)]
+    public function part2(): int
     {
-        $sum = $this->input()
+        return $this->input()
             ->chunk(3)
             ->sum(function (Collection $group) {
                 return $this->priority(
@@ -41,10 +39,6 @@ return new class('Rucksack Reorganization') extends Day
                     ),
                 );
             });
-
-        return new Part(
-            answer: $sum,
-        );
     }
 
     private function priority(string $letter): int

@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXII\Day2\Result;
 use MMXXII\Day2\Shape;
@@ -14,9 +14,10 @@ return new class('Rock Paper Scissors') extends Day
             ->map(fn($instruction) => explode(' ', $instruction));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(15)]
+    public function part1(): int
     {
-        $sum = $this->input()->map(function ($guide) {
+        return $this->input()->map(function ($guide) {
             $opponentWillPlay = match ($guide[0]) {
                 'A' => Shape::Rock,
                 'B' => Shape::Paper,
@@ -33,15 +34,12 @@ return new class('Rock Paper Scissors') extends Day
 
             return $iShouldPlay->value + $iShouldPlay->result($opponentWillPlay)->value;
         })->sum();
-
-        return new Part(
-            answer: $sum,
-        );
     }
 
-    public function part2(): Part
+    #[SampleAnswer(12)]
+    public function part2(): int
     {
-        $sum = $this->input()->map(function ($guide) {
+        return $this->input()->map(function ($guide) {
             $opponentWillPlay = match ($guide[0]) {
                 'A' => Shape::Rock,
                 'B' => Shape::Paper,
@@ -72,9 +70,5 @@ return new class('Rock Paper Scissors') extends Day
 
             return $iShouldPlay->value + $result->value;
         })->sum();
-
-        return new Part(
-            answer: $sum,
-        );
     }
 };

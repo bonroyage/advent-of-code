@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXII\Day12\Grid;
 
@@ -13,25 +13,19 @@ return new class('Hill Climbing Algorithm') extends Day
             ->map(fn($line) => str_split($line));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(31)]
+    public function part1(): int
     {
         $grid = new Grid($this->input()->all());
 
-        $distance = $grid->run($grid->S);
-
-        return new Part(
-            answer: $distance,
-        );
+        return $grid->run($grid->S);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(29)]
+    public function part2(): int
     {
         $grid = new Grid($this->input()->all());
 
-        $distance = $grid->run(...$grid->a);
-
-        return new Part(
-            answer: $distance,
-        );
+        return $grid->run(...$grid->a);
     }
 };

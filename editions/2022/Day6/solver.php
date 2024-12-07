@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 
 return new class('Tuning Trouble') extends Day
 {
@@ -10,18 +10,16 @@ return new class('Tuning Trouble') extends Day
         return str_split($this->getFile());
     }
 
-    public function part1(): Part
+    #[SampleAnswer(11)]
+    public function part1(): int
     {
-        return new Part(
-            answer: $this->findMarker(4),
-        );
+        return $this->findMarker(4);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(26)]
+    public function part2(): int
     {
-        return new Part(
-            answer: $this->findMarker(14),
-        );
+        return $this->findMarker(14);
     }
 
     private function findMarker(int $uniqueLength): ?int

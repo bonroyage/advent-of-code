@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use MMXXII\Day10\CRT;
@@ -13,7 +13,8 @@ return new class('Cathode-Ray Tube') extends Day
         return $this->getFileLines();
     }
 
-    public function part1(): Part
+    #[SampleAnswer(13_140)]
+    public function part1(): int
     {
         $crt = $this->crt();
 
@@ -26,18 +27,22 @@ return new class('Cathode-Ray Tube') extends Day
             $crt->signalStrength(220),
         ];
 
-        return new Part(
-            answer: array_sum($signalStrength),
-        );
+        return array_sum($signalStrength);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(<<<'ANSWER'
+##..##..##..##..##..##..##..##..##..##..
+###...###...###...###...###...###...###.
+####....####....####....####....####....
+#####.....#####.....#####.....#####.....
+######......######......######......####
+#######.......#######.......#######.....
+ANSWER)]
+    public function part2(): string
     {
         $crt = $this->crt();
 
-        return new Part(
-            answer: $crt->render(),
-        );
+        return $crt->render();
     }
 
     private function crt(): CRT

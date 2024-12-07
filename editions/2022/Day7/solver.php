@@ -1,7 +1,7 @@
 <?php
 
 use App\Solver\Day;
-use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use MMXXII\Day7\Directory;
@@ -13,7 +13,8 @@ return new class('No Space Left On Device') extends Day
         return $this->getFileLines();
     }
 
-    public function part1(): Part
+    #[SampleAnswer(95_437)]
+    public function part1(): int
     {
         $tree = $this->getTree();
 
@@ -21,12 +22,11 @@ return new class('No Space Left On Device') extends Day
             ->map(fn(Directory $directory) => $directory->size())
             ->filter(fn($size) => $size < 100_000);
 
-        return new Part(
-            answer: $smallDirectories->sum(),
-        );
+        return $smallDirectories->sum();
     }
 
-    public function part2(): Part
+    #[SampleAnswer(24_933_642)]
+    public function part2(): int
     {
         $tree = $this->getTree();
 
@@ -42,11 +42,7 @@ return new class('No Space Left On Device') extends Day
 
         $needToFree = $requiredSpace - $unusedSpace;
 
-        $smallestDirectorySize = $directories->first(fn(int $directorySize) => $directorySize >= $needToFree);
-
-        return new Part(
-            answer: $smallestDirectorySize,
-        );
+        return $directories->first(fn(int $directorySize) => $directorySize >= $needToFree);
     }
 
     private function getTree(): Directory

@@ -2,6 +2,7 @@
 
 use App\Solver\Day;
 use App\Solver\Part;
+use App\Solver\SampleAnswer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
@@ -14,7 +15,8 @@ return new class('Distress Signal') extends Day
             ->map(fn($packet) => json_decode($packet, true));
     }
 
-    public function part1(): Part
+    #[SampleAnswer(13)]
+    public function part1(): int
     {
         $packets = $this->input()->chunk(2)->map->values();
 
@@ -26,12 +28,11 @@ return new class('Distress Signal') extends Day
             }
         }
 
-        return new Part(
-            answer: array_sum($correctPackets),
-        );
+        return array_sum($correctPackets);
     }
 
-    public function part2(): Part
+    #[SampleAnswer(140)]
+    public function part2(): int
     {
         $packets = $this->input();
         $packets[] = [[2]];
@@ -52,9 +53,7 @@ return new class('Distress Signal') extends Day
         $firstDivider = $packets->search([[2]]) + 1;
         $secondDivider = $packets->search([[6]]) + 1;
 
-        return new Part(
-            answer: $firstDivider * $secondDivider,
-        );
+        return $firstDivider * $secondDivider;
     }
 
     private function compare(array|int|null $left, array|int|null $right): ?bool
