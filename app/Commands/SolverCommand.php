@@ -60,51 +60,108 @@ class SolverCommand extends Command
 
     private function solveAnswer(Day $day, int $part, Closure $callback): void
     {
-        if ($this->option('sample')) {
-            $day->sample = $part;
+        if (!$this->option('sample')) {
+            $this->renderReal($part, $callback);
 
-            $reflection = new ReflectionFunction($callback);
-            $attributes = $reflection->getAttributes(SampleAnswer::class);
-
-            $expectedAnswer = $attributes === [] ? null : $attributes[0]->newInstance()->answer;
+            return;
         }
 
+        $reflection = new ReflectionFunction($callback);
+        $attributes = $reflection->getAttributes(SampleAnswer::class);
+
+        if ($attributes === []) {
+            render(
+                <<<HTML
+                    <div class="ml-2">
+                        <span class="mr-2">🟡</span><em>Part {$part}</em> missing
+                    </div>
+HTML,
+            );
+
+            return;
+        }
+
+        if (count($attributes) === 1) {
+            $sample = $attributes[0]->newInstance();
+            $sample->part = $part;
+
+            $this->renderSample($day, $part, $callback, $sample);
+        } else {
+            foreach ($attributes as $i => $attribute) {
+                $sample = $attribute->newInstance();
+                $sample->part = $part;
+
+                $this->renderSample($day, $part, $callback, $sample, $i);
+            }
+        }
+    }
+
+    private function renderSample(Day $day, int $part, Closure $callback, SampleAnswer $sample, ?int $index = null): void
+    {
+        $day->sample = $sample;
+
+        $expectedAnswer = $sample->answer;
+
+        [$answer, $elapsed] = Measure::block($callback);
+        $isCorrect = $expectedAnswer === $answer;
+
+        $elapsed = Measure::format($elapsed);
+
+        if (str_contains($answer, "\n")) {
+            $answer = "\n".$answer;
+        }
+
+        if (str_contains($expectedAnswer, "\n")) {
+            $expectedAnswer = "\n\n".$expectedAnswer;
+        } else {
+            $expectedAnswer = '('.$expectedAnswer.')';
+        }
+
+        $formattedAnswer = nl2br($answer);
+        $formattedExpectedAnswer = nl2br($expectedAnswer);
+
+        $icon = $isCorrect ? '🟢' : '🔴';
+
+        $answers = $isCorrect
+            ? "<span class=\"text-green-400\">{$formattedAnswer}</span>"
+            : <<<HTML
+                <span class="text-red-400">{$formattedAnswer}</span> <span class="text-warning-400">{$formattedExpectedAnswer}</span>
+                HTML;
+
+        $sample = $index === null ? '' : ", sample {$index}";
+
+        render(
+            <<<HTML
+                <div class="ml-2">
+                    <span class="mr-2">{$icon}</span><em>Part {$part}{$sample} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
+                    {$answers}
+                </div>
+HTML,
+        );
+    }
+
+    private function renderReal(int $part, Closure $callback): void
+    {
         [$answer, $elapsed] = Measure::block($callback);
 
         $elapsed = Measure::format($elapsed);
+
+        if (str_contains($answer, "\n")) {
+            $answer = "\n".$answer;
+        }
+
         $formattedAnswer = nl2br($answer);
 
         $this->newLine();
 
-        if (isset($expectedAnswer)) {
-            $isCorrect = $expectedAnswer === $answer;
-            $icon = $isCorrect ? '✅' : '❌';
-
-            $answers = $isCorrect
-                ? "<span class=\"text-yellow-400\">{$formattedAnswer}</span>"
-                : <<<HTML
-                <span class="text-red-400">{$formattedAnswer}</span> <span class="text-green-400">({$expectedAnswer})</span>
-                HTML;
-
-            render(
-                <<<HTML
-                <div class="ml-2">
-                    <span class="mr-2">{$icon}</span>
-                    <em>Part {$part} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
-                    {$answers}
-                </div>
-HTML,
-            );
-        } else {
-            render(
-                <<<HTML
+        render(
+            <<<HTML
                 <div class="ml-2">
                     <em>Part {$part} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
                     <span class="text-yellow-400">{$formattedAnswer}</span>
                 </div>
 HTML,
-            );
-        }
+        );
     }
 
     private function path(): string

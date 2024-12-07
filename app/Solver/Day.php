@@ -8,7 +8,7 @@ use ReflectionClass;
 
 abstract class Day
 {
-    public ?int $sample = null;
+    public ?SampleAnswer $sample = null;
 
     public function __construct(
         public readonly string $title,
@@ -26,6 +26,11 @@ abstract class Day
             $file = $this->getFilePath($childRef->getFileName());
         }
 
+        if ($this->sample?->input) {
+            return str($this->sample->input)
+                ->rtrim();
+        }
+
         return str(file_get_contents($file))
             ->rtrim();
     }
@@ -39,7 +44,7 @@ abstract class Day
     private function getFilePath(string $pathToClass): string
     {
         if ($this->sample) {
-            $partSpecificSampleFile = dirname($pathToClass)."/sample.{$this->sample}.txt";
+            $partSpecificSampleFile = dirname($pathToClass)."/sample.{$this->sample->part}.txt";
 
             if (file_exists($partSpecificSampleFile)) {
                 return $partSpecificSampleFile;

@@ -18,7 +18,7 @@ class Measure
         return [$value, CarbonImmutable::now()->diffAsCarbonInterval($start)];
     }
 
-    public static function format(CarbonInterval $interval)
+    public static function format(CarbonInterval $interval): string
     {
         if ($interval->totalSeconds < 0.001) {
             return $interval->microseconds.' μs';
