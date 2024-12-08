@@ -3,15 +3,15 @@
   "description": "Advent of Code years/2022",
   "type": "project",
   "require": {
-    "php": "^8.2",
+    "php": "^8.4",
     "ext-gmp": "*",
-    "laravel-zero/framework": "^v10.3",
-    "nunomaduro/termwind": "^1.14"
+    "laravel-zero/framework": "^11.0",
+    "nunomaduro/termwind": "^2.3"
   },
   "require-dev": {
     "laravel/pint": "^1.13",
     "mockery/mockery": "^1.4.4",
-    "pestphp/pest": "^1.21.3"
+    "pestphp/pest": "^3.6"
   },
   "autoload": {
     "psr-4": {
