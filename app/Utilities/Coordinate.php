@@ -18,6 +18,14 @@ class Coordinate
         );
     }
 
+    public function offset(Coordinate $other): Coordinate
+    {
+        return new self(
+            x: $this->x - $other->x,
+            y: $this->y - $other->y,
+        );
+    }
+
     public function moveInDirection(Direction $direction): Coordinate
     {
         return $this->move(
