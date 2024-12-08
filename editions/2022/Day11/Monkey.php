@@ -13,8 +13,7 @@ class Monkey
         public readonly Closure $operation,
         public readonly int $divisible_by,
         public readonly Closure $throw_to,
-    ) {
-    }
+    ) {}
 
     private function receive(int $item): void
     {

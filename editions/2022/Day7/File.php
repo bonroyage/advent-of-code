@@ -8,8 +8,7 @@ class File implements Node
         public readonly string $name,
         public readonly int $size,
         public readonly Directory $parent,
-    ) {
-    }
+    ) {}
 
     public function size(): int
     {

@@ -5,11 +5,10 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day14\Polymer;
 
-return new class('Extended Polymerization') extends Day
-{
+return new class ('Extended Polymerization') extends Day {
     private function input(): Collection
     {
-        return $this->getFileLines(PHP_EOL.PHP_EOL);
+        return $this->getFileLines(PHP_EOL . PHP_EOL);
     }
 
     private function template(): string
@@ -24,7 +23,7 @@ return new class('Extended Polymerization') extends Day
             ->map(function ($rule) {
                 $segments = explode(' -> ', $rule);
 
-                return [...$segments, $segments[0][0].$segments[1]];
+                return [...$segments, $segments[0][0] . $segments[1]];
             });
     }
 

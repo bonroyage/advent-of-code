@@ -6,8 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use MMXXII\Day10\CRT;
 
-return new class('Cathode-Ray Tube') extends Day
-{
+return new class ('Cathode-Ray Tube') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines();
@@ -31,13 +30,13 @@ return new class('Cathode-Ray Tube') extends Day
     }
 
     #[SampleAnswer(<<<'ANSWER'
-##..##..##..##..##..##..##..##..##..##..
-###...###...###...###...###...###...###.
-####....####....####....####....####....
-#####.....#####.....#####.....#####.....
-######......######......######......####
-#######.......#######.......#######.....
-ANSWER)]
+        ##..##..##..##..##..##..##..##..##..##..
+        ###...###...###...###...###...###...###.
+        ####....####....####....####....####....
+        #####.....#####.....#####.....#####.....
+        ######......######......######......####
+        #######.......#######.......#######.....
+        ANSWER)]
     public function part2(): string
     {
         $crt = $this->crt();

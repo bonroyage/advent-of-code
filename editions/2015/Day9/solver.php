@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class('All in a Single Night') extends Day
-{
+return new class ('All in a Single Night') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

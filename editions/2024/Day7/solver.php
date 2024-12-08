@@ -5,8 +5,7 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXIV\Day7\Equation;
 
-return new class('Bridge Repair') extends Day
-{
+return new class ('Bridge Repair') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

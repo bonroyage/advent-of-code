@@ -6,8 +6,7 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
-return new class('Distress Signal') extends Day
-{
+return new class ('Distress Signal') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()
@@ -43,7 +42,7 @@ return new class('Distress Signal') extends Day
 
             if ($cmp === true) {
                 return -1;
-            } else if ($cmp === false) {
+            } elseif ($cmp === false) {
                 return 1;
             }
 

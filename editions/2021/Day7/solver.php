@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('The Treachery of Whales') extends Day
-{
+return new class ('The Treachery of Whales') extends Day {
     private function input(): Collection
     {
         return $this->getFile()

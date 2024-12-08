@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('Sonar Sweep') extends Day
-{
+return new class ('Sonar Sweep') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines();

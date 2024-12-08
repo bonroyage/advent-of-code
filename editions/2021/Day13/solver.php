@@ -5,11 +5,10 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day13\Grid;
 
-return new class('Transparent Origami') extends Day
-{
+return new class ('Transparent Origami') extends Day {
     private function input(): Collection
     {
-        return $this->getFileLines(PHP_EOL.PHP_EOL);
+        return $this->getFileLines(PHP_EOL . PHP_EOL);
     }
 
     private function dots(): Collection
@@ -34,9 +33,11 @@ return new class('Transparent Origami') extends Day
         foreach ($this->instructions() as [$axis, $position]) {
             if ($axis === 'y') {
                 $grid->foldUp($position);
+
                 break;
             } elseif ($axis === 'x') {
                 $grid->foldLeft($position);
+
                 break;
             }
         }
@@ -44,15 +45,16 @@ return new class('Transparent Origami') extends Day
         return $grid->visible();
     }
 
-    #[SampleAnswer(<<<'ANSWER'
-#####
-#...#
-#...#
-#...#
-#####
-.....
-.....
-ANSWER
+    #[SampleAnswer(
+        <<<'ANSWER'
+            #####
+            #...#
+            #...#
+            #...#
+            #####
+            .....
+            .....
+            ANSWER
     )]
     public function part2(): string
     {

@@ -4,18 +4,17 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('Print Queue') extends Day
-{
+return new class ('Print Queue') extends Day {
     private function pageOrderingRules(): Collection
     {
-        return str($this->getFileLines(PHP_EOL.PHP_EOL)[0])
+        return str($this->getFileLines(PHP_EOL . PHP_EOL)[0])
             ->explode(PHP_EOL)
             ->map(fn(string $line) => explode('|', $line));
     }
 
     private function updates(): Collection
     {
-        return str($this->getFileLines(PHP_EOL.PHP_EOL)[1])
+        return str($this->getFileLines(PHP_EOL . PHP_EOL)[1])
             ->explode(PHP_EOL)
             ->map(fn(string $line) => explode(',', $line));
     }

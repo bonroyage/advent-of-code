@@ -6,8 +6,7 @@ use App\Utilities\Coordinate;
 use Illuminate\Support\Collection;
 use MMXXIV\Day8\Grid;
 
-return new class('Resonant Collinearity') extends Day
-{
+return new class ('Resonant Collinearity') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

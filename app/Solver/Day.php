@@ -12,8 +12,7 @@ abstract class Day
 
     public function __construct(
         public readonly string $title,
-    ) {
-    }
+    ) {}
 
     abstract public function part1();
 
@@ -44,15 +43,15 @@ abstract class Day
     private function getFilePath(string $pathToClass): string
     {
         if ($this->sample) {
-            $partSpecificSampleFile = dirname($pathToClass)."/sample.{$this->sample->part}.txt";
+            $partSpecificSampleFile = dirname($pathToClass) . "/sample.{$this->sample->part}.txt";
 
             if (file_exists($partSpecificSampleFile)) {
                 return $partSpecificSampleFile;
             }
 
-            return dirname($pathToClass).'/sample.txt';
+            return dirname($pathToClass) . '/sample.txt';
         }
 
-        return dirname($pathToClass).'/real.txt';
+        return dirname($pathToClass) . '/real.txt';
     }
 }

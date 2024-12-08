@@ -6,8 +6,7 @@ use Illuminate\Support\Collection;
 use MMXXI\Day10\Line;
 use MMXXI\Day10\UnexpectedCharacterException;
 
-return new class('Syntax Scoring') extends Day
-{
+return new class ('Syntax Scoring') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines();

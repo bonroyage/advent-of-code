@@ -5,7 +5,7 @@ namespace MMXXI\Day11;
 class Grid
 {
     private array $grid;
-    private int   $flashesInStep = 0;
+    private int $flashesInStep = 0;
 
     public function __construct(public readonly array $original)
     {

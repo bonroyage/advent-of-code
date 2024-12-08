@@ -15,6 +15,7 @@ class Grid
             foreach ($row as $x => $pipe) {
                 if ($pipe === 'S') {
                     $this->start = [$x, $y];
+
                     break 2;
                 }
             }
@@ -26,7 +27,7 @@ class Grid
         $str = '';
 
         foreach ($this->grid as $row) {
-            $str .= implode('', $row).PHP_EOL;
+            $str .= implode('', $row) . PHP_EOL;
         }
 
         return $str;

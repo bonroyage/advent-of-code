@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('Trebuchet?!') extends Day
-{
+return new class ('Trebuchet?!') extends Day {
     private const WORDS_TO_NUMBERS = [
         'one' => 1,
         'two' => 2,
@@ -24,7 +23,7 @@ return new class('Trebuchet?!') extends Day
             ->map(function (string $line) use ($wordsToNumbers) {
                 if ($wordsToNumbers) {
                     $line = preg_replace_callback(
-                        '/(?=('.implode('|', array_keys(self::WORDS_TO_NUMBERS)).'))/',
+                        '/(?=(' . implode('|', array_keys(self::WORDS_TO_NUMBERS)) . '))/',
                         fn($matches) => self::WORDS_TO_NUMBERS[$matches[1]],
                         $line,
                     );
@@ -33,7 +32,7 @@ return new class('Trebuchet?!') extends Day
                 // Remove any non-numbers
                 $line = preg_replace('/\D/', '', $line);
 
-                return (int) $line[0].$line[-1];
+                return (int) $line[0] . $line[-1];
             });
     }
 

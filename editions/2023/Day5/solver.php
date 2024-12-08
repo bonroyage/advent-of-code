@@ -5,8 +5,7 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
-return new class('If You Give A Seed A Fertilizer') extends Day
-{
+return new class ('If You Give A Seed A Fertilizer') extends Day {
     private function input(): array
     {
         $input = $this->getFileLines();

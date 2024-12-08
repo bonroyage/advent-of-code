@@ -3,8 +3,7 @@
 use App\Solver\Day;
 use App\Solver\SampleAnswer;
 
-return new class('Tuning Trouble') extends Day
-{
+return new class ('Tuning Trouble') extends Day {
     private function input(): array
     {
         return str_split($this->getFile());

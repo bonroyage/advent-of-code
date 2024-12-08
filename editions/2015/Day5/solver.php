@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class('Doesn\'t He Have Intern-Elves For This?') extends Day
-{
+return new class ('Doesn\'t He Have Intern-Elves For This?') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines();
@@ -21,6 +20,7 @@ return new class('Doesn\'t He Have Intern-Elves For This?') extends Day
 
             // It contains at least three vowels (aeiou only)
             preg_match_all('/[aeoiu]/', $line, $vowels);
+
             if (count($vowels[0]) < 3) {
                 return false;
             }

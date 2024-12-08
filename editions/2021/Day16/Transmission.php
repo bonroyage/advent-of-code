@@ -5,8 +5,8 @@ namespace MMXXI\Day16;
 class Transmission
 {
     public readonly string $originalBinary;
-    private string         $binary;
-    private int            $position = 0;
+    private string $binary;
+    private int $position = 0;
 
     public function __construct(string $hex)
     {

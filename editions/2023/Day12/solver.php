@@ -6,8 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use MMXXIII\Day12\LRUCache;
 
-return new class('Hot Springs') extends Day
-{
+return new class ('Hot Springs') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()
@@ -112,7 +111,7 @@ return new class('Hot Springs') extends Day
          * a '#'. This is not possible, because it must be followed by a '.'
          * or a '?' (to be replaced by a '.')
          */
-        if (preg_match('/^[#|?]{'.$group.'}(?:[.|?](?<remainder>.*))?$/', $conditions, $matches)) {
+        if (preg_match('/^[#|?]{' . $group . '}(?:[.|?](?<remainder>.*))?$/', $conditions, $matches)) {
             $count += $this->solve2(
                 conditions: $matches['remainder'] ?? '',
                 groups: $groups,

@@ -5,8 +5,7 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXII\Day12\Grid;
 
-return new class('Hill Climbing Algorithm') extends Day
-{
+return new class ('Hill Climbing Algorithm') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

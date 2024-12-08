@@ -4,13 +4,12 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use MMXXII\Day11\Monkeys;
 
-return new class('Monkey in the Middle') extends Day
-{
+return new class ('Monkey in the Middle') extends Day {
     private function input(): Monkeys
     {
         $monkeys = new Monkeys();
 
-        $inputs = $this->getFileLines(PHP_EOL.PHP_EOL);
+        $inputs = $this->getFileLines(PHP_EOL . PHP_EOL);
 
         foreach ($inputs as $monkey) {
             preg_match('/^Monkey (\d+):\n/m', $monkey, $index);
@@ -29,7 +28,7 @@ return new class('Monkey in the Middle') extends Day
                     return match ($operation[1]) {
                         '+' => $old + $value,
                         '*' => $old * $value,
-                        default => throw new InvalidArgumentException('Unknown operator: '.$operation[1]),
+                        default => throw new InvalidArgumentException('Unknown operator: ' . $operation[1]),
                     };
                 },
                 $test[1],

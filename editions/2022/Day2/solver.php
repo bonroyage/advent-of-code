@@ -6,8 +6,7 @@ use Illuminate\Support\Collection;
 use MMXXII\Day2\Result;
 use MMXXII\Day2\Shape;
 
-return new class('Rock Paper Scissors') extends Day
-{
+return new class ('Rock Paper Scissors') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()
@@ -22,14 +21,14 @@ return new class('Rock Paper Scissors') extends Day
                 'A' => Shape::Rock,
                 'B' => Shape::Paper,
                 'C' => Shape::Scissors,
-                default => throw new InvalidArgumentException('Invalid instruction: '.$guide[0]),
+                default => throw new InvalidArgumentException('Invalid instruction: ' . $guide[0]),
             };
 
             $iShouldPlay = match ($guide[1]) {
                 'X' => Shape::Rock,
                 'Y' => Shape::Paper,
                 'Z' => Shape::Scissors,
-                default => throw new InvalidArgumentException('Invalid instruction: '.$guide[1]),
+                default => throw new InvalidArgumentException('Invalid instruction: ' . $guide[1]),
             };
 
             return $iShouldPlay->value + $iShouldPlay->result($opponentWillPlay)->value;
@@ -44,14 +43,14 @@ return new class('Rock Paper Scissors') extends Day
                 'A' => Shape::Rock,
                 'B' => Shape::Paper,
                 'C' => Shape::Scissors,
-                default => throw new InvalidArgumentException('Invalid instruction:'.$guide[0]),
+                default => throw new InvalidArgumentException('Invalid instruction:' . $guide[0]),
             };
 
             $result = match ($guide[1]) {
                 'X' => Result::Lose,
                 'Y' => Result::Draw,
                 'Z' => Result::Win,
-                default => throw new InvalidArgumentException('Invalid instruction: '.$guide[1]),
+                default => throw new InvalidArgumentException('Invalid instruction: ' . $guide[1]),
             };
 
             $iShouldPlay = match ($result) {

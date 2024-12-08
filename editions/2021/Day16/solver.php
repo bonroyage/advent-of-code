@@ -5,8 +5,7 @@ use App\Solver\SampleAnswer;
 use MMXXI\Day16\Packet;
 use MMXXI\Day16\Transmission;
 
-return new class('Packet Decoder') extends Day
-{
+return new class ('Packet Decoder') extends Day {
     private function input(): string
     {
         return $this->getFile();

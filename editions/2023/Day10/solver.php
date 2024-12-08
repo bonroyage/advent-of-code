@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use MMXXIII\Day10\Grid;
 
-return new class('') extends Day
-{
+return new class ('') extends Day {
     private function input(): Grid
     {
         return new Grid(
@@ -27,6 +26,7 @@ return new class('') extends Day
 
             foreach ($nodes as $node) {
                 $neighbours = $grid->neighbouringNodes($node);
+
                 foreach ($neighbours as $neighbour) {
                     if (!in_array($neighbour, $previousNodes, true)) {
                         $nextNodes[] = $neighbour;
@@ -62,6 +62,7 @@ return new class('') extends Day
 
             foreach ($nodes as $node) {
                 $neighbours = $grid->neighbouringNodes($node);
+
                 foreach ($neighbours as $neighbour) {
                     if (!in_array($neighbour, $previousNodes, true)) {
                         $loop[$neighbour[1]][] = $neighbour[0];

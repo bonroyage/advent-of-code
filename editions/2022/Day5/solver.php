@@ -4,11 +4,10 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('Supply Stacks') extends Day
-{
+return new class ('Supply Stacks') extends Day {
     private function input(): Collection
     {
-        return $this->getFileLines(PHP_EOL.PHP_EOL);
+        return $this->getFileLines(PHP_EOL . PHP_EOL);
     }
 
     private function buckets(): array

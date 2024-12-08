@@ -5,8 +5,7 @@ use App\Solver\Part;
 use Illuminate\Support\Collection;
 use MMXXII\Day14\Grid;
 
-return new class('Regolith Reservoir') extends Day
-{
+return new class ('Regolith Reservoir') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines();
@@ -49,6 +48,7 @@ return new class('Regolith Reservoir') extends Day
                 }
 
                 $grid->dropSand($lastNode);
+
                 break;
             } while (true);
         }
@@ -82,6 +82,7 @@ return new class('Regolith Reservoir') extends Day
                 }
 
                 $grid->dropSand($lastNode);
+
                 break;
             } while (true);
 

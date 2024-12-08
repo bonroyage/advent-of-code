@@ -5,8 +5,7 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXII\Day9\Rope;
 
-return new class('Rope Bridge') extends Day
-{
+return new class ('Rope Bridge') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

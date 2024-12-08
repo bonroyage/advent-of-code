@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('Scratchcards') extends Day
-{
+return new class ('Scratchcards') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()->map(function (string $line) {

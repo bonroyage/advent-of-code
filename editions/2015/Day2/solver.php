@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class('I Was Told There Would Be No Math') extends Day
-{
+return new class ('I Was Told There Would Be No Math') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()->map(function (string $line) {

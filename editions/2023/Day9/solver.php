@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('Mirage Maintenance') extends Day
-{
+return new class ('Mirage Maintenance') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()
@@ -28,7 +27,6 @@ return new class('Mirage Maintenance') extends Day
             ->sum(fn(array $sequence) => $this->nextValue(
                 array_reverse($sequence),
             ));
-
     }
 
     private function nextValue(array $sequence): int

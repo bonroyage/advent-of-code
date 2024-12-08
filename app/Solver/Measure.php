@@ -21,17 +21,17 @@ class Measure
     public static function format(CarbonInterval $interval): string
     {
         if ($interval->totalSeconds < 0.001) {
-            return $interval->microseconds.' μs';
+            return $interval->microseconds . ' μs';
         }
 
         if ($interval->totalSeconds < 1) {
-            return $interval->milliseconds.' ms';
+            return $interval->milliseconds . ' ms';
         }
 
         if ($interval->minutes < 1) {
-            return $interval->seconds.' s '.$interval->milliseconds.' ms';
+            return $interval->seconds . ' s ' . $interval->milliseconds . ' ms';
         }
 
-        return $interval->minutes.' m '.$interval->seconds.' s';
+        return $interval->minutes . ' m ' . $interval->seconds . ' s';
     }
 }

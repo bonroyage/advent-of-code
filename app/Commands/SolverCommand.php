@@ -15,13 +15,13 @@ use function Termwind\render;
 
 class SolverCommand extends Command
 {
-    const DAY_PATTERN = '/\/Day(\d+)\/solver\.php$/';
+    public const DAY_PATTERN = '/\/Day(\d+)\/solver\.php$/';
 
     protected $signature = 'solve {year} {day?} {--sample}';
 
     public function handle()
     {
-        $days = collect(File::glob($this->path().'/Day*/solver.php'))
+        $days = collect(File::glob($this->path() . '/Day*/solver.php'))
             ->mapWithKeys(static function ($file) {
                 $day = preg_match(self::DAY_PATTERN, $file, $matches);
 
@@ -53,7 +53,7 @@ class SolverCommand extends Command
     private function solveDay(int $index, Day $day): void
     {
         $this->newLine();
-        render('<div class="text-blue font-bold">'."Day {$index}: {$day->title}".'</div>');
+        render('<div class="text-blue font-bold">' . "Day {$index}: {$day->title}" . '</div>');
 
         $this->solveAnswer($day, 1, $day->part1(...));
         $this->solveAnswer($day, 2, $day->part2(...));
@@ -74,10 +74,10 @@ class SolverCommand extends Command
             if ($attributes === []) {
                 render(
                     <<<HTML
-                    <div class="ml-2">
-                        <span class="mr-2">🟡</span><em>Part {$part}</em> missing
-                    </div>
-HTML,
+                                            <div class="ml-2">
+                                                <span class="mr-2">🟡</span><em>Part {$part}</em> missing
+                                            </div>
+                        HTML,
                 );
 
                 return;
@@ -99,10 +99,10 @@ HTML,
         } catch (IncompleteException) {
             render(
                 <<<HTML
-                    <div class="ml-2">
-                        <span class="mr-2">🟡</span><em>Part {$part}</em> incomplete
-                    </div>
-HTML,
+                                        <div class="ml-2">
+                                            <span class="mr-2">🟡</span><em>Part {$part}</em> incomplete
+                                        </div>
+                    HTML,
             );
         }
     }
@@ -119,13 +119,13 @@ HTML,
         $elapsed = Measure::format($elapsed);
 
         if (str_contains($answer, "\n")) {
-            $answer = "\n".$answer;
+            $answer = "\n" . $answer;
         }
 
         if (str_contains($expectedAnswer, "\n")) {
-            $expectedAnswer = "\n\n".$expectedAnswer;
+            $expectedAnswer = "\n\n" . $expectedAnswer;
         } else {
-            $expectedAnswer = '('.$expectedAnswer.')';
+            $expectedAnswer = '(' . $expectedAnswer . ')';
         }
 
         $formattedAnswer = nl2br($answer);
@@ -143,11 +143,11 @@ HTML,
 
         render(
             <<<HTML
-                <div class="ml-2">
-                    <span class="mr-2">{$icon}</span><em>Part {$part}{$sample} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
-                    {$answers}
-                </div>
-HTML,
+                                <div class="ml-2">
+                                    <span class="mr-2">{$icon}</span><em>Part {$part}{$sample} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
+                                    {$answers}
+                                </div>
+                HTML,
         );
     }
 
@@ -158,7 +158,7 @@ HTML,
         $elapsed = Measure::format($elapsed);
 
         if (str_contains($answer, "\n")) {
-            $answer = "\n".$answer;
+            $answer = "\n" . $answer;
         }
 
         $formattedAnswer = nl2br($answer);
@@ -167,21 +167,22 @@ HTML,
 
         render(
             <<<HTML
-                <div class="ml-2">
-                    <em>Part {$part} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
-                    <span class="text-yellow-400">{$formattedAnswer}</span>
-                </div>
-HTML,
+                                <div class="ml-2">
+                                    <em>Part {$part} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
+                                    <span class="text-yellow-400">{$formattedAnswer}</span>
+                                </div>
+                HTML,
         );
     }
 
     private function path(): string
     {
-        $realBase = rtrim($this->absolute(base_path('editions')), '/').'/';
-        $realUserPath = $this->absolute($realBase.'/'.$this->argument('year'));
+        $realBase = rtrim($this->absolute(base_path('editions')), '/') . '/';
+        $realUserPath = $this->absolute($realBase . '/' . $this->argument('year'));
 
         if (!str_starts_with($realUserPath, $realBase)) {
             $this->error('No hacking allowed here');
+
             exit;
         }
 
@@ -197,6 +198,7 @@ HTML,
         }
 
         $this->error('Oops! Can\'t find this edition');
+
         exit;
     }
 }

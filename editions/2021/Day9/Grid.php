@@ -4,9 +4,7 @@ namespace MMXXI\Day9;
 
 class Grid
 {
-    public function __construct(public readonly array $grid)
-    {
-    }
+    public function __construct(public readonly array $grid) {}
 
     public function numberOfRows(): int
     {

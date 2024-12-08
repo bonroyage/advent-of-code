@@ -3,8 +3,7 @@
 use App\Solver\Day;
 use App\Solver\Part;
 
-return new class('Perfectly Spherical Houses in a Vacuum') extends Day
-{
+return new class ('Perfectly Spherical Houses in a Vacuum') extends Day {
     private function input(): array
     {
         return str_split($this->getFile());

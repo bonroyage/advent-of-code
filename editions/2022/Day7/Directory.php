@@ -11,8 +11,7 @@ class Directory implements Node
     public function __construct(
         public readonly string $name,
         public readonly ?Directory $parent = null,
-    ) {
-    }
+    ) {}
 
     public function addDirectory(string $name): Directory
     {

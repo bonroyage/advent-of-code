@@ -5,8 +5,7 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day15\Grid;
 
-return new class('Chiton') extends Day
-{
+return new class ('Chiton') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

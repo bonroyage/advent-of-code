@@ -10,8 +10,7 @@ readonly class Movement
     public function __construct(
         public ?Coordinate $node,
         public Direction $inDirectionOf,
-    ) {
-    }
+    ) {}
 
     public function __toString(): string
     {

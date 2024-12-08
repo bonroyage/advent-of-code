@@ -5,8 +5,7 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day11\Grid;
 
-return new class('Dumbo Octopus') extends Day
-{
+return new class ('Dumbo Octopus') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

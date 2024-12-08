@@ -6,8 +6,7 @@ use Illuminate\Support\Collection;
 use MMXXI\Day5\Line;
 use MMXXI\Day5\LineDirection;
 
-return new class('Hydrothermal Venture') extends Day
-{
+return new class ('Hydrothermal Venture') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

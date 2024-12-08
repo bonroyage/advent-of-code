@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('Passage Pathing') extends Day
-{
+return new class ('Passage Pathing') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()
@@ -64,7 +63,7 @@ return new class('Passage Pathing') extends Day
 
             if ($next === 'start') {
                 continue;
-            } else if ($next === 'end') {
+            } elseif ($next === 'end') {
                 $paths[] = [...$path, $next];
 
                 continue;

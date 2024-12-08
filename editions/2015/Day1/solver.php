@@ -3,8 +3,7 @@
 use App\Solver\Day;
 use App\Solver\Part;
 
-return new class('Not Quite Lisp') extends Day
-{
+return new class ('Not Quite Lisp') extends Day {
     private function input(): string
     {
         return $this->getFile();

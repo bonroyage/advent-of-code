@@ -16,10 +16,10 @@ class Grid
             foreach ($row as $x => $cell) {
                 if ($cell === 'E') {
                     $this->E = [$x, $y];
-                } else if ($cell === 'S') {
+                } elseif ($cell === 'S') {
                     $this->S = [$x, $y];
                     $a[] = $this->S;
-                } else if ($cell === 'a') {
+                } elseif ($cell === 'a') {
                     $a[] = [$x, $y];
                 }
             }

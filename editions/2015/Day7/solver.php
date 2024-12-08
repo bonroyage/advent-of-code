@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\Part;
 use Illuminate\Support\Collection;
 
-return new class('Some Assembly Required') extends Day
-{
+return new class ('Some Assembly Required') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

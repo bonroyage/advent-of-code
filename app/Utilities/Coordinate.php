@@ -7,8 +7,7 @@ class Coordinate
     public function __construct(
         public readonly int $x,
         public readonly int $y,
-    ) {
-    }
+    ) {}
 
     public function move(int $x = 0, int $y = 0): Coordinate
     {

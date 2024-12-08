@@ -4,9 +4,7 @@ namespace MMXXII\Day8;
 
 class Grid
 {
-    public function __construct(public readonly array $grid)
-    {
-    }
+    public function __construct(public readonly array $grid) {}
 
     public function isVisible(array $node): bool
     {

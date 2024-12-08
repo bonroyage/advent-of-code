@@ -7,5 +7,4 @@ enum LineDirection
     case Horizontal;
     case Vertical;
     case Diagonal;
-
 }

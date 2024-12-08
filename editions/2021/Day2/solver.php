@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('Dive!') extends Day
-{
+return new class ('Dive!') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()
@@ -23,9 +22,9 @@ return new class('Dive!') extends Day
         foreach ($input as [$action, $movement]) {
             if ($action === 'forward') {
                 $horizontal += $movement;
-            } else if ($action === 'up') {
+            } elseif ($action === 'up') {
                 $depth -= $movement;
-            } else if ($action === 'down') {
+            } elseif ($action === 'down') {
                 $depth += $movement;
             }
         }
@@ -46,9 +45,9 @@ return new class('Dive!') extends Day
             if ($action === 'forward') {
                 $horizontal += $movement;
                 $depth += $movement * $aim;
-            } else if ($action === 'up') {
+            } elseif ($action === 'up') {
                 $aim -= $movement;
-            } else if ($action === 'down') {
+            } elseif ($action === 'down') {
                 $aim += $movement;
             }
         }

@@ -12,6 +12,5 @@ class SampleAnswer
     public function __construct(
         public mixed $answer,
         public ?string $input = null,
-    ) {
-    }
+    ) {}
 }

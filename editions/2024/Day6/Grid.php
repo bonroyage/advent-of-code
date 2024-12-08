@@ -11,8 +11,7 @@ class Grid
 {
     public function __construct(
         private array $grid,
-    ) {
-    }
+    ) {}
 
     public function placeObstacle(Coordinate $node): void
     {

@@ -5,8 +5,7 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXI\Day8\SignalPatterns;
 
-return new class('Seven Segment Search') extends Day
-{
+return new class ('Seven Segment Search') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

@@ -14,7 +14,7 @@ class MakeCommand extends Command
         $year = $this->argument('year');
         $day = $this->argument('day');
 
-        $target = base_path('editions/'.$year.'/Day'.$day);
+        $target = base_path('editions/' . $year . '/Day' . $day);
 
         if (File::exists($target)) {
             $this->error('Day already exists!');

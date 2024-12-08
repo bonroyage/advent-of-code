@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use MMXXIII\Day11\Grid;
 
-return new class('Cosmic Expansion') extends Day
-{
+return new class ('Cosmic Expansion') extends Day {
     private function input(): Grid
     {
         return new Grid(

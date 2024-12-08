@@ -5,8 +5,7 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXII\Day4\Pair;
 
-return new class('Camp Cleanup') extends Day
-{
+return new class ('Camp Cleanup') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

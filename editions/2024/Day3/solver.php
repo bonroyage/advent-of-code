@@ -3,8 +3,7 @@
 use App\Solver\Day;
 use App\Solver\SampleAnswer;
 
-return new class('Mull It Over') extends Day
-{
+return new class ('Mull It Over') extends Day {
     private function input(string $pattern): Illuminate\Support\Collection
     {
         $contents = $this->getFile();

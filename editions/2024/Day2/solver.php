@@ -5,8 +5,7 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
-return new class('Red-Nosed Reports') extends Day
-{
+return new class ('Red-Nosed Reports') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

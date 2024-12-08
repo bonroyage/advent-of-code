@@ -5,8 +5,7 @@ use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 use MMXXIV\Day4\Grid;
 
-return new class('Ceres Search') extends Day
-{
+return new class ('Ceres Search') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

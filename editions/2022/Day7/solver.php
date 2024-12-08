@@ -6,8 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use MMXXII\Day7\Directory;
 
-return new class('No Space Left On Device') extends Day
-{
+return new class ('No Space Left On Device') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines();
@@ -59,7 +58,7 @@ return new class('No Space Left On Device') extends Day
             if ($command[0] === 'cd') {
                 if ($command[1] === '..') {
                     $pwd = $pwd->parent;
-                } else if ($command[1] === '/') {
+                } elseif ($command[1] === '/') {
                     $pwd = $root;
                 } else {
                     $pwd = $pwd->addDirectory($command[1]);
@@ -99,7 +98,7 @@ return new class('No Space Left On Device') extends Day
     private function command(ArrayIterator $iterator): ?array
     {
         if (!$this->isCommand($iterator)) {
-            throw new RuntimeException('Line is not a command: '.$iterator->current());
+            throw new RuntimeException('Line is not a command: ' . $iterator->current());
         }
 
         return explode(' ', Str::after($iterator->current(), '$ '));

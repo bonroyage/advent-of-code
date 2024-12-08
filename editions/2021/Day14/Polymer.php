@@ -50,12 +50,12 @@ class Polymer
         ];
 
         // Run with the left side of the pair and the inserted character
-        foreach ($this->calculateForPair($pair[0].$insertion, $numberOfSteps - 1) as $element => $count) {
+        foreach ($this->calculateForPair($pair[0] . $insertion, $numberOfSteps - 1) as $element => $count) {
             $ex[$element] = ($ex[$element] ?? 0) + $count;
         }
 
         // Run with the inserted character and the right side of the pair
-        foreach ($this->calculateForPair($insertion.$pair[1], $numberOfSteps - 1) as $element => $count) {
+        foreach ($this->calculateForPair($insertion . $pair[1], $numberOfSteps - 1) as $element => $count) {
             $ex[$element] = ($ex[$element] ?? 0) + $count;
         }
 

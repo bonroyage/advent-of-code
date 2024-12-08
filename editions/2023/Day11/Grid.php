@@ -55,7 +55,7 @@ class Grid
         $str = '';
 
         foreach ($this->grid as $row) {
-            $str .= implode('', $row).PHP_EOL;
+            $str .= implode('', $row) . PHP_EOL;
         }
 
         return $str;

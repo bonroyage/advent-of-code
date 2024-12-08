@@ -4,6 +4,4 @@ namespace App\Exceptions;
 
 use RuntimeException;
 
-class IncompleteException extends RuntimeException
-{
-}
+class IncompleteException extends RuntimeException {}

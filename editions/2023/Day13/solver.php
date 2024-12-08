@@ -5,11 +5,10 @@ use App\Solver\Part;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('Point of Incidence') extends Day
-{
+return new class ('Point of Incidence') extends Day {
     private function input(): Collection
     {
-        return $this->getFileLines(PHP_EOL.PHP_EOL);
+        return $this->getFileLines(PHP_EOL . PHP_EOL);
     }
 
     #[SampleAnswer(709)]

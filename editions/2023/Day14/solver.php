@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('Parabolic Reflector Dish') extends Day
-{
+return new class ('Parabolic Reflector Dish') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()
@@ -84,6 +83,7 @@ return new class('Parabolic Reflector Dish') extends Day
          */
 
         $tiltedNorth = [];
+
         foreach ($columns as $column) {
             $tiltedNorth[] = $this->shiftLine(array_column($input, $column));
         }
@@ -93,6 +93,7 @@ return new class('Parabolic Reflector Dish') extends Day
          */
 
         $tiltedWest = [];
+
         foreach ($columns as $column) {
             $tiltedWest[] = $this->shiftLine(array_column($tiltedNorth, $column));
         }
@@ -102,6 +103,7 @@ return new class('Parabolic Reflector Dish') extends Day
          */
 
         $tiltedSouth = [];
+
         foreach ($columns as $column) {
             $tiltedSouth[] = $this->shiftLine(array_column($tiltedWest, $column), true);
         }
@@ -111,6 +113,7 @@ return new class('Parabolic Reflector Dish') extends Day
          */
 
         $tiltedEast = [];
+
         foreach ($columns as $column) {
             $tiltedEast[] = $this->shiftLine(array_column($tiltedSouth, $column), true);
         }
@@ -158,7 +161,7 @@ return new class('Parabolic Reflector Dish') extends Day
         $str = '';
 
         foreach ($input as $row) {
-            $str .= implode('', $row).PHP_EOL;
+            $str .= implode('', $row) . PHP_EOL;
         }
 
         return $str;

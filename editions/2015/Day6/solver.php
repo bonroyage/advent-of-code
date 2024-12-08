@@ -5,8 +5,7 @@ use App\Solver\Part;
 use Illuminate\Support\Collection;
 use MMXV\Day6\Grid;
 
-return new class('Probably a Fire Hazard') extends Day
-{
+return new class ('Probably a Fire Hazard') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

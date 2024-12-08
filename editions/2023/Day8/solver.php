@@ -4,8 +4,7 @@ use App\Solver\Day;
 use App\Solver\SampleAnswer;
 use Illuminate\Support\Collection;
 
-return new class('Haunted Wasteland') extends Day
-{
+return new class ('Haunted Wasteland') extends Day {
     private function instructions(): array
     {
         return str_split($this->getFileLines()->first());

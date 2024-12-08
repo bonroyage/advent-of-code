@@ -6,8 +6,7 @@ class Grid
 {
     public function __construct(
         public readonly array $grid,
-    ) {
-    }
+    ) {}
 
     public function checkX(int $x, int $y): int
     {

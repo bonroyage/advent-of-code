@@ -6,8 +6,7 @@ class LiteralPacket extends Packet
 {
     public function __construct(
         public readonly int $value,
-    ) {
-    }
+    ) {}
 
     public function value(): int
     {

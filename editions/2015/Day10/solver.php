@@ -3,8 +3,7 @@
 use App\Solver\Day;
 use App\Solver\Part;
 
-return new class('Elves Look, Elves Say') extends Day
-{
+return new class ('Elves Look, Elves Say') extends Day {
     private function input(): string
     {
         return $this->getFile();
@@ -17,7 +16,7 @@ return new class('Elves Look, Elves Say') extends Day
 
         for ($i = 1; $i <= $times; $i++) {
             $value = preg_replace_callback('/((\d)\2*)/', function ($match) {
-                return strlen($match[0]).$match[2];
+                return strlen($match[0]) . $match[2];
             }, $value);
         }
 
@@ -33,7 +32,7 @@ return new class('Elves Look, Elves Say') extends Day
 
         for ($i = 1; $i <= $times; $i++) {
             $value = preg_replace_callback('/((\d)\2*)/', function ($match) {
-                return strlen($match[0]).$match[2];
+                return strlen($match[0]) . $match[2];
             }, $value);
         }
 

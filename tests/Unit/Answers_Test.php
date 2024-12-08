@@ -14,7 +14,7 @@ function createTest(Day $day, SampleAnswer $attribute, int $part, Closure $fn): 
     };
 }
 
-foreach (glob(__DIR__.'/../../editions/*/Day*/solver.php') as $file) {
+foreach (glob(__DIR__ . '/../../editions/*/Day*/solver.php') as $file) {
     preg_match('/\/editions\/(\d+)\/Day(\d+)\/solver\.php$/', $file, $matches);
 
     $year = $matches[1];

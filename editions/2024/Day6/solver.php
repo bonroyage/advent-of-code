@@ -7,8 +7,7 @@ use MMXXIV\Day6\Grid;
 use MMXXIV\Day6\LoopDetectedException;
 use MMXXIV\Day6\Movement;
 
-return new class('Guard Gallivant') extends Day
-{
+return new class ('Guard Gallivant') extends Day {
     private function input(): Collection
     {
         return $this->getFileLines()

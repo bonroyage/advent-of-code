@@ -97,7 +97,7 @@ class CRT
     {
         $sprite &= (2 ** self::PIXELS_PER_ROW) - 1;
 
-        $binary = sprintf('%0'.self::PIXELS_PER_ROW.'b', $sprite);
+        $binary = sprintf('%0' . self::PIXELS_PER_ROW . 'b', $sprite);
 
         return str_replace([1, 0], [$on ?? '#', $off ?? '.'], $binary);
     }
