@@ -39,8 +39,8 @@ return [
     */
 
     'add' => [
-        \App\Commands\SolverCommand::class,
-        \App\Commands\MakeCommand::class,
+        App\Commands\SolverCommand::class,
+        App\Commands\MakeCommand::class,
     ],
 
     /*
@@ -63,6 +63,11 @@ return [
         Illuminate\Console\Scheduling\ScheduleFinishCommand::class,
         Illuminate\Foundation\Console\VendorPublishCommand::class,
         LaravelZero\Framework\Commands\StubPublishCommand::class,
+        LaravelZero\Framework\Commands\MakeCommand::class,
+        LaravelZero\Framework\Commands\TestMakeCommand::class,
+        LaravelZero\Framework\Commands\RenameCommand::class,
+        LaravelZero\Framework\Commands\InstallCommand::class,
+        LaravelZero\Framework\Commands\BuildCommand::class,
     ],
 
     /*

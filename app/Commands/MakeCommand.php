@@ -9,6 +9,8 @@ class MakeCommand extends Command
 {
     protected $signature = 'make {year} {day}';
 
+    protected $description = 'Copy the stubs for a new day';
+
     public function handle(): void
     {
         $year = $this->argument('year');

@@ -4,6 +4,8 @@
         "app",
         "bootstrap",
         "config",
+        "editions",
+        "stubs",
         "vendor"
     ],
     "files": [

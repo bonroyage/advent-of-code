@@ -15,9 +15,11 @@ use function Termwind\render;
 
 class SolverCommand extends Command
 {
-    public const DAY_PATTERN = '/\/Day(\d+)\/solver\.php$/';
+    public const string DAY_PATTERN = '/\/Day(\d+)\/solver\.php$/';
 
-    protected $signature = 'solve {year} {day?} {--sample}';
+    protected $signature = 'solve {year} {day?} {--sample : Run against sample input instead of real input}';
+
+    protected $description = 'Solve the puzzles';
 
     public function handle()
     {
