@@ -76,9 +76,9 @@ class SolverCommand extends Command
             if ($attributes === []) {
                 render(
                     <<<HTML
-                                            <div class="ml-2">
-                                                <span class="mr-2">🟡</span><em>Part {$part}</em> missing
-                                            </div>
+                            <div class="ml-2">
+                                <span class="mr-2">🟡</span><em>Part {$part}</em> missing
+                            </div>
                         HTML,
                 );
 
@@ -101,9 +101,9 @@ class SolverCommand extends Command
         } catch (IncompleteException) {
             render(
                 <<<HTML
-                                        <div class="ml-2">
-                                            <span class="mr-2">🟡</span><em>Part {$part}</em> incomplete
-                                        </div>
+                        <div class="ml-2">
+                            <span class="mr-2">🟡</span><em>Part {$part}</em> incomplete
+                        </div>
                     HTML,
             );
         }
@@ -137,18 +137,16 @@ class SolverCommand extends Command
 
         $answers = $isCorrect
             ? "<span class=\"text-green-400\">{$formattedAnswer}</span>"
-            : <<<HTML
-                <span class="text-red-400">{$formattedAnswer}</span> <span class="text-yellow-400">{$formattedExpectedAnswer}</span>
-                HTML;
+            : "<span class=\"text-red-400\">{$formattedAnswer}</span> <span class=\"text-yellow-400\">{$formattedExpectedAnswer}</span>";
 
         $sample = $index === null ? '' : ", sample {$index}";
 
         render(
             <<<HTML
-                                <div class="ml-2">
-                                    <span class="mr-2">{$icon}</span><em>Part {$part}{$sample} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
-                                    {$answers}
-                                </div>
+                    <div class="ml-2">
+                        <span class="mr-2">{$icon}</span><em>Part {$part}{$sample} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
+                        {$answers}
+                    </div>
                 HTML,
         );
     }
@@ -169,10 +167,10 @@ class SolverCommand extends Command
 
         render(
             <<<HTML
-                                <div class="ml-2">
-                                    <em>Part {$part} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
-                                    <span class="text-yellow-400">{$formattedAnswer}</span>
-                                </div>
+                    <div class="ml-2">
+                        <em>Part {$part} in <span class="text-cyan-400">{$elapsed}</span>:&nbsp;</em>
+                        <span class="text-yellow-400">{$formattedAnswer}</span>
+                    </div>
                 HTML,
         );
     }

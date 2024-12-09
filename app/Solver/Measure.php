@@ -15,7 +15,7 @@ class Measure
 
         $value = $callback();
 
-        return [$value, CarbonImmutable::now()->diffAsCarbonInterval($start)];
+        return [$value, $start->diffAsCarbonInterval(CarbonImmutable::now())];
     }
 
     public static function format(CarbonInterval $interval): string
