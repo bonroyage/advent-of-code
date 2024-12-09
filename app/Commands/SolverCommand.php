@@ -13,6 +13,8 @@ use ReflectionFunction;
 
 use function Termwind\render;
 
+use Throwable;
+
 class SolverCommand extends Command
 {
     public const string DAY_PATTERN = '/\/Day(\d+)\/solver\.php$/';
@@ -114,6 +116,13 @@ class SolverCommand extends Command
         $day->sample = $sample;
 
         $expectedAnswer = $sample->answer;
+
+        try {
+            // Load the file once to ensure reading the file for the first time
+            // is not part of the time measurement.
+            $day->getFile();
+        } catch (Throwable) {
+        }
 
         [$answer, $elapsed] = Measure::block($callback);
         $isCorrect = $expectedAnswer === $answer;

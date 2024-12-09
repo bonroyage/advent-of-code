@@ -18,7 +18,7 @@ abstract class Day
 
     abstract public function part2();
 
-    protected function getFile(?string $file = null): Stringable
+    public function getFile(?string $file = null): Stringable
     {
         if (!isset($file)) {
             $childRef = new ReflectionClass(get_class($this));
