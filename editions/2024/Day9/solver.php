@@ -12,21 +12,33 @@ return new class ('Disk Fragmenter') extends Day {
     #[SampleAnswer(1928)]
     public function part1(): int
     {
-        $disk = collect($this->input())
-            ->flatMap(fn(int $size, int $index) => array_fill(
-                start_index: 0,
-                count: $size,
-                value: $index % 2 === 0 ? $index / 2 : null,
-            ));
+        $offset = 0;
+        $disk = [];
+        $freePositions = [];
 
-        $freePositions = $disk->whereNull()->keys();
+        foreach ($this->input() as $index => $size) {
+            $size = (int) $size;
 
-        return $disk
-            ->reverse()
-            ->whereNotNull()
-            ->reduce(function (int $checksum, int $fileId, int $blockPosition) use ($freePositions) {
-                return $checksum + $fileId * min($blockPosition, $freePositions->shift() ?? INF);
-            }, 0);
+            if ($size === 0) {
+                continue;
+            }
+
+            if ($index % 2 === 0) {
+                $disk += array_fill($offset, $size, $index / 2);
+            } else {
+                array_push($freePositions, ...range($offset, $offset + $size - 1));
+            }
+
+            $offset += $size;
+        }
+
+        $checksum = 0;
+
+        foreach (array_reverse($disk, true) as $blockPosition => $fileId) {
+            $checksum += $fileId * min($blockPosition, array_shift($freePositions) ?? $blockPosition);
+        }
+
+        return $checksum;
     }
 
     #[SampleAnswer(2858)]
@@ -50,13 +62,15 @@ return new class ('Disk Fragmenter') extends Day {
 
         $checksum = 0;
 
-        foreach (array_reverse($blocks) as $block) {
+        // Take any processed block off the away because we can never place blocks
+        // after themselves. This makes the inner foreach loop more efficient.
+        while ($block = array_pop($blocks)) {
             if ($block->fileId === null) {
                 continue;
             }
 
-            foreach ($blocks as $freeBlock) {
-                if ($freeBlock->fileId !== null || $freeBlock->size < $block->size || $freeBlock->offset >= $block->offset) {
+            foreach ($blocks as $index => $freeBlock) {
+                if ($freeBlock->fileId !== null || $freeBlock->size < $block->size) {
                     continue;
                 }
 
@@ -64,6 +78,12 @@ return new class ('Disk Fragmenter') extends Day {
 
                 $freeBlock->size -= $block->size;
                 $freeBlock->offset += $block->size;
+
+                // Remove any free block that has been completely filled. This also
+                // makes the loop more efficient on subsequent calls.
+                if ($freeBlock->size <= 0) {
+                    unset($blocks[$index]);
+                }
 
                 break;
             }
