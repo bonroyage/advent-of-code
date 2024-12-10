@@ -4,6 +4,7 @@
   "type": "project",
   "require": {
     "php": "^8.4",
+    "ext-ds": "*",
     "ext-gmp": "*",
     "laravel-zero/framework": "^11.0.3",
     "nunomaduro/termwind": "^2.3"
