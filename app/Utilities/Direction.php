@@ -13,12 +13,17 @@ enum Direction
     case NorthEast;
     case SouthWest;
     case SouthEast;
-    public const Up = self::North;
-    public const Down = self::South;
-    public const Left = self::West;
-    public const Right = self::East;
-    public const Orthogonal = [self::North, self::East, self::South, self::West];
-    public const Diagonal = [self::NorthWest, self::NorthEast, self::SouthEast, self::SouthWest];
+
+    public const self Up = self::North;
+    public const self Down = self::South;
+    public const self Left = self::West;
+    public const self Right = self::East;
+
+    public const array Orthogonal = [self::North, self::East, self::South, self::West];
+    public const array Diagonal = [self::NorthWest, self::NorthEast, self::SouthEast, self::SouthWest];
+
+    public const array Vertical = [self::North, self::South];
+    public const array Horizontal = [self::East, self::West];
 
     public function offset(): array
     {
@@ -84,5 +89,25 @@ enum Direction
     public function left45(): self
     {
         return $this->left90()->right45();
+    }
+
+    public function isVertical(): bool
+    {
+        return in_array($this, self::Vertical, true);
+    }
+
+    public function isHorizontal(): bool
+    {
+        return in_array($this, self::Horizontal, true);
+    }
+
+    public function isOrthogonal(): bool
+    {
+        return in_array($this, self::Orthogonal, true);
+    }
+
+    public function isDiagonal(): bool
+    {
+        return in_array($this, self::Diagonal, true);
     }
 }
