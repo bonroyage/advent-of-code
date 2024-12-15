@@ -25,11 +25,11 @@ class Coordinate
         );
     }
 
-    public function moveInDirection(Direction $direction): Coordinate
+    public function moveInDirection(Direction $direction, int $jump = 1): Coordinate
     {
         return $this->move(
-            x: $direction->offset()[0],
-            y: $direction->offset()[1],
+            x: $direction->offset()[0] * $jump,
+            y: $direction->offset()[1] * $jump,
         );
     }
 
