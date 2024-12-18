@@ -16,11 +16,16 @@ readonly class AStar
     {
         $shortestPath = null;
 
-        $this->process($from, $to, function (PathNode $currentNode) use (&$shortestPath) {
-            if (($shortestPath?->fScore ?? PHP_INT_MAX) > $currentNode->fScore) {
-                $shortestPath = $currentNode;
-            }
-        });
+        $this->process(
+            from: $from,
+            to: $to,
+            onGoalReached: function (PathNode $currentNode) use (&$shortestPath) {
+                if (($shortestPath?->fScore ?? PHP_INT_MAX) > $currentNode->fScore) {
+                    $shortestPath = $currentNode;
+                }
+            },
+            continueOnEqualCost: true,
+        );
 
         return $shortestPath;
     }
@@ -29,18 +34,23 @@ readonly class AStar
     {
         $shortestPaths = [];
 
-        $this->process($from, $to, function (PathNode $currentNode) use (&$shortestPaths) {
-            if (($shortestPaths[0]?->fScore ?? PHP_INT_MAX) > $currentNode->fScore) {
-                $shortestPaths = [$currentNode];
-            } elseif (($shortestPaths[0]?->fScore ?? PHP_INT_MAX) === $currentNode->fScore) {
-                $shortestPaths[] = $currentNode;
-            }
-        });
+        $this->process(
+            from: $from,
+            to: $to,
+            onGoalReached: function (PathNode $currentNode) use (&$shortestPaths) {
+                if (($shortestPaths[0]?->fScore ?? PHP_INT_MAX) > $currentNode->fScore) {
+                    $shortestPaths = [$currentNode];
+                } elseif (($shortestPaths[0]?->fScore ?? PHP_INT_MAX) === $currentNode->fScore) {
+                    $shortestPaths[] = $currentNode;
+                }
+            },
+            continueOnEqualCost: false,
+        );
 
         return $shortestPaths === [] ? null : $shortestPaths;
     }
 
-    private function process(Coordinate $from, Coordinate $to, Closure $onGoalReached): void
+    private function process(Coordinate $from, Coordinate $to, Closure $onGoalReached, bool $continueOnEqualCost): void
     {
         $frontier = new PriorityQueue();
         $frontier->push(new PathNode($from), 0);
@@ -64,7 +74,7 @@ readonly class AStar
                 $newCost = $currentNode->gScore + $moveCost;
                 $serializedNeighbour = serialize($neighbour);
 
-                if (($explored[$serializedNeighbour] ?? PHP_INT_MAX) < $newCost) {
+                if (($explored[$serializedNeighbour] ?? PHP_INT_MAX) < $newCost || ($continueOnEqualCost && ($explored[$serializedNeighbour] ?? PHP_INT_MAX) === $newCost)) {
                     continue;
                 }
 
