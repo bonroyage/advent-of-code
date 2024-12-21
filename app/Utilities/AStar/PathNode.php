@@ -4,12 +4,18 @@ namespace App\Utilities\AStar;
 
 use App\Utilities\Coordinate;
 
+/**
+ * @template T of Coordinate
+ */
 readonly class PathNode
 {
     public int $gScore;
 
     public int $fScore;
 
+    /**
+     * @param T $coordinate
+     */
     public function __construct(
         public Coordinate $coordinate,
         public ?self $parent = null,
