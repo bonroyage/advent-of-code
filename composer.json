@@ -21,7 +21,8 @@
       "MMXXI\\": "editions/2021/",
       "MMXXII\\": "editions/2022/",
       "MMXXIII\\": "editions/2023/",
-      "MMXXIV\\": "editions/2024/"
+      "MMXXIV\\": "editions/2024/",
+      "MMXXV\\": "editions/2025/"
     }
   },
   "autoload-dev": {
