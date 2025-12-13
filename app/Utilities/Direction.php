@@ -25,6 +25,8 @@ enum Direction
     public const array Vertical = [self::North, self::South];
     public const array Horizontal = [self::East, self::West];
 
+    public const array Adjacent = [self::North, self::NorthEast, self::East, self::SouthEast, self::South, self::SouthWest, self::West, self::NorthWest];
+
     public function offset(): array
     {
         return match ($this) {
